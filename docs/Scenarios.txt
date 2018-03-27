@@ -1,0 +1,46 @@
+Senario1: creating a publication
+
+- Register ( user,email,pw )
+- Login ( email,pw )
+- My publications 
+- My publications. Create Button
+- Enter Informations ( pub.name , pub.description )
+- Partition the publication:
+   - Create a content 
+   - Position the content
+   - Set the content type ( type.media , type.text )
+   - Style the content
+   - Affect content to collaborator
+
+Senario2: Inviting collaborators
+- Login ( user,pw )
+- My publications
+- Publication page
+- Publication page. Add Collaborator Button
+- Collaborators List ( all collaborators that have worked before with this acc , invited but non yet accepted list, Find Collaborator List )
+
+Senario3: Affecting work to collaborators
+- Login ( user,pw )
+- My publications
+- My publications. In Progress List
+- Publication page
+- Publication Edit mode page
+- Choose content
+- Content . Affect To Button
+- Choose the person responsible for that content
+
+Senario4: Publicating
+- Login ( user,pw ) 
+- My publications. In Progress List
+- Publication page
+- Validate the publication:
+    - While Not all contents.valide = true do 
+        - content.responsible.setDone(true)
+        - content.publicator.validate()
+    - (event) when all contents are validated, Publish Button appears
+- Publication page. Publish Button
+    
+    
+    
+    
+    
