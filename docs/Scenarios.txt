@@ -13,6 +13,7 @@ Senario1: creating a publication
    - Assign content to collaborator
 
 Senario2: Inviting collaborators
+
 - Login ( user,pw )
 - My publications
 - Publication page
@@ -20,16 +21,28 @@ Senario2: Inviting collaborators
 - Collaborators List ( all collaborators that have worked before with this acc , invited but non yet accepted list, Find Collaborator List )
 
 Senario3: Assign work to collaborators
+
 - Login ( user,pw )
 - My publications
 - My publications. In Progress List
 - Publication page
 - Publication Edit mode page
-- Choose content
-- Content . Affect To Button
+- Content Edit mode
+- Content . Assign To Button
 - Choose the person responsible for that content
 
-Senario4: Publicating
+Senario4: Editting a media content
+- Login ( user,pw )
+- My publications
+- Publication page
+- Content Edit mode
+- Set the media file:
+   - method1: Upload the file
+   - method2: choose from existant
+
+
+Senario5: Publicating
+
 - Login ( user,pw ) 
 - My publications. In Progress List
 - Publication page
