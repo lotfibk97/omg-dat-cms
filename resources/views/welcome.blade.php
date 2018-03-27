@@ -65,6 +65,15 @@
         </style>
     </head>
     <body>
+
+
+      <textarea class="form-control" id="summary-ckeditor"></textarea>
+
+
+
+
+
+
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -91,5 +100,9 @@
                 </div>
             </div>
         </div>
+        <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+<script>
+    CKEDITOR.replace( 'summary-ckeditor' );
+</script>
     </body>
 </html>
