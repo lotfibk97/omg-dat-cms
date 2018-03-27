@@ -1,0 +1,24 @@
+Permissions by collaboration grade:
+-A Publicator Can:
+	-Create, Edit, Delete publications
+	-Create, Edit, Delete, Assign, Validate contents
+	-Publish validated publications
+
+-An Editor can:
+	-Edit assigned contents
+	-Create content of type "media"
+	-Edit, Assign, delete created medias
+
+-A MediaManager can:
+	-Edit assigned contents
+
+Permissions by position relative to the content:
+- The Ower (creator of the main publication) can:
+	-Delete all contents
+	-Validate all contents
+
+- The Creator can:
+	-Delete created contents
+
+-The Responsible (assigned to):
+	-Set the content to done
