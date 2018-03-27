@@ -10,7 +10,7 @@ Senario1: creating a publication
    - Position the content
    - Set the content type ( type.media , type.text )
    - Style the content
-   - Affect content to collaborator
+   - Assign content to collaborator
 
 Senario2: Inviting collaborators
 - Login ( user,pw )
@@ -19,7 +19,7 @@ Senario2: Inviting collaborators
 - Publication page. Add Collaborator Button
 - Collaborators List ( all collaborators that have worked before with this acc , invited but non yet accepted list, Find Collaborator List )
 
-Senario3: Affecting work to collaborators
+Senario3: Assign work to collaborators
 - Login ( user,pw )
 - My publications
 - My publications. In Progress List
