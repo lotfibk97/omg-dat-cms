@@ -71,11 +71,11 @@
     /* /////////////////////////////////////////// */
     /* bottom panel ( controls ) */
     .panel-bottom {
-      position: absolute;
+      position: fixed;
       bottom: 0;
       right:1vw;
       width: 98vw;
-      height:20vh;
+      height:25vh;
       background: #00BCD4;
     }
 
@@ -124,30 +124,28 @@
     /*  currently selected content settings */
     .properties-basket {
       position: absolute;
-      left: 50%;
-      top:0;
-      width: 50%;
-      height: 100%;
+      left: 52%;
+      top:5%;
+      width: 46%;
+      height: 90%;
+      /* Custom texture */
+      box-sizing: border-box;
+      border-radius: 2px;
+      /*border: 2px solid #004D40;*/
+      box-shadow: inset 0px 0px 12px 2px #00695C;
     }
 
     /* /////////////////////////////////////////// */
     /* right panel ( contents ) */
     .panel-right {
-      position: absolute;
+      position: fixed;
       right: 1vw;
       top: 0;
-      height: 65vh;
+      height: 60vh;
       width: 20vw;
       box-sizing: border-box;
       padding: 10px;
       overflow: auto;
-    }
-
-    /* floating add button */
-    .add-fab {
-      position: absolute;
-      bottom: 0;
-      right: 0;
     }
 
     /* content elements */
@@ -156,4 +154,18 @@
       padding: 10px;
       margin-bottom: 20px;
       cursor: pointer;
+    }
+
+    /* content add button */
+    .add-content {
+      position: fixed;
+      top:63vh;
+      right: 1vw;
+      width: 20vw;
+      display: flex;
+    }
+
+    .btn {
+      margin: auto;
+      width: 100%;
     }
