@@ -81,10 +81,11 @@
       </div>
 
       <!-- Bottom Panel  -->
-      <div class="card-panel teal  panel-bottom">
+      <div class="card-panel teal panel-bottom">
 
         <!-- Currently selected content infos card   -->
-        <div class="target-inf card-panel teal-text">
+        <!--div class="target-inf card-panel orange accent-3 white-text"-->
+        <div class="target-inf card-panel deep-orange accent-2 white-text">
           <h5> History </h5>
           <span> The History of the mountain </span>
         </div>
@@ -94,16 +95,16 @@
         <div class="move-controls">
           <div class="white-text move-title"> Position </div>
 
-          <div class="btn-floating waves-effect waves-light yellow accent-3 move-top" style="top:5%; left:40%;">
+          <div class="btn-floating waves-effect waves-light white move-top" style="top:5%; left:40%;">
             <i class="mdi-navigation-expand-less teal-text"></i>
           </div>
-          <div class="btn-floating waves-effect waves-light yellow accent-3 move-bot" style="bottom:5%; left:40%;">
+          <div class="btn-floating waves-effect waves-light white move-bot" style="bottom:5%; left:40%;">
             <i class="mdi-navigation-expand-more teal-text"></i>
           </div>
-          <div class="btn-floating waves-effect waves-light yellow accent-3 move-left" style="top:35%; left:10%;">
+          <div class="btn-floating waves-effect waves-light white move-left" style="top:35%; left:10%;">
             <i class="mdi-navigation-chevron-left teal-text"></i>
           </div>
-          <div class="btn-floating waves-effect waves-light yellow accent-3 move-right" style="top:35%; right:10%;">
+          <div class="btn-floating waves-effect waves-light white move-right" style="top:35%; right:10%;">
             <i class="mdi-navigation-chevron-right teal-text"></i>
           </div>
 
@@ -114,31 +115,65 @@
         <div class="size-controls">
           <div class="white-text size-title"> Size </div>
 
-          <div class="btn-floating waves-effect waves-light yellow accent-4 tooltipped less-height"
+          <!--div class="btn-floating waves-effect waves-light yellow accent-4 tooltipped less-height"-->
+          <div class="btn-floating waves-effect waves-light white tooltipped less-height"
           style="top:5%; left:40%;" data-position="top" data-delay="50" data-tooltip="Less height">
-            <i class="mdi-action-swap-vert teal-text"></i>
+            <i class="mdi-navigation-unfold-less teal-text"></i>
           </div>
-          <div class="btn-floating waves-effect waves-light yellow accent-4 tooltipped more-height"
+          <div class="btn-floating waves-effect waves-light white tooltipped more-height"
           style="bottom:5%; left:40%;"data-position="top" data-delay="50" data-tooltip="more height">
-            <i class="mdi-action-swap-vert teal-text"></i>
+            <i class="mdi-navigation-unfold-more teal-text"></i>
           </div>
-          <div class="btn-floating waves-effect waves-light yellow accent-4 tooltipped more-width"
-          style="top:35%; left:10%;"data-position="left" data-delay="50" data-tooltip="Less height">
-            <i class="mdi-action-swap-horiz teal-text"></i>
+          <div class="btn-floating waves-effect waves-light white tooltipped more-width"
+          style="top:35%; left:10%;"data-position="left" data-delay="50" data-tooltip="Less width">
+            <i class="mdi-editor-vertical-align-top teal-text" style="transform:rotate(-90deg)"></i>
           </div>
-          <div class="btn-floating waves-effect waves-light yellow accent-4 tooltipped less-width"
-          style="top:35%; right:10%;"data-position="right" data-delay="50" data-tooltip="more height">
-            <i class="mdi-action-swap-horiz teal-text"></i>
+          <div class="btn-floating waves-effect waves-light white tooltipped less-width"
+          style="top:35%; right:10%;"data-position="right" data-delay="50" data-tooltip="more width">
+            <i class="mdi-editor-vertical-align-top teal-text" style="transform:rotate(90deg)"></i>
           </div>
 
         </div>
 
 
         <!-- Currently selected content Settings -->
-        <div class="properties-basket teal darken-2">
-          <div class="position">
+        <div class="properties-basket teal darken-2 white-text">
+          <!-- col 1 -->
+          <p style="grid-column:1; grid-row:1;">Owner</p>
+          <p style="grid-column:1; grid-row:2;">Creator</p>
+          <p style="grid-column:1; grid-row:3;">Responsible</p>
+          <p style="grid-column:1; grid-row:4;">Type</p>
 
-          </div>
+          <!-- col 2 -->
+          <p style="grid-column:2; grid-row:1; text-align:left;">Lotfi BK</p>
+          <p style="grid-column:2; grid-row:2; text-align:left;">Lotfi BK</p>
+          <p style="grid-column:2; grid-row:3; text-align:left;">Mounir</p>
+          <p style="grid-column:2; grid-row:4; text-align:left;">Text</p>
+
+          <!-- col 3 -->
+          <p style="grid-column:3; grid-row:1;">Top</p>
+          <p style="grid-column:3; grid-row:2;">Left</p>
+          <p style="grid-column:3; grid-row:3;">Width</p>
+          <p style="grid-column:3; grid-row:4;">Height</p>
+
+          <!-- col 4 -->
+          <input type="number" value="4" style="grid-column:4; grid-row:1; text-align:left;" class="fix-input">
+          <input type="number" value="1" style="grid-column:4; grid-row:2; text-align:left;" class="fix-input">
+          <input type="number" value="8" style="grid-column:4; grid-row:3; text-align:left;" class="fix-input">
+          <input type="number" value="4" style="grid-column:4; grid-row:4; text-align:left;" class="fix-input">
+          <!--p style="grid-column:4; grid-row:4; text-align:left;">4</p-->
+
+          <!-- col 5 -->
+          <p style="grid-column:5; grid-row:1;">Center V</p>
+          <p class="input-field" style="grid-column:5; grid-row:2;">
+            <input type="checkbox" id="vertical-center" style="grid-column:5; grid-row:4;">
+            <label for="vertical-center"></label>
+          </p>
+          <p style="grid-column:5; grid-row:3; ">Center H</p>
+          <p class="input-field white-text" style="grid-column:5; grid-row:4;">
+            <input type="checkbox" id="horizontal-center" style="grid-column:5; grid-row:4;">
+            <label for="horizontal-center"></label>
+          </p>
 
         </div>
 

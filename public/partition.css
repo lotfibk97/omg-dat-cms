@@ -128,12 +128,54 @@
       top:5%;
       width: 46%;
       height: 90%;
+      padding: 5px;
       /* Custom texture */
       box-sizing: border-box;
       border-radius: 2px;
-      /*border: 2px solid #004D40;*/
       box-shadow: inset 0px 0px 12px 2px #00695C;
+      /* Grid partition */
+      display: grid;
+      grid-template-columns: 3fr 4fr 2fr 2fr 3fr;
+      grid-template-rows: repeat(4,1fr);
     }
+
+    .properties-basket p {
+      margin: 0;
+      text-align: center;
+      font-weight: bold;
+      position: relative;
+    }
+
+    .properties-basket .input-field label {
+      position: static;
+      transform: translate(20%);
+    }
+
+    .properties-basket .input-field [type="checkbox"] + label:before {
+      border: 2px solid rgba(255,255,255,0.8);
+    }
+    .properties-basket .input-field [type="checkbox"]:checked + label:before {
+      border: 2px solid white;
+      border-top:0px; border-left:0px;
+    }
+
+    /*.properties-basket .input-field [type="number"] {*/
+    .fix-input , .fix-input:focus {
+      height: auto !important;
+      margin: 0!important;
+      border-bottom: 0px!important;
+      box-shadow: none!important;
+      padding-bottom: 1vh!important;
+    }
+
+    .properties-basket-canceled  input[type="checkbox"] {
+      display: block;
+      position: absolute;
+      right: 0;
+      left: 45%;
+      visibility: visible;
+    }
+
 
     /* /////////////////////////////////////////// */
     /* right panel ( contents ) */
