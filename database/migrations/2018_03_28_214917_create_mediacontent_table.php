@@ -13,14 +13,14 @@ class CreateMediacontentTable extends Migration
      */
     public function up()
     {
-        // Schema::create('mediacontents', function (Blueprint $table) {
-        //     $table->increments('id');
-        //     $table->string('description');
-        //     $table->unsignedInteger('maincontent');
-        //     $table->foreign('maincontent')->references('id')->on('content');
-        //     $table->string('route');
-        //     $table->timestamps();
-        // });
+        Schema::create('mediacontents', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('description');
+            $table->unsignedInteger('maincontent');
+            $table->foreign('maincontent')->references('id')->on('content');
+            $table->string('route');
+            $table->timestamps();
+        });
     }
 
     /**

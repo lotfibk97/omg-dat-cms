@@ -13,14 +13,14 @@ class CreateTextcontentTable extends Migration
      */
     public function up()
     {
-    //     Schema::create('textcontents', function (Blueprint $table) {
-    //         $table->increments('id');
-    //         $table->string('description');
-    //         $table->unsignedInteger('maincontent');
-    //         $table->foreign('maincontent')->references('id')->on('content');
-    //         $table->string('html');
-    //         $table->timestamps();
-    //     });
+        Schema::create('textcontents', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('description');
+            $table->unsignedInteger('maincontent');
+            $table->foreign('maincontent')->references('id')->on('content');
+            $table->string('html');
+            $table->timestamps();
+        });
      }
 
     /**
