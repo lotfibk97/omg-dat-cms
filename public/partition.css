@@ -1,0 +1,159 @@
+
+    body , html { margin: 0; padding: 0; position: absolute; top: 0; left: 0; width: 100vw; height: 100vh;}
+
+    /* the grid layout */
+    .partition {
+      width: 100%; height: 100%;
+      margin: 0; padding: 0;
+      display: grid;
+      grid-template-columns: repeat(12,1fr);
+      grid-template-rows: repeat(12,1fr);
+      grid-gap:0px;
+    }
+    .partition p {
+      border: 1px white solid;
+      box-sizing: border-box;
+      width: 100%; height: 100%;
+    }
+
+    /* the main display board repartition */
+    .board {
+      position: absolute;
+      top:0;
+    }
+    .board p {
+      background: orange;
+      position: relative;
+      display: block;
+      /*grid-area: 1 / 2 / span 4 / span 4 ;*/
+    }
+    #tools {
+      width: 100%;
+      max-height: 50%;
+      position: absolute;
+      bottom: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns:repeat(4,1fr);
+      grid-template-rows:repeat(3,1fr);
+    }
+    #tools span {
+      display: block;
+      margin: auto;
+      cursor:pointer;
+      /*grid-column:1;*/
+    }
+
+
+    /* Basket of selectable KPIs */
+    .kpis_basket {
+      height: 100vh; width: 20vw;
+      position: absolute;
+      top: 0; right: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+    .kpis_basket p {
+      border-radius: 5px;
+      border:2px solid black;
+      margin: auto;
+      padding: 3px;
+      cursor: pointer;
+
+    }
+    .kpis_basket p:hover {
+      color: #fb6d9d;
+      border: #fb6d9d 2px solid;
+      transform: scale(1.05);
+    }
+
+    /* /////////////////////////////////////////// */
+    /* bottom panel ( controls ) */
+    .panel-bottom {
+      position: absolute;
+      bottom: 0;
+      right:1vw;
+      width: 98vw;
+      height:20vh;
+      background: #00BCD4;
+    }
+
+    /* currently edited content */
+    .target-inf {
+      position: absolute;
+      left: 30%;
+      top:5%;
+      height: 90%;
+      width: 20%;
+      margin: 0px;
+      padding: 10px;
+      box-sizing: border-box;
+      overflow: auto;
+    }
+
+    /* movement & size buttons */
+    .move-controls {
+      position: absolute;
+      left: 0;
+      top:0;
+      width: 15%;
+      height: 100%;
+    }
+
+    .move-controls div {
+      position: absolute;
+    }
+
+    .size-controls {
+      position: absolute;
+      left: 15%;
+      top:0;
+      width: 15%;
+      height: 100%;
+    }
+
+    .size-controls div {
+      position: absolute;
+    }
+
+    .move-title,.size-title {
+      padding-left: 5%;
+    }
+
+    /*  currently selected content settings */
+    .properties-basket {
+      position: absolute;
+      left: 50%;
+      top:0;
+      width: 50%;
+      height: 100%;
+    }
+
+    /* /////////////////////////////////////////// */
+    /* right panel ( contents ) */
+    .panel-right {
+      position: absolute;
+      right: 1vw;
+      top: 0;
+      height: 65vh;
+      width: 20vw;
+      box-sizing: border-box;
+      padding: 10px;
+      overflow: auto;
+    }
+
+    /* floating add button */
+    .add-fab {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+
+    /* content elements */
+    .panel-right .card-panel {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
