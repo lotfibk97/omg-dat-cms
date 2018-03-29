@@ -48,50 +48,51 @@
 
   <div id="login-page" class="row">
     <div class="col s12 z-depth-4 card-panel">
-      <form class="login-form">
+      {{ Form::open(array('url' => '/')) }}
         <div class="row">
           <div class="input-field col s12 center">
             <h4>Register</h4>
             <p class="center">Manage your content now !</p>
           </div>
         </div>
+
         <div class="row margin">
           <div class="input-field col s12">
             <i class="mdi-social-person-outline prefix"></i>
-            <input id="username" type="text">
+            {{ Form::text('username',null, ['class' => 'User'])}}
             <label for="username" class="center-align">Username</label>
           </div>
         </div>
         <div class="row margin">
           <div class="input-field col s12">
             <i class="mdi-communication-email prefix"></i>
-            <input id="email" type="email">
+          {{ Form::email('email', null, ['class' => 'User'])}}
             <label for="email" class="center-align">Email</label>
           </div>
         </div>
         <div class="row margin">
           <div class="input-field col s12">
             <i class="mdi-action-lock-outline prefix"></i>
-            <input id="password" type="password">
+            {{ Form::password('password', null, ['class' => 'User'])}}
             <label for="password">Password</label>
           </div>
         </div>
         <div class="row margin">
           <div class="input-field col s12">
             <i class="mdi-action-lock-outline prefix"></i>
-            <input id="password-again" type="password">
+            {{ Form::password('password', null, ['class' => 'User'])}}
             <label for="password-again">Password again</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <a href="index-2.html" class="btn waves-effect waves-light col s12">Register Now</a>
+            {{  Form::submit('register!', ['class' => 'btn btn-primary'])}}
           </div>
           <div class="input-field col s12">
             <p class="margin center medium-small sign-up">Already have an account? <a href="login.html">Login</a></p>
           </div>
         </div>
-      </form>
+    {{ Form::close() }}
     </div>
   </div>
 
