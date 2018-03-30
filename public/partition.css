@@ -1,48 +1,69 @@
 
-    body , html { margin: 0; padding: 0; position: absolute; top: 0; left: 0; width: 100vw; height: 100vh;}
+    body , html { margin: 0; padding: 0; position: relative; top: 0; left: 0;
+    width: 100vw; height: 100vh;/* overflow-x: hidden;*/
+    /*overflow: hidden;*/
+  }
 
-    /* the grid layout */
-    .partition {
-      width: 100%; height: 100%;
-      margin: 0; padding: 0;
-      display: grid;
-      grid-template-columns: repeat(12,1fr);
-      grid-template-rows: repeat(12,1fr);
-      grid-gap:0px;
-    }
-    .partition p {
-      border: 1px white solid;
-      box-sizing: border-box;
-      width: 100%; height: 100%;
+
+    /* //////////////////////////////////////////////////// */
+    /************** grid layout ( background ) **************/
+    .vertical-lines {
+      position: fixed;
+      z-index: -3;
+      top: 0;
+      left: 8vw;
+      width: 65vw;
+      height: 100%;
     }
 
-    /* the main display board repartition */
-    .board {
-      position: absolute;
-      top:0;
-    }
-    .board p {
-      background: orange;
-      position: relative;
-      display: block;
-      /*grid-area: 1 / 2 / span 4 / span 4 ;*/
-    }
-    #tools {
-      width: 100%;
-      max-height: 50%;
-      position: absolute;
-      bottom: 0;
+    .vertical-lines div {
+      width: 2px;
+      height: 100%;
       margin: 0;
+      position: absolute;
+    }
+
+    .horizontal-lines {
+      z-index: -2;
+      margin: 0;
+      width: 100vw;
+      height: 100vh;
+      padding-top:12vh;
+      padding-bottom: 30vh;
+      overflow: auto;
+      position: absolute;
+      top: 0;
+    }
+
+    .horizontal-line {
+      width: 100%;
+      height: 2px;
+      margin: 0;
+      margin-top: 6vh; /* 4vh */
+    }
+
+    .grid-container {
+      z-index: -1;
+      margin: 0;
+      width: 100vw;
+      height: 100vh;
+      padding-top:12vh;
+      padding-bottom: 30vh;
+      overflow: auto;
+    }
+
+    .grid-board {
+      width: 65vw;
+      margin-left: 8vw;
+      height: auto;
+      background: red;
       display: grid;
-      grid-template-columns:repeat(4,1fr);
-      grid-template-rows:repeat(3,1fr);
     }
-    #tools span {
-      display: block;
-      margin: auto;
-      cursor:pointer;
-      /*grid-column:1;*/
+
+    .tmp {
+      height: 2200px;
     }
+
 
     /* //////////////////////////////////////////////////// */
     /************** controls panel ( bottom ) **************/

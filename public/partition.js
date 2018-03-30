@@ -1,13 +1,21 @@
 
 ///////////////////////// needed initialization /////////////////////////
 
-// materialize selectbox
 $(document).ready(function() {
+    // materialize selectbox
     $('select').material_select();
+    // materialize modal reopen fix
     $('.add-content').click(function() {
       $('#content-form').openModal();
     });
+
+    // horizontal lines + grid board scroll sync
+    $('.grid-container').scroll(function() {
+      //console.log("grid"+this.scrollTop);
+      document.querySelector(".horizontal-lines").scrollTop=this.scrollTop;
+    });
 });
+
 
 ///////////////////////// declaring variables  /////////////////////////
 
