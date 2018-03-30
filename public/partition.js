@@ -1,3 +1,7 @@
+$(document).ready(function() {
+    $('select').material_select();
+});
+/*
 var placeholder;
 var placeorder;
 var kpis_basket;
@@ -100,4 +104,4 @@ function moveTop() {
 function moveBottom() {
     selected_top++;
     setPosition();
-}
+} */

@@ -33,7 +33,6 @@
   <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
   <link href="css/prism.css" type="text/css" rel="stylesheet" media="screen,projection">
   <link href="js/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
-  <link href="js/plugins/chartist-js/chartist.min.css" type="text/css" rel="stylesheet" media="screen,projection">
 </head>
 
 <body class="cyan lighten-4">
@@ -50,10 +49,72 @@
 
       <!-- Content add button -->
       <div class="add-content">
-        <div class="btn waves-effect waves-light red white-text">
+        <a class="modal-trigger modal-close btn waves-effect waves-light deep-orange accent-2 white-text" href="#content-form">
            new content <i class="mdi-content-add-box right"></i>
-        </div>
+        </a>
       </div>
+
+      <!-- Content modal form -->
+      <div class="modal" id="content-form">
+
+        <form class="col s12">
+          <div class="card-panel">
+
+            <h4 class="header2">New Content</h4>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="content-title" type="text">
+                <label for="content-title">Title</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <select id="content-type">
+                  <option value = "" disabled selected class="dark-text">Type</option>
+                  <option value = "1">Mango</option>
+                  <option value = "2">Orange</option>
+                  <option value = "3">Apple</option>
+                </select>
+                <label for="content-type" class="">Type</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <select id="content-responsible">
+                  <option value = "" disabled selected class="dark-text">Assigned To</option>
+                  <option value = "1">Mohamed</option>
+                  <option value = "2">Lotfi</option>
+                  <option value = "3">Mounir</option>
+                </select>
+                <label for="content-responsible" class="">Responsible</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <textarea id="content-description" class="materialize-textarea"></textarea>
+                <label for="content-description">Description</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s3 offset-s9">
+                <button class="btn teal waves-effect waves-light right" type="submit" name="action">
+                  Submit
+                  <i class="mdi-content-send right"></i>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </form>
+
+      </div>
+
+
 
       <!-- Content List -->
       <div class="card-panel teal panel-right contents-basket">
@@ -61,21 +122,49 @@
         <div class="card-panel yellow darken-3 waves-effect">
           <h5 class="white-text"> Header </h5>
           <span class="white-text"> A picture of the mountain </span>
+
+          <div class="add-to-board btn-floating white">
+            <i class="mdi-editor-border-color orange-text"></i>
+          </div>
+          <div class="delete-content btn-floating white">
+            <i class="mdi-action-delete orange-text"></i>
+          </div>
         </div>
 
         <div class="card-panel green accent-4 waves-effect">
           <h5 class="white-text"> Introduction </h5>
           <span class="white-text"> Mont Fuji overview  </span>
+
+          <div class="add-to-board btn-floating white">
+            <i class="mdi-editor-border-color orange-text"></i>
+          </div>
+          <div class="delete-content btn-floating white">
+            <i class="mdi-action-delete orange-text"></i>
+          </div>
         </div>
 
         <div class="card-panel yellow darken-3 waves-effect">
           <h5 class="white-text"> History </h5>
           <span class="white-text"> The History of the mountain </span>
+
+          <div class="add-to-board btn-floating white">
+            <i class="mdi-editor-border-color orange-text"></i>
+          </div>
+          <div class="delete-content btn-floating white">
+            <i class="mdi-action-delete orange-text"></i>
+          </div>
         </div>
 
         <div class="card-panel yellow darken-3 waves-effect">
           <h5 class="white-text"> Tourism </h5>
-          <span class="white-text"> Tourism in mont Fuji<span>
+          <span class="white-text"> Tourism in mont Fuji</span>
+
+          <div class="add-to-board btn-floating white">
+            <i class="mdi-editor-border-color orange-text"></i>
+          </div>
+          <div class="delete-content btn-floating white">
+            <i class="mdi-action-delete orange-text"></i>
+          </div>
         </div>
 
       </div>
@@ -179,15 +268,6 @@
 
       </div>
 
-  <!-- //////////////////////////////////////////////////////////////////////////// -->
-
-  <!-- START FOOTER -->
-  <footer class="page-footer">
-
-  </footer>
-    <!-- END FOOTER -->
-
-
 
     <!-- ================================================
     Scripts
@@ -201,8 +281,6 @@
     <script type="text/javascript" src="js/prism.js"></script>
     <!--scrollbar-->
     <script type="text/javascript" src="js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <!-- chartist -->
-    <script type="text/javascript" src="js/plugins/chartist-js/chartist.min.js"></script>
 
     <!--plugins.js - Some Specific JS codes for Plugin Settings-->
     <script type="text/javascript" src="js/plugins.js"></script>

@@ -44,30 +44,6 @@
       /*grid-column:1;*/
     }
 
-
-    /* Basket of selectable KPIs */
-    .kpis_basket {
-      height: 100vh; width: 20vw;
-      position: absolute;
-      top: 0; right: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-    }
-    .kpis_basket p {
-      border-radius: 5px;
-      border:2px solid black;
-      margin: auto;
-      padding: 3px;
-      cursor: pointer;
-
-    }
-    .kpis_basket p:hover {
-      color: #fb6d9d;
-      border: #fb6d9d 2px solid;
-      transform: scale(1.05);
-    }
-
     /* /////////////////////////////////////////// */
     /* bottom panel ( controls ) */
     .panel-bottom {
@@ -168,14 +144,6 @@
       padding-bottom: 1vh!important;
     }
 
-    .properties-basket-canceled  input[type="checkbox"] {
-      display: block;
-      position: absolute;
-      right: 0;
-      left: 45%;
-      visibility: visible;
-    }
-
 
     /* /////////////////////////////////////////// */
     /* right panel ( contents ) */
@@ -198,6 +166,35 @@
       cursor: pointer;
     }
 
+    .add-to-board, .delete-content {
+      /*display: none;*/
+      visibility: hidden;
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      transform: scale(0.5);
+      transition: opacity 0.3s , scale 0.3s ;
+    }
+
+    .add-to-board {
+      right:20%;
+    }
+
+    /*.card-panel:hover .add-to-board {*/
+    /*.card-panel:hover \ .card-panel:hover .addToBoard {*/
+    /*.card-panel:hover~.addToBoard {*/
+    /*.card-panel:hover \ .card-panel:hover .add-to-board {*/
+    .panel-right .card-panel:hover > .add-to-board {
+      /*display: inline-block;*/
+      transform: scale(1);
+      visibility: visible;
+    }
+    .panel-right .card-panel:hover > .delete-content {
+      /*display: inline-block;*/
+      transform: scale(1);
+      visibility: visible;
+    }
+
     /* content add button */
     .add-content {
       position: fixed;
@@ -210,4 +207,15 @@
     .btn {
       margin: auto;
       width: 100%;
+    }
+
+    /* content form */
+    #content-form  {
+      /*max-height: 100%;*/
+      background: transparent;
+      box-shadow: none;
+    }
+
+    #content-form form .card-panel {
+      margin: 0;
     }
