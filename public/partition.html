@@ -12,266 +12,276 @@
 
   <!-- Favicons>
   <link rel="icon" href="images/favicon/favicon-32x32.png" sizes="32x32">
-  <!-- Favicons>
+  < Favicons>
   <link rel="apple-touch-icon-precomposed" href="images/favicon/apple-touch-icon-152x152.png">
-  <!-- For iPhone >
+  < For iPhone >
   <meta name="msapplication-TileColor" content="#00bcd4">
   <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png">
-  <!-- For Windows Phone -->
-
+  < For Windows Phone -->
 
   <!-- CORE CSS-->
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
-    <!-- Custome CSS-->
-    <link href="css/custom-style.css" type="text/css" rel="stylesheet" media="screen,projection">
-    <link rel="stylesheet" href="partition.css">
+  <!-- Custome CSS-->
+  <link href="css/custom-style.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link rel="stylesheet" href="partition.css">
   <!-- CSS for full screen (Layout-2)-->
   <link href="css/style-fullscreen.css" type="text/css" rel="stylesheet" media="screen,projection">
-
-
   <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
   <link href="css/prism.css" type="text/css" rel="stylesheet" media="screen,projection">
   <link href="js/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
+
 </head>
 
 <body class="cyan lighten-4">
+
+
+  <!-- //////////////////////////////////////////////////////////////////////////// -->
+
   <!-- Start Page Loading -->
   <div id="loader-wrapper">
-      <div id="loader"></div>
-      <div class="loader-section section-left"></div>
-      <div class="loader-section section-right"></div>
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
   </div>
   <!-- End Page Loading -->
 
   <!-- //////////////////////////////////////////////////////////////////////////// -->
 
 
-      <!-- Content add button -->
-      <div class="add-content">
-        <a class="modal-trigger modal-close btn waves-effect waves-light deep-orange accent-2 white-text" href="#content-form">
-           new content <i class="mdi-content-add-box right"></i>
-        </a>
-      </div>
+  <!-- Content add button -->
+  <div class="add-content">
+    <a class="modal-trigger modal-close btn waves-effect waves-light deep-orange accent-2 white-text" href="#content-form">
+       new content <i class="mdi-content-add-box right"></i>
+    </a>
+  </div>
 
-      <!-- Content modal form -->
-      <div class="modal" id="content-form">
+  <!-- Content modal form -->
+  <div class="modal" id="content-form">
 
-        <form class="col s12">
-          <div class="card-panel">
+    <form class="col s12">
+      <div class="card-panel">
 
-            <h4 class="header2">New Content</h4>
+        <h4 class="header2">New Content</h4>
 
-            <div class="row">
-              <div class="input-field col s12">
-                <input id="content-title" type="text">
-                <label for="content-title">Title</label>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="input-field col s12">
-                <select id="content-type">
-                  <option value = "" disabled selected class="dark-text">Type</option>
-                  <option value = "1">Mango</option>
-                  <option value = "2">Orange</option>
-                  <option value = "3">Apple</option>
-                </select>
-                <label for="content-type" class="">Type</label>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="input-field col s12">
-                <select id="content-responsible">
-                  <option value = "" disabled selected class="dark-text">Assigned To</option>
-                  <option value = "1">Mohamed</option>
-                  <option value = "2">Lotfi</option>
-                  <option value = "3">Mounir</option>
-                </select>
-                <label for="content-responsible" class="">Responsible</label>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="input-field col s12">
-                <textarea id="content-description" class="materialize-textarea"></textarea>
-                <label for="content-description">Description</label>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="input-field col s3 offset-s9">
-                <button class="btn teal waves-effect waves-light right" type="submit" name="action">
-                  Submit
-                  <i class="mdi-content-send right"></i>
-                </button>
-              </div>
-            </div>
-
-          </div>
-        </form>
-
-      </div>
-
-
-
-      <!-- Content List -->
-      <div class="card-panel teal panel-right contents-basket">
-
-        <div class="card-panel yellow darken-3 waves-effect">
-          <h5 class="white-text"> Header </h5>
-          <span class="white-text"> A picture of the mountain </span>
-
-          <div class="add-to-board btn-floating white">
-            <i class="mdi-editor-border-color orange-text"></i>
-          </div>
-          <div class="delete-content btn-floating white">
-            <i class="mdi-action-delete orange-text"></i>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="content-title" type="text">
+            <label for="content-title">Title</label>
           </div>
         </div>
 
-        <div class="card-panel green accent-4 waves-effect">
-          <h5 class="white-text"> Introduction </h5>
-          <span class="white-text"> Mont Fuji overview  </span>
-
-          <div class="add-to-board btn-floating white">
-            <i class="mdi-editor-border-color orange-text"></i>
-          </div>
-          <div class="delete-content btn-floating white">
-            <i class="mdi-action-delete orange-text"></i>
-          </div>
-        </div>
-
-        <div class="card-panel yellow darken-3 waves-effect">
-          <h5 class="white-text"> History </h5>
-          <span class="white-text"> The History of the mountain </span>
-
-          <div class="add-to-board btn-floating white">
-            <i class="mdi-editor-border-color orange-text"></i>
-          </div>
-          <div class="delete-content btn-floating white">
-            <i class="mdi-action-delete orange-text"></i>
+        <div class="row">
+          <div class="input-field col s12">
+            <select id="content-type">
+              <option value = "" disabled selected class="dark-text">Type</option>
+              <option value = "1">Mango</option>
+              <option value = "2">Orange</option>
+              <option value = "3">Apple</option>
+            </select>
+            <label for="content-type" class="">Type</label>
           </div>
         </div>
 
-        <div class="card-panel yellow darken-3 waves-effect">
-          <h5 class="white-text"> Tourism </h5>
-          <span class="white-text"> Tourism in mont Fuji</span>
-
-          <div class="add-to-board btn-floating white">
-            <i class="mdi-editor-border-color orange-text"></i>
+        <div class="row">
+          <div class="input-field col s12">
+            <select id="content-responsible">
+              <option value = "" disabled selected class="dark-text">Assigned To</option>
+              <option value = "1">Mohamed</option>
+              <option value = "2">Lotfi</option>
+              <option value = "3">Mounir</option>
+            </select>
+            <label for="content-responsible" class="">Responsible</label>
           </div>
-          <div class="delete-content btn-floating white">
-            <i class="mdi-action-delete orange-text"></i>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <textarea id="content-description" class="materialize-textarea"></textarea>
+            <label for="content-description">Description</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s3 offset-s9">
+            <button class="btn teal waves-effect waves-light right" type="submit" name="action">
+              Submit
+              <i class="mdi-content-send right"></i>
+            </button>
           </div>
         </div>
 
       </div>
+    </form>
 
-      <!-- Bottom Panel  -->
-      <div class="card-panel teal panel-bottom">
-
-        <!-- Currently selected content infos card   -->
-        <!--div class="target-inf card-panel orange accent-3 white-text"-->
-        <div class="target-inf card-panel deep-orange accent-2 white-text">
-          <h5> History </h5>
-          <span> The History of the mountain </span>
-        </div>
+  </div>
 
 
-        <!-- Movement buttons -->
-        <div class="move-controls">
-          <div class="white-text move-title"> Position </div>
-
-          <div class="btn-floating waves-effect waves-light white move-top" style="top:5%; left:40%;">
-            <i class="mdi-navigation-expand-less teal-text"></i>
-          </div>
-          <div class="btn-floating waves-effect waves-light white move-bot" style="bottom:5%; left:40%;">
-            <i class="mdi-navigation-expand-more teal-text"></i>
-          </div>
-          <div class="btn-floating waves-effect waves-light white move-left" style="top:35%; left:10%;">
-            <i class="mdi-navigation-chevron-left teal-text"></i>
-          </div>
-          <div class="btn-floating waves-effect waves-light white move-right" style="top:35%; right:10%;">
-            <i class="mdi-navigation-chevron-right teal-text"></i>
-          </div>
-
-        </div>
+  <!-- //////////////////////////////////////////////////////////////////////////// -->
 
 
-        <!-- Size buttons -->
-        <div class="size-controls">
-          <div class="white-text size-title"> Size </div>
+  <!-- Content List -->
+  <div class="card-panel teal panel-right contents-basket">
 
-          <!--div class="btn-floating waves-effect waves-light yellow accent-4 tooltipped less-height"-->
-          <div class="btn-floating waves-effect waves-light white tooltipped less-height"
-          style="top:5%; left:40%;" data-position="top" data-delay="50" data-tooltip="Less height">
-            <i class="mdi-navigation-unfold-less teal-text"></i>
-          </div>
-          <div class="btn-floating waves-effect waves-light white tooltipped more-height"
-          style="bottom:5%; left:40%;"data-position="top" data-delay="50" data-tooltip="more height">
-            <i class="mdi-navigation-unfold-more teal-text"></i>
-          </div>
-          <div class="btn-floating waves-effect waves-light white tooltipped more-width"
-          style="top:35%; left:10%;"data-position="left" data-delay="50" data-tooltip="Less width">
-            <i class="mdi-editor-vertical-align-top teal-text" style="transform:rotate(-90deg)"></i>
-          </div>
-          <div class="btn-floating waves-effect waves-light white tooltipped less-width"
-          style="top:35%; right:10%;"data-position="right" data-delay="50" data-tooltip="more width">
-            <i class="mdi-editor-vertical-align-top teal-text" style="transform:rotate(90deg)"></i>
-          </div>
+    <div class="card-panel yellow darken-3 waves-effect">
+      <h5 class="white-text"> Header </h5>
+      <span class="white-text"> A picture of the mountain </span>
 
-        </div>
+      <a class="add-to-board btn-floating white">
+        <i class="mdi-content-reply orange-text"></i>
+      </a>
+    </div>
+
+    <div class="card-panel green accent-4 waves-effect">
+      <h5 class="white-text"> Introduction </h5>
+      <span class="white-text"> Mont Fuji overview  </span>
+
+      <a class="add-to-board btn-floating white">
+        <i class="mdi-content-reply orange-text"></i>
+      </a>
+    </div>
+
+    <div class="card-panel yellow darken-3 waves-effect">
+      <h5 class="white-text"> History </h5>
+      <span class="white-text"> The History of the mountain </span>
+
+      <a class="add-to-board btn-floating white">
+        <i class="mdi-content-reply orange-text"></i>
+      </a>
+    </div>
+
+    <div class="card-panel yellow darken-3 waves-effect">
+      <h5 class="white-text"> Tourism </h5>
+      <span class="white-text"> Tourism in mont Fuji</span>
+
+      <a class="add-to-board btn-floating white">
+        <i class="mdi-content-reply orange-text"></i>
+      </a>
+    </div>
+
+  </div>
 
 
-        <!-- Currently selected content Settings -->
-        <div class="properties-basket teal darken-2 white-text">
-          <!-- col 1 -->
-          <p style="grid-column:1; grid-row:1;">Owner</p>
-          <p style="grid-column:1; grid-row:2;">Creator</p>
-          <p style="grid-column:1; grid-row:3;">Responsible</p>
-          <p style="grid-column:1; grid-row:4;">Type</p>
+  <!-- //////////////////////////////////////////////////////////////////////////// -->
 
-          <!-- col 2 -->
-          <p style="grid-column:2; grid-row:1; text-align:left;">Lotfi BK</p>
-          <p style="grid-column:2; grid-row:2; text-align:left;">Lotfi BK</p>
-          <p style="grid-column:2; grid-row:3; text-align:left;">Mounir</p>
-          <p style="grid-column:2; grid-row:4; text-align:left;">Text</p>
 
-          <!-- col 3 -->
-          <p style="grid-column:3; grid-row:1;">Top</p>
-          <p style="grid-column:3; grid-row:2;">Left</p>
-          <p style="grid-column:3; grid-row:3;">Width</p>
-          <p style="grid-column:3; grid-row:4;">Height</p>
+  <!-- Bottom Panel  -->
+  <div class="card-panel teal panel-bottom">
 
-          <!-- col 4 -->
-          <input type="number" value="4" style="grid-column:4; grid-row:1; text-align:left;" class="fix-input">
-          <input type="number" value="1" style="grid-column:4; grid-row:2; text-align:left;" class="fix-input">
-          <input type="number" value="8" style="grid-column:4; grid-row:3; text-align:left;" class="fix-input">
-          <input type="number" value="4" style="grid-column:4; grid-row:4; text-align:left;" class="fix-input">
-          <!--p style="grid-column:4; grid-row:4; text-align:left;">4</p-->
+    <!-- Currently selected content infos card   -->
+    <div class="target-inf card-panel deep-orange accent-2 white-text">
+      <h5> History </h5>
+      <span> The History of the mountain </span>
 
-          <!-- col 5 -->
-          <p style="grid-column:5; grid-row:1;">Center V</p>
-          <p class="input-field" style="grid-column:5; grid-row:2;">
-            <input type="checkbox" id="vertical-center" style="grid-column:5; grid-row:4;">
-            <label for="vertical-center"></label>
-          </p>
-          <p style="grid-column:5; grid-row:3; ">Center H</p>
-          <p class="input-field white-text" style="grid-column:5; grid-row:4;">
-            <input type="checkbox" id="horizontal-center" style="grid-column:5; grid-row:4;">
-            <label for="horizontal-center"></label>
-          </p>
+      <a class="edit-content btn-floating white modal-trigger" href="#content-form">
+        <i class="mdi-editor-border-color"></i>
+      </a>
+      <div class="delete-content btn-floating white">
+        <i class="mdi-action-delete"></i>
+      </div>
+    </div>
 
-        </div>
 
+    <!-- Movement buttons -->
+    <div class="move-controls">
+      <div class="white-text move-title"> Position </div>
+
+      <div class="btn-floating waves-effect waves-light white move-top" style="top:5%; left:40%;">
+        <i class="mdi-navigation-expand-less teal-text"></i>
+      </div>
+      <div class="btn-floating waves-effect waves-light white move-bot" style="bottom:5%; left:40%;">
+        <i class="mdi-navigation-expand-more teal-text"></i>
+      </div>
+      <div class="btn-floating waves-effect waves-light white move-left" style="top:35%; left:10%;">
+        <i class="mdi-navigation-chevron-left teal-text"></i>
+      </div>
+      <div class="btn-floating waves-effect waves-light white move-right" style="top:35%; right:10%;">
+        <i class="mdi-navigation-chevron-right teal-text"></i>
       </div>
 
+    </div>
 
-    <!-- ================================================
-    Scripts
-    ================================================ -->
+
+    <!-- Size buttons -->
+    <div class="size-controls">
+      <div class="white-text size-title"> Size </div>
+
+      <!--div class="btn-floating waves-effect waves-light yellow accent-4 tooltipped less-height"-->
+      <div class="btn-floating waves-effect waves-light white tooltipped less-height"
+      style="top:5%; left:40%;" data-position="top" data-delay="50" data-tooltip="Less height">
+        <i class="mdi-navigation-unfold-less teal-text"></i>
+      </div>
+      <div class="btn-floating waves-effect waves-light white tooltipped more-height"
+      style="bottom:5%; left:40%;"data-position="top" data-delay="50" data-tooltip="more height">
+        <i class="mdi-navigation-unfold-more teal-text"></i>
+      </div>
+      <div class="btn-floating waves-effect waves-light white tooltipped more-width"
+      style="top:35%; left:10%;"data-position="left" data-delay="50" data-tooltip="Less width">
+        <i class="mdi-editor-vertical-align-top teal-text" style="transform:rotate(-90deg)"></i>
+      </div>
+      <div class="btn-floating waves-effect waves-light white tooltipped less-width"
+      style="top:35%; right:10%;"data-position="right" data-delay="50" data-tooltip="more width">
+        <i class="mdi-editor-vertical-align-top teal-text" style="transform:rotate(90deg)"></i>
+      </div>
+
+    </div>
+
+
+    <!-- Currently selected content Settings -->
+    <div class="properties-basket teal darken-2 white-text">
+      <!-- col 1 -->
+      <p style="grid-column:1; grid-row:1;">Owner</p>
+      <p style="grid-column:1; grid-row:2;">Creator</p>
+      <p style="grid-column:1; grid-row:3;">Responsible</p>
+      <p style="grid-column:1; grid-row:4;">Type</p>
+
+      <!-- col 2 -->
+      <p style="grid-column:2; grid-row:1; text-align:left;">Lotfi BK</p>
+      <p style="grid-column:2; grid-row:2; text-align:left;">Lotfi BK</p>
+      <p style="grid-column:2; grid-row:3; text-align:left;">Mounir</p>
+      <p style="grid-column:2; grid-row:4; text-align:left;">Text</p>
+
+      <!-- col 3 -->
+      <p style="grid-column:3; grid-row:1;">Top</p>
+      <p style="grid-column:3; grid-row:2;">Left</p>
+      <p style="grid-column:3; grid-row:3;">Width</p>
+      <p style="grid-column:3; grid-row:4;">Height</p>
+
+      <!-- col 4 -->
+      <input type="number" value="4" style="grid-column:4; grid-row:1; text-align:left;" class="fix-input">
+      <input type="number" value="1" style="grid-column:4; grid-row:2; text-align:left;" class="fix-input">
+      <input type="number" value="8" style="grid-column:4; grid-row:3; text-align:left;" class="fix-input">
+      <input type="number" value="4" style="grid-column:4; grid-row:4; text-align:left;" class="fix-input">
+      <!--p style="grid-column:4; grid-row:4; text-align:left;">4</p-->
+
+      <!-- col 5 -->
+      <p style="grid-column:5; grid-row:1;">Center V</p>
+      <p class="input-field" style="grid-column:5; grid-row:2;">
+        <input type="checkbox" id="vertical-center" style="grid-column:5; grid-row:4;">
+        <label for="vertical-center"></label>
+      </p>
+      <p style="grid-column:5; grid-row:3; ">Center H</p>
+      <p class="input-field white-text" style="grid-column:5; grid-row:4;">
+        <input type="checkbox" id="horizontal-center" style="grid-column:5; grid-row:4;">
+        <label for="horizontal-center"></label>
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+
+  <div class="">
+
+  </div>
+
+
+
+  <!-- //////////////////////////////////////////////////////////////////////////// -->
+    <!-- ============================= Scripts ============================ -->
 
     <!-- jQuery Library -->
     <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
@@ -281,10 +291,9 @@
     <script type="text/javascript" src="js/prism.js"></script>
     <!--scrollbar-->
     <script type="text/javascript" src="js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-
     <!--plugins.js - Some Specific JS codes for Plugin Settings-->
     <script type="text/javascript" src="js/plugins.js"></script>
-
+    <!--customJs-->
     <script type="text/javascript" src="partition.js"></script>
 
 </body>

@@ -44,8 +44,8 @@
       /*grid-column:1;*/
     }
 
-    /* /////////////////////////////////////////// */
-    /* bottom panel ( controls ) */
+    /* //////////////////////////////////////////////////// */
+    /************** controls panel ( bottom ) **************/
     .panel-bottom {
       position: fixed;
       bottom: 0;
@@ -55,7 +55,7 @@
       background: #00BCD4;
     }
 
-    /* currently edited content */
+    /************** Selected content infs **************/
     .target-inf {
       position: absolute;
       left: 30%;
@@ -68,7 +68,21 @@
       overflow: auto;
     }
 
-    /* movement & size buttons */
+    .edit-content, .delete-content {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+    }
+
+    .edit-content {
+      right: 20%;
+    }
+
+    .edit-content i , .delete-content i {
+      color: #FF6E40;
+    }
+
+    /************** movement & size buttons **************/
     .move-controls {
       position: absolute;
       left: 0;
@@ -97,7 +111,7 @@
       padding-left: 5%;
     }
 
-    /*  currently selected content settings */
+    /************** content properties **************/
     .properties-basket {
       position: absolute;
       left: 52%;
@@ -135,7 +149,6 @@
       border-top:0px; border-left:0px;
     }
 
-    /*.properties-basket .input-field [type="number"] {*/
     .fix-input , .fix-input:focus {
       height: auto !important;
       margin: 0!important;
@@ -146,7 +159,7 @@
 
 
     /* /////////////////////////////////////////// */
-    /* right panel ( contents ) */
+    /************** content panel ( right ) **************/
     .panel-right {
       position: fixed;
       right: 1vw;
@@ -158,7 +171,7 @@
       overflow: auto;
     }
 
-    /* content elements */
+    /************** content elements **************/
     .panel-right .card-panel {
       width: 100%;
       padding: 10px;
@@ -166,7 +179,7 @@
       cursor: pointer;
     }
 
-    .add-to-board, .delete-content {
+    .add-to-board {
       /*display: none;*/
       visibility: hidden;
       position: absolute;
@@ -176,14 +189,6 @@
       transition: opacity 0.3s , scale 0.3s ;
     }
 
-    .add-to-board {
-      right:20%;
-    }
-
-    /*.card-panel:hover .add-to-board {*/
-    /*.card-panel:hover \ .card-panel:hover .addToBoard {*/
-    /*.card-panel:hover~.addToBoard {*/
-    /*.card-panel:hover \ .card-panel:hover .add-to-board {*/
     .panel-right .card-panel:hover > .add-to-board {
       /*display: inline-block;*/
       transform: scale(1);
@@ -195,7 +200,7 @@
       visibility: visible;
     }
 
-    /* content add button */
+    /************** content add button **************/
     .add-content {
       position: fixed;
       top:63vh;
@@ -209,7 +214,7 @@
       width: 100%;
     }
 
-    /* content form */
+    /************** content form **************/
     #content-form  {
       /*max-height: 100%;*/
       background: transparent;

@@ -1,6 +1,20 @@
+
+///////////////////////// needed initialization /////////////////////////
+
+// materialize selectbox
 $(document).ready(function() {
     $('select').material_select();
+    $('.add-content').click(function() {
+      $('#content-form').openModal();
+    });
 });
+
+///////////////////////// declaring variables  /////////////////////////
+
+///////////////////////// attaching listeners   /////////////////////////
+
+///////////////////////// defining functions   /////////////////////////
+
 /*
 var placeholder;
 var placeorder;
