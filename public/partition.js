@@ -14,118 +14,137 @@ $(document).ready(function() {
     $('.grid-container').scroll(function() {
       //console.log("grid"+this.scrollTop);
       document.querySelector(".horizontal-lines").scrollTop=this.scrollTop;
+      current_scroll=this.scrollTop;
     });
-    
+
 });
 
 
 ///////////////////////// declaring variables  /////////////////////////
 
+var content_spaces=document.querySelectorAll(".content-space");
+var grid_board=document.querySelector(".grid-board");
+var selected_content;
+var selected_content_space=$('.content-space')[0];
+
+var selected_top=5,selected_left=2,selected_height=6,selected_width=7;
+var owner,creator,responsible,type;
+
+////////////////////// fixing issues vars
+var current_scroll=0;
+var grid_rows=20;
+
+
 ///////////////////////// attaching listeners   /////////////////////////
+
+$('.move-top').click(moveTop);
+$('.move-bot').click(moveBottom);
+$('.move-left').click(moveLeft);
+$('.move-right').click(moveRight);
+
+$('.more-width').click(moreWidth);
+$('.less-width').click(lessWidth);
+$('.more-height').click(moreHeight);
+$('.less-height').click(lessHeight);
 
 ///////////////////////// defining functions   /////////////////////////
 
-/*
-var placeholder;
-var placeorder;
-var kpis_basket;
-var board;
-var tools;
+function moveContent() {
+  selected_content_space.style.gridArea=""+selected_top+" / "+selected_left+" / span "+selected_height+" / span "+selected_width;
+  saveContentPosition(/* must add current params in case slow network*/);
 
-var list;
-var selected;
-var selected_top=4;
-var selected_left=4;
-var selected_width=4;
-var selected_height=4;
-
-var move_left;
-var move_right;
-var move_top;
-var move_bottom;
-
-window.onload = function main() {
-
-  list = document.querySelectorAll(".kpis_basket p");
-  kpis_basket = document.querySelector(".kpis_basket");
-  board = document.querySelector(".board");
-  tools = document.querySelector("#tools");
-
-  move_right=document.getElementById("right");
-  move_right.addEventListener("click",moveRight);
-  move_left=document.getElementById("left");
-  move_left.addEventListener("click",moveLeft);
-  move_top=document.getElementById("top");
-  move_top.addEventListener("click",moveTop);
-  move_bottom=document.getElementById("bottom");
-  move_bottom.addEventListener("click",moveBottom);
-
-  for ( var i=0; i< list.length ; i++ ) {
-    list[i].style.order=list[i].id.charAt(1);
-    list[i].addEventListener("click",addToBoard);
-  };
-
-};
-
-function RemoveFromBoard(event) {
-  //remove adequate place holder and move this from board to kpis_basket
+  saveContext();
+  fixScroll();
+  extendGrid();
 }
 
-function addToBoard(event) {
-  //console.log(event.target.id.charAt(1));
-  placeholder = document.createElement("p");
-  placeholder.style.order=event.target.id.charAt(1);
-  placeholder.textContent=event.target.textContent;
-  placeholder.style.visibility="hidden";
-  kpis_basket.appendChild(placeholder);
-  kpis_basket.removeChild(event.target);
-  board.appendChild(event.target);
-  event.target.removeEventListener("click",addToBoard);
-  selected=event.target;
-  updatePosition(selected_top,selected_left,selected_width,selected_height);
-  setPosition();
-  showTools();
-}
-
-function showTools() {
-  selected.appendChild(tools);
-  tools.style.display="grid";
-  tools.classList.toggle("tools-hidden");
-}
-
-function updatePosition(top,left,width,height) {
-  selected_top=top;
-  selected_left=left;
-  selected_width=width;
-  selected_heigh=height;
-}
-
-function setPosition() {
-  selected.style.gridArea=""+selected_top+" / "+selected_left+" / span "+selected_width+" / span "+selected_height;
+function saveContentPosition() {
+  // Ajax post request to save the new position in the database
 }
 
 function moveRight (){
   if ( selected_left+selected_width < 13 ) {
     selected_left++;
-    setPosition();
+    moveContent();
   }
 }
 
 function moveLeft() {
   if ( selected_left > 1  ) {
     selected_left--;
-    setPosition();
+    moveContent();
   }
 }
 
 function moveTop() {
   if ( selected_top > 1  ) {
     selected_top--;
-    setPosition();
+    moveContent();
   }
 }
 
 function moveBottom() {
     selected_top++;
-    setPosition();
-} */
+    moveContent();
+}
+
+function resizeContent() {
+  selected_content_space.style.gridArea=""+selected_top+" / "+selected_left+" / span "+selected_height+" / span "+selected_width;
+  saveContentSize(/* must add current params in case slow network*/);
+
+  saveContext();
+  fixScroll();
+  extendGrid();
+}
+
+function saveContentSize() {
+  // Ajax post request to save the new size in the database
+}
+
+function moreWidth() {
+  if(selected_left+selected_width < 13) {
+    selected_width++;
+    resizeContent();
+  }
+}
+
+function lessWidth() {
+  if(selected_width>1)
+  selected_width--;
+  resizeContent();
+}
+
+function moreHeight() {
+  selected_height++;
+  resizeContent();
+  // can add some vertical lines here
+}
+
+function lessHeight() {
+  if (selected_height>1)
+  selected_height--;
+  resizeContent();
+}
+
+////////////////////// fixing issues functions
+
+function saveContext() {
+  // ajax post of the last selected content and the actual grid rows number
+}
+
+function extendGrid() {
+  for (var i =0 ; i< content_spaces.length ; i++ ) {
+    var str = content_spaces[i].style.gridRow;
+    var offset_rows = parseInt( str.substr(0,str.indexOf('/')) ) + parseInt( str.substr(str.indexOf('n')+1,str.length) );
+    if ( grid_rows <= offset_rows ) {
+      grid_rows=offset_rows+2;
+      var calc = document.documentElement.clientHeight*0.08+2;
+      grid_board.style.gridTemplateRows="repeat("+grid_rows+","+calc+"px)";
+    }
+  }
+}
+
+function fixScroll() {
+  document.querySelector(".grid-container").scrollTop=current_scroll;
+  document.querySelector(".horizontal-lines").scrollTop=current_scroll;
+}
