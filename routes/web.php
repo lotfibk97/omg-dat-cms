@@ -12,19 +12,24 @@
 */
 
 use Illuminate\Support\Facades\Input;
+use App\Mail\UserMessageCreated;
 
 
 
 
 Route::get('/', function () {
-    return view('register');
+    return view('auth/register');
 });
-Route::post('/', function () {
-$user = new App\User;
-$user->email = Input::get('email');
-$user->name = Input::get('username');
-$user->password = Hash::make(Input::get('password'));
-$user->save();
-$yourEmail = Input::get('email');
- return view('welcome')->with('yourEmail',$yourEmail);
- });
+Route::post('/', [
+
+'as' => 'register.create',
+'uses' => 'RegistrationController@store'
+
+]);
+
+
+Route::get('/test-email',function(){
+return new UserMessageCreated('lotfi','admin@odc.com');
+
+
+});

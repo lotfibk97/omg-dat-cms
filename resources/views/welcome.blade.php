@@ -104,5 +104,7 @@
 <script>
     CKEDITOR.replace( 'summary-ckeditor' );
 </script>
+@include('flashy::message')
+
     </body>
 </html>

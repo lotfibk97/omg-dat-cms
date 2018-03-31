@@ -188,6 +188,8 @@ return [
 
 
         'Collective\Html\HtmlServiceProvider',
+        MercurySeries\Flashy\FlashyServiceProvider::class,
+
     ],
 
     /*
@@ -246,6 +248,8 @@ return [
 
         'Form' => 'Collective\Html\FormFacade',
         'Html' => 'Collective\Html\HtmlFacade',
+        'Flashy' => MercurySeries\Flashy\Flashy::class,
+
 
     ],
 
