@@ -2,6 +2,7 @@
 ///////////////////////// needed initialization /////////////////////////
 
 $(document).ready(function() {
+
     // materialize selectbox
     $('select').material_select();
     // materialize modal reopen fix
@@ -14,6 +15,7 @@ $(document).ready(function() {
       //console.log("grid"+this.scrollTop);
       document.querySelector(".horizontal-lines").scrollTop=this.scrollTop;
     });
+    
 });
 
 
