@@ -67,6 +67,8 @@ $('.less-height').click(lessHeight);
 
 ///////////////////////// defining functions   /////////////////////////
 
+// Select then move/resize then updateOnBoard then updateData then updateDisplay then updateDB
+
 // add a new content from the basket to the display board
 function createContentSpace() {
 
@@ -109,14 +111,19 @@ function selectContent(id) {
 
   selected_top=contents[id]["top"];
   selected_left=contents[id]["left"];
-  selected_width=contents[id]["width"]; 
+  selected_width=contents[id]["width"];
   selected_height=contents[id]["height"];
 
-  updateProperties();
+  updatePropertiesDisplay();
+}
+
+// Ajax post request to save the new position in the database post(contents[selected_content])
+function updateContentDataBase() {
+  // ajax  POST , all the array or contents[selectContent]
 }
 
 // update the displayed properties by the new ones
-function updateProperties() {
+function updatePropertiesDisplay() {
 
   inf_title.innerHTML=contents[selected_content]["title"];
   inf_description.innerHTML=contents[selected_content]["description"];
@@ -126,99 +133,86 @@ function updateProperties() {
   inf_responsible.innerHTML=contents[selected_content]["responsible"];
   inf_type.innerHTML=contents[selected_content]["type"];
 
-  inf_top.value=selected_top;
-  inf_left.value=selected_left;
-  inf_width.value=selected_width;
-  inf_height.value=selected_height;
+  inf_top.value=contents[selected_content]["top"];
+  inf_left.value=contents[selected_content]["left"];
+  inf_width.value=contents[selected_content]["width"];
+  inf_height.value=contents[selected_content]["height"];
+
+  inf_ch.checked=contents[selected_content]["center-h"];
+  inf_cv.checked=contents[selected_content]["center-v"];
+
+  updateContentDataBase();
 }
 
-function moveContent() {
-  selected_content_space.style.gridArea=""+selected_top+" / "+selected_left+" / span "+selected_height+" / span "+selected_width;
-  saveContentPosition(/* must add current params in case slow network*/);
-
-  saveContext();
-  fixScroll();
-  extendGrid();
-}
-
-function saveContentPosition() {
+function updateContentDataArray() {
 
   contents[selected_content]["top"]=selected_top;
   contents[selected_content]["left"]=selected_left;
+  contents[selected_content]["width"]=selected_width;
+  contents[selected_content]["height"]=selected_height;
 
-  // Ajax post request to save the new position in the database post(contents[selected_content])
+  updatePropertiesDisplay();
+}
 
-  updateProperties();
+function updateContentOnTheBoard() {
+  selected_content_space.style.gridArea=""+selected_top+" / "+selected_left+" / span "+selected_height+" / span "+selected_width;
+  updateContentDataArray();
+
+  //move to update database
+  //saveContext();
+  fixScroll();
+  extendGrid();
 }
 
 function moveRight (){
   if ( selected_left+selected_width < 13 ) {
     selected_left++;
-    moveContent();
+    updateContentOnTheBoard();
   }
 }
 
 function moveLeft() {
   if ( selected_left > 1  ) {
     selected_left--;
-    moveContent();
+    updateContentOnTheBoard();
   }
 }
 
 function moveTop() {
   if ( selected_top > 1  ) {
     selected_top--;
-    moveContent();
+    updateContentOnTheBoard();
   }
 }
 
 function moveBottom() {
     selected_top++;
-    moveContent();
-}
-
-function resizeContent() {
-  selected_content_space.style.gridArea=""+selected_top+" / "+selected_left+" / span "+selected_height+" / span "+selected_width;
-  saveContentSize(/* must add current params in case slow network*/);
-
-  saveContext();
-  fixScroll();
-  extendGrid();
-}
-
-function saveContentSize() {
-
-  contents[selected_content]["width"]=selected_width;
-  contents[selected_content]["height"]=selected_height;
-
-  // Ajax post request to save the new size in the database post(contents[selected_content])
-
-  updateProperties();
+    updateContentOnTheBoard();
 }
 
 function moreWidth() {
   if(selected_left+selected_width < 13) {
     selected_width++;
-    resizeContent();
+    updateContentOnTheBoard();
   }
 }
 
 function lessWidth() {
   if(selected_width>1)
   selected_width--;
-  resizeContent();
+  updateContentOnTheBoard();
 }
 
 function moreHeight() {
   selected_height++;
-  resizeContent();
+  updateContentOnTheBoard();
   // can add some vertical lines here
 }
 
 function lessHeight() {
   if (selected_height>1)
   selected_height--;
-  resizeContent();
+  updateContentOnTheBoard();
 }
 
 ////////////////////// fixing issues functions
