@@ -66,13 +66,7 @@
       border-radius: 2px;
       border: 0px solid white;
       padding: 3px;
-
-      grid-area:2 / 2 / span 3 / span 10 ;
-
-    }
-
-    .content-space:last-child {
-      grid-area:5 / 2 / span 6 / span 7 ;
+      cursor: pointer;
     }
 
     .content-itself {

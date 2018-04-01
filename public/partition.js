@@ -22,20 +22,24 @@ $(document).ready(function() {
 
 ///////////////////////// declaring variables  /////////////////////////
 
+// use blade to populate content-spaces depending on "displayed attribute"
 var content_spaces=document.querySelectorAll(".content-space");
 var grid_board=document.querySelector(".grid-board");
+
 var selected_content;
 var selected_content_space=$('.content-space')[0];
 
-var selected_top=5,selected_left=2,selected_height=6,selected_width=7;
+var selected_top=1,selected_left=3,selected_height=6,selected_width=7;
 var owner,creator,responsible,type;
 
-////////////////////// fixing issues vars
+///////////////////////// fixing issues vars
 var current_scroll=0;
 var grid_rows=20;
 
 
 ///////////////////////// attaching listeners   /////////////////////////
+
+$('.add-to-board').click(createContentSpace);
 
 $('.move-top').click(moveTop);
 $('.move-bot').click(moveBottom);
@@ -126,10 +130,40 @@ function lessHeight() {
   resizeContent();
 }
 
+function createContentSpace() {
+  var id=getContentId(this.parentElement.id);
+
+  var description=document.createElement("span");
+  description.innerHTML=contents[id]["description"];
+  var title=document.createElement("h5");
+  title.innerHTML=contents[id]["title"];
+
+  var content=document.createElement("div");
+  content.classList.add("content-itself");
+  content.classList.add("card-panel");
+  content.classList.add("deep-orange-text");
+  content.appendChild(title);
+  content.appendChild(description);
+
+  var space=document.createElement("div");
+  space.classList.add("content-space");
+  space.id="cs-"+id;
+  space.appendChild(content);
+  space.style.gridArea=""+contents[id]["top"]+"/"+contents[id]["left"]+"/ span "+contents[id]["height"]+"/ span "+contents[id]["width"];
+  console.log(space.style.gridArea);
+
+  grid_board.appendChild(space);
+  contents[id]["displayed"]=true;
+}
+
 ////////////////////// fixing issues functions
 
 function saveContext() {
   // ajax post of the last selected content and the actual grid rows number
+}
+
+function getContentId(id) {
+  return id.substr(id.indexOf('-')+1,id.length);
 }
 
 function extendGrid() {

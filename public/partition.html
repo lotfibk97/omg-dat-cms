@@ -48,10 +48,53 @@
 
   <!-- //////////////////////////////////////////////////////////////////////////// -->
 
+  <!-- Contents data array -->
+
+  <script type="text/javascript">
+    var contents = [
+      {
+        "id":0,
+        "title":"Header",
+        "description":"A picture of the mountain",
+        "type":"Media",
+        "owner":"Mounir",
+        "creator":"Mounir",
+        "responsible":"Lotfi BK",
+        "top":7,
+        "left":2,
+        "height":3,
+        "width":10,
+        "center-h":false,
+        "center-v":false,
+        "displayed":false,
+      },
+      {
+        "id":1,
+        "title":"Introduction",
+        "description":"Mont Fuji overview",
+        "type":"Text",
+        "owner":"Lotfi BK",
+        "creator":"Lotfi BK",
+        "responsible":"Mounir",
+        "top":1,
+        "left":3,
+        "height":6,
+        "width":7,
+        "center-h":false,
+        "center-v":false,
+        "displayed":true,
+      },
+    ];
+
+  </script>
+
+  <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+
 
   <!-- Content add button -->
   <div class="add-content">
-    <a class="modal-trigger modal-close btn waves-effect waves-light deep-orange accent-2 white-text" href="#content-form">
+    <a class="modal-trigger modal-close btn waves-effect waves-light deep-orange darken-3 white-text" href="#content-form">
        new content <i class="mdi-content-add-box right"></i>
     </a>
   </div>
@@ -123,39 +166,39 @@
   <!-- Content List -->
   <div class="card-panel teal panel-right contents-basket">
 
-    <div class="card-panel yellow darken-3 waves-effect">
-      <h5 class="white-text"> Header </h5>
-      <span class="white-text"> A picture of the mountain </span>
+    <div class="card-panel white teal-text waves-effect" id="c-0">
+      <h5 class=""> Header </h5>
+      <span class=""> A picture of the mountain </span>
 
-      <a class="add-to-board btn-floating white">
-        <i class="mdi-content-reply orange-text"></i>
+      <a class="add-to-board btn-floating teal">
+        <i class="mdi-content-reply white-text"></i>
       </a>
     </div>
 
-    <div class="card-panel green accent-4 waves-effect">
-      <h5 class="white-text"> Introduction </h5>
-      <span class="white-text"> Mont Fuji overview  </span>
+    <div class="card-panel white teal-text waves-effect" id="c-1">
+      <h5 class=""> Introduction </h5>
+      <span class=""> Mont Fuji overview  </span>
 
-      <a class="add-to-board btn-floating white">
-        <i class="mdi-content-reply orange-text"></i>
+      <a class="add-to-board btn-floating teal">
+        <i class="mdi-content-reply white-text"></i>
       </a>
     </div>
 
-    <div class="card-panel yellow darken-3 waves-effect">
-      <h5 class="white-text"> History </h5>
-      <span class="white-text"> The History of the mountain </span>
+    <div class="card-panel white teal-text waves-effect" id="c-2">
+      <h5 class=""> History </h5>
+      <span class=""> The History of the mountain </span>
 
-      <a class="add-to-board btn-floating white">
-        <i class="mdi-content-reply orange-text"></i>
+      <a class="add-to-board btn-floating teal">
+        <i class="mdi-content-reply white-text"></i>
       </a>
     </div>
 
-    <div class="card-panel yellow darken-3 waves-effect">
-      <h5 class="white-text"> Tourism </h5>
-      <span class="white-text"> Tourism in mont Fuji</span>
+    <div class="card-panel white teal-text waves-effect" id="c-3">
+      <h5 class=""> Tourism </h5>
+      <span class=""> Tourism in mont Fuji</span>
 
-      <a class="add-to-board btn-floating white">
-        <i class="mdi-content-reply orange-text"></i>
+      <a class="add-to-board btn-floating teal">
+        <i class="mdi-content-reply white-text"></i>
       </a>
     </div>
 
@@ -277,17 +320,10 @@
   <div class="grid-container">
     <div class="grid-board">
 
-      <!--div class="content-space">
-        <div class="content-itself card-panel">
-        <h5 class="teal-text"> Header </h5>
-        <span class="teal-text"> A picture of the mountain </span>
-        </div>
-      </div-->
-
-      <div class="content-space">
-        <div class="content-itself card-panel">
-        <h5 class="teal-text"> Introduction </h5>
-        <span class="teal-text"> Mont Fuji overview </span>
+      <div class="content-space" id="cs-1" style="grid-area:1 / 3 / span 6 / span 7 ;">
+        <div class="content-itself card-panel deep-orange-text">
+          <h5> Introduction </h5>
+          <span> Mont Fuji overview </span>
         </div>
       </div>
 
@@ -296,7 +332,7 @@
 
   <!-- 12 vertical lines -->
   <div class="vertical-lines">
-    <div class="teal" style="left:0%; width:3px;"></div>
+    <div class="teal darken-4" style="left:0%; width:3px;"></div>
     <div class="teal" style="left:8.33%;"></div>
     <div class="teal" style="left:16.66%;"></div>
     <div class="teal" style="left:25%;"></div>
@@ -308,7 +344,7 @@
     <div class="teal" style="left:75%;"></div>
     <div class="teal" style="left:83.33%;"></div>
     <div class="teal" style="left:91.66%;"></div>
-    <div class="teal" style="left:100%; width:3px;"></div>
+    <div class="teal darken-4" style="left:100%; width:3px;"></div>
   </div>
 
   <!-- dynamic horizontal lines -->
