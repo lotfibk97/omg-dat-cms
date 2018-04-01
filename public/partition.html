@@ -51,9 +51,13 @@
   <!-- Contents data array -->
 
   <script type="text/javascript">
-    var contents = [
-      {
-        "id":0,
+
+    var selected_content=1;
+    var current_scroll=0;
+    var grid_rows=20;
+
+    var contents = {
+      "0":{
         "title":"Header",
         "description":"A picture of the mountain",
         "type":"Media",
@@ -68,8 +72,7 @@
         "center-v":false,
         "displayed":false,
       },
-      {
-        "id":1,
+      "1":{
         "title":"Introduction",
         "description":"Mont Fuji overview",
         "type":"Text",
@@ -84,7 +87,7 @@
         "center-v":false,
         "displayed":true,
       },
-    ];
+    };
 
   </script>
 
@@ -213,8 +216,8 @@
 
     <!-- Currently selected content infos card   -->
     <div class="target-inf card-panel deep-orange accent-2 white-text">
-      <h5> History </h5>
-      <span> The History of the mountain </span>
+      <h5> / </h5>
+      <span> / </span>
 
       <a class="edit-content btn-floating white modal-trigger" href="#content-form">
         <i class="mdi-editor-border-color"></i>
@@ -279,10 +282,10 @@
       <p style="grid-column:1; grid-row:4;">Type</p>
 
       <!-- col 2 -->
-      <p style="grid-column:2; grid-row:1; text-align:left;">Lotfi BK</p>
-      <p style="grid-column:2; grid-row:2; text-align:left;">Lotfi BK</p>
-      <p style="grid-column:2; grid-row:3; text-align:left;">Mounir</p>
-      <p style="grid-column:2; grid-row:4; text-align:left;">Text</p>
+      <p style="grid-column:2; grid-row:1; text-align:left;">/</p>
+      <p style="grid-column:2; grid-row:2; text-align:left;">/</p>
+      <p style="grid-column:2; grid-row:3; text-align:left;">/</p>
+      <p style="grid-column:2; grid-row:4; text-align:left;">/</p>
 
       <!-- col 3 -->
       <p style="grid-column:3; grid-row:1;">Top</p>
@@ -291,21 +294,21 @@
       <p style="grid-column:3; grid-row:4;">Height</p>
 
       <!-- col 4 -->
-      <input type="number" value="4" style="grid-column:4; grid-row:1; text-align:left;" class="fix-input">
-      <input type="number" value="1" style="grid-column:4; grid-row:2; text-align:left;" class="fix-input">
-      <input type="number" value="8" style="grid-column:4; grid-row:3; text-align:left;" class="fix-input">
-      <input type="number" value="4" style="grid-column:4; grid-row:4; text-align:left;" class="fix-input">
+      <input type="number" value="0" style="grid-column:4; grid-row:1; text-align:left;" class="fix-input inf-top">
+      <input type="number" value="0" style="grid-column:4; grid-row:2; text-align:left;" class="fix-input inf-left">
+      <input type="number" value="0" style="grid-column:4; grid-row:3; text-align:left;" class="fix-input inf-width">
+      <input type="number" value="0" style="grid-column:4; grid-row:4; text-align:left;" class="fix-input inf-height">
       <!--p style="grid-column:4; grid-row:4; text-align:left;">4</p-->
 
       <!-- col 5 -->
       <p style="grid-column:5; grid-row:1;">Center V</p>
       <p class="input-field" style="grid-column:5; grid-row:2;">
-        <input type="checkbox" id="vertical-center" style="grid-column:5; grid-row:4;">
+        <input type="checkbox" id="vertical-center">
         <label for="vertical-center"></label>
       </p>
       <p style="grid-column:5; grid-row:3; ">Center H</p>
       <p class="input-field white-text" style="grid-column:5; grid-row:4;">
-        <input type="checkbox" id="horizontal-center" style="grid-column:5; grid-row:4;">
+        <input type="checkbox" id="horizontal-center">
         <label for="horizontal-center"></label>
       </p>
 
