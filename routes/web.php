@@ -29,6 +29,21 @@ Route::get('/publication{pub}', function () {
   return view('publications/pubForm',$data);
 });
 
+Route::get('/contents', function () {
+  $data= [
+    'title' => 'Contents',
+    'type' => 'Text',
+  ];
+  return view('contents/cntList',$data);
+});
+
+Route::get('/contents{cnt}', function () {
+  $data= [
+    'title' => 'Contents',
+  ];
+  return view('contents/cntForm',$data);
+});
+
 
 Route::get('/', function () {
     return view('auth/register');
