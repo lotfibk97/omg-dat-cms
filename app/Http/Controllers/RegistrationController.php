@@ -80,8 +80,9 @@ class RegistrationController extends Controller
       $user=User::find($data['id']);
       $user->token = $data['token'];
       $user->save();
-      $mailable = new UserMessageCreated($request->name,$request->email,$data['token']);
-      Mail::to($data['email'])->send($mailable)->with($data['token']);
+      $mailable = new UserMessageCreated($user->name,$user->email,$user->token);
+// dd($data['token']);
+      Mail::to($user['email'])->send($mailable);
 
 
 
