@@ -15,6 +15,12 @@ use Illuminate\Support\Facades\Input;
 use App\Mail\UserMessageCreated;
 
 
+Route::get('/publications', function () {
+  $data= [
+
+  ];
+  return view('publications/pubList',$data);
+});
 
 
 Route::get('/', function () {

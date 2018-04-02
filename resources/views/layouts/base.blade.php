@@ -45,7 +45,7 @@
 
 </head>
 
-<body>
+<body style="background:#e9f8df;">
   <!-- Start Page Loading -->
   <div id="loader-wrapper">
       <div id="loader"></div>
@@ -65,7 +65,6 @@
                     <ul class="left">
                       <li class="no-hover"><a href="#" data-activates="slide-out" class="menu-sidebar-collapse btn-floating btn-flat btn-medium waves-effect waves-light cyan"><i class="mdi-navigation-menu" ></i></a></li>
                       <li><h1 class="logo-wrapper "><a href="index-2.html" class="brand-logo darken-1"><img src="images/materialize-logo.png" alt="materialize logo"></a> <span class="logo-text">Materialize</span></h1></li>
-                      <li><p>Test</p></li>
                     </ul>
                 </div>
             </nav>
