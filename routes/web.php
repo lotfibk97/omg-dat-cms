@@ -30,7 +30,7 @@ Route::post('/', [
 
 Route::get('/mail-register',function(){
 
-return 'login';
+return view('auth/waitingValidation');
 
 
 })->name('email');
@@ -38,7 +38,7 @@ return 'login';
 Route::post('/mail-register',[
   'as' => 'mail.confirm',
   'uses' => 'RegistrationController@confirmation'
-
+// fix the case of unconfirmed email reregister qui ye9ba7
 
 ]);
 
@@ -57,4 +57,16 @@ Route::get('/aaa', function () {
 Route::get('/login',function () {
     return view('auth/login');
   })->name('login');
+
+Route::post('/login',[
+  'as' =>'login',
+  'uses'=>'LoginController@check'
+
+  ]);
+
 Route::get('/user/confirmation/{token}','RegistrationController@confirmation')->name('confirmation');
+
+Route::get('/dashboard',function(){
+return view('auth/base');
+
+})->name('dashboard');

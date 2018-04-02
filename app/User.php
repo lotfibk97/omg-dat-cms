@@ -26,4 +26,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    public function is_validated(){
+        if($this->confirmed){
+          return true;
+        }
+      return false;
+    }
 }
