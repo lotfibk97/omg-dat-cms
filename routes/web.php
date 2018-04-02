@@ -18,8 +18,8 @@ use App\Mail\UserMessageCreated;
 
 
 Route::get('/', function () {
-    return view('auth/register')->name('register.get');
-});
+    return view('auth/register');
+})->name('register.get');
 Route::post('/', [
 
 'as' => 'register.create',
