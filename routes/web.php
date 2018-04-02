@@ -18,7 +18,7 @@ use App\Mail\UserMessageCreated;
 
 
 Route::get('/', function () {
-    return view('auth/register');
+    return view('auth/register')->name('register.get');
 });
 Route::post('/', [
 

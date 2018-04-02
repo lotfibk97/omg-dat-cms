@@ -49,7 +49,7 @@
 
   <div id="login-page" class="row">
     <div class="col s12 z-depth-4 card-panel">
-      <form class="login-form" method="POST" action="{{ route('login') }}"">
+      <form class="login-form" method="POST" action="{{ route('login') }}">
         <!--div class="row">
           <div class="input-field col s12 center">
             <img src="images/login-logo.png" alt="" class="circle responsive-img valign profile-image-login">
@@ -59,7 +59,7 @@
         <div class="row margin">
           <div class="input-field col s12">
             <i class="mdi-social-person-outline prefix"></i>
-            <input id="username" type="text">
+            <input id="name" type="text">
             <label for="username" class="center-align">Username</label>
           </div>
         </div>
@@ -78,12 +78,12 @@
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <a href="index-2.html" class="btn waves-effect waves-light col s12">Login</a>
+            <a type="submit" class="btn waves-effect waves-light col s12">Login</a>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s6 m6 l6">
-            <p class="margin medium-small"><a href="register.html">Register Now!</a></p>
+            <p class="margin medium-small"><a href="{{route('register.get')}}">Register Now!</a></p>
           </div>
           <!--div class="input-field col s6 m6 l6">
               <p class="margin right-align medium-small"><a href="page-forgot-password.html">Forgot password ?</a></p>
