@@ -28,8 +28,33 @@ Route::post('/', [
 ]);
 
 
-Route::get('/test-email',function(){
-return new UserMessageCreated('lotfi','admin@odc.com');
+Route::get('/mail-register',function(){
+
+return 'login';
 
 
-});
+})->name('email');
+
+Route::post('/mail-register',[
+  'as' => 'mail.confirm',
+  'uses' => 'RegistrationController@confirmation'
+
+
+]);
+
+
+Route::get('/aa', function () {
+    return view('welcome');
+})->name('password.request');
+
+
+Route::get('/aaa', function () {
+    return view('welcome');
+})->name('register');
+
+
+
+Route::get('/login',function () {
+    return view('auth/login');
+  })->name('login');
+Route::get('/user/confirmation/{token}','RegistrationController@confirmation')->name('confirmation');

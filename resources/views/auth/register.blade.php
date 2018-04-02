@@ -60,7 +60,7 @@
         <div class="row margin">
           <div class="input-field col s12 {{ $errors->has('username') ? 'has-error' : '' }}">
             <i class="mdi-social-person-outline prefix"></i>
-            <input type="text" name="username" value="{{ old('username') }}" id="username" class="form-control" required="required">
+            <input type="text" name="name" value="{{ old('name') }}" id="name" class="form-control" required="required">
             {!! $errors->first('username', '<span class="text-danger">:message</span>') !!}
             <label for="username" class="center-align">Username</label>
           </div>

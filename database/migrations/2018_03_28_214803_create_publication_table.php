@@ -17,8 +17,10 @@ class CreatePublicationTable extends Migration
             $table->string('description');
             $table->increments('id');
             $table->string('title','30');
-           $table->unsignedInteger('owner');
+            $table->unsignedInteger('owner');
             $table->foreign('owner')->references('id')->on('users');
+            $table->Integer('grid_rows');
+            $table->Integer('selected');
            $table->timestamps();
         });
     }

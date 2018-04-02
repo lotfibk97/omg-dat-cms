@@ -25,6 +25,7 @@ class CreateContentTable extends Migration
             $table->unsignedInteger('responsible');
             $table->foreign('responsible')->references('id')->on('users');
             $table->unsignedInteger('content');
+            $table->string('html');
             // $table->foreign('content')->references('id')->on('textcontent');
             $table->string('top');
             $table->string('left');
@@ -33,6 +34,8 @@ class CreateContentTable extends Migration
             $table->boolean('auto-height');
             $table->boolean('center-v');
             $table->string('center-h');
+            $table->boolean('displayed');
+            
 
 
             $table->timestamps();

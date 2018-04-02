@@ -16,9 +16,16 @@ class UserMessageCreated extends Mailable
      *
      * @return void
      */
-    public function __construct()
+      public $name;
+      public $email;
+
+      public $token;
+
+    public function __construct($name,$email,$token)
     {
-        //
+        $this->$name=$name;
+        $this->$email=$email;
+        $this->$token=$token;
     }
 
     /**
@@ -28,6 +35,6 @@ class UserMessageCreated extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.message.created');
+        return $this->with($data['token'])->markdown('emails.message.created');
     }
 }
