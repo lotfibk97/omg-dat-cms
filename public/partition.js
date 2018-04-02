@@ -73,6 +73,8 @@ $('.less-height').click(lessHeight);
 function createContentSpace() {
 
   var id=getContentId(this.parentElement.id);
+  if (contents[id]["displayed"]) return;
+  alert("aaa");
 
   var description=document.createElement("span");
   description.innerHTML=contents[id]["description"];
