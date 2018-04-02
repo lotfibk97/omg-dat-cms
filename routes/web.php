@@ -17,9 +17,16 @@ use App\Mail\UserMessageCreated;
 
 Route::get('/publications', function () {
   $data= [
-
+    'title' => 'Publications',
   ];
   return view('publications/pubList',$data);
+});
+
+Route::get('/publication{pub}', function () {
+  $data= [
+    'title' => 'Edit Publication',
+  ];
+  return view('publications/pubForm',$data);
 });
 
 
@@ -86,7 +93,7 @@ else{
 Route::get('/error',function(){
   $data=[
     'error_name' => 'Login error',
-    'error_msg' => 'Your account is not validaed please check your email'
+    'error_msg' => 'Your account is not validated, please check your email for confirmation'
   ];
 
   return view('alerts/msg',$data);

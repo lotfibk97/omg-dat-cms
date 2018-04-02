@@ -8,7 +8,7 @@
   <meta name="msapplication-tap-highlight" content="no">
   <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google. ">
   <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template,">
-  <title>Welcome</title>
+  <title> {{ $title }}</title>
 
   <!-- Favicons>
   <link rel="icon" href="images/favicon/favicon-32x32.png" sizes="32x32">
@@ -97,25 +97,29 @@
                             </li>
                         </ul>
                         <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" href="#" data-activates="profile-dropdown">John Doe<i class="mdi-navigation-arrow-drop-down right"></i></a>
-                        <p class="user-roal">Administrator</p>
+                        <p class="user-roal">15 Contributions</p>
                     </div>
                 </div>
             </li>
             <li class="bold"><a href="index-2.html" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Dashboard</a>
             </li>
+            <li class="bold"><a href="app-widget.html" class="waves-effect waves-cyan"><i class="mdi-editor-mode-edit"></i>Publications</span></a>
+            </li>
             <li class="no-padding">
                 <ul class="collapsible collapsible-accordion">
-                    <li class="bold"><a class="collapsible-header waves-effect waves-cyan active"><i class="mdi-editor-mode-edit"></i> Publications</a>
+                    <li class="bold"><a class="collapsible-header waves-effect waves-cyan active"><i class="mdi-content-content-copy"></i>Contents</a>
                         <div class="collapsible-body">
                             <ul>
-                                <li><a href="css-media.html">Published</a>
+                                <li><a href="#">Texts</a>
                                 </li>
-                                <li><a href="css-sass.html">In progress</a>
+                                <li><a href="#">Images</a>
+                                </li>
+                                <li><a href="#">Videos</a>
+                                </li>
+                                <li><a href="#">Audio</a>
                                 </li>
                             </ul>
                         </div>
-                    </li>
-                    <li class="bold"><a href="app-widget.html" class="waves-effect waves-cyan"><i class="mdi-content-content-copy"></i>Contents</span></a>
                     </li>
                     <li class="bold"><a href="app-widget.html" class="waves-effect waves-cyan"><i class="mdi-image-timer-auto"></i>Collaborators</span></a>
                     </li>
