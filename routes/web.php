@@ -21,8 +21,10 @@ Route::get('/', function () {
     return view('auth/register');
 });
 Route::post('/', [
+
 'as' => 'register.create',
 'uses' => 'RegistrationController@store'
+
 ]);
 
 
@@ -36,6 +38,8 @@ return 'login';
 Route::post('/mail-register',[
   'as' => 'mail.confirm',
   'uses' => 'RegistrationController@confirmation'
+
+
 ]);
 
 
