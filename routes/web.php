@@ -67,6 +67,11 @@ Route::post('/login',[
 Route::get('/user/confirmation/{token}','RegistrationController@confirmation')->name('confirmation');
 
 Route::get('/dashboard',function(){
-return view('auth/base');
+if(Auth::check()){
+  return view('auth/base');
+}
+else{
+  return redirect('login');
+}
 
 })->name('dashboard');
