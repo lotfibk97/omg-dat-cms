@@ -75,3 +75,13 @@ else{
 }
 
 })->name('dashboard');
+
+
+Route::get('/error',function(){
+  $data=[
+    'error_name' => 'Login error',
+    'error_msg' => 'Your account is not validaed please check your email'
+  ];
+
+  return view('alerts/msg',$data);
+})->name('error1');

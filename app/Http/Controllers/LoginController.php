@@ -25,7 +25,8 @@ class LoginController extends Controller
           if($user->is_validated()){
             return redirect()->route('dashboard');
           }
-          return 'go validate noob';
+          $request->session()->flush();
+          return redirect()->route('error1');
          }
 else{
 echo "you are not registred";

@@ -8,37 +8,34 @@
   <meta name="msapplication-tap-highlight" content="no">
   <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google. ">
   <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template,">
-  <title>Typography | Materialize - Material Design Admin Template</title>
+  <title>Welcome</title>
 
   <!-- Favicons>
   <link rel="icon" href="images/favicon/favicon-32x32.png" sizes="32x32">
-  <!-- Favicons>
+  < Favicons>
   <link rel="apple-touch-icon-precomposed" href="images/favicon/apple-touch-icon-152x152.png">
-  <!-- For iPhone >
+  < For iPhone >
   <meta name="msapplication-TileColor" content="#00bcd4">
   <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png">
-  <!-- For Windows Phone -->
-
+  < For Windows Phone -->
 
   <!-- CORE CSS-->
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
-    <!-- Custome CSS-->    
-    <link href="css/custom-style.css" type="text/css" rel="stylesheet" media="screen,projection">
-  <!-- CSS for full screen (Layout-2)-->    
+  <!-- Custome CSS-->
+  <link href="css/custom-style.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <!-- CSS for full screen (Layout-2)-->
   <link href="css/style-fullscreen.css" type="text/css" rel="stylesheet" media="screen,projection">
-
 
   <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
   <link href="css/prism.css" type="text/css" rel="stylesheet" media="screen,projection">
   <link href="js/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
-  <link href="js/plugins/chartist-js/chartist.min.css" type="text/css" rel="stylesheet" media="screen,projection">
 </head>
 
 <body>
   <!-- Start Page Loading -->
   <div id="loader-wrapper">
-      <div id="loader"></div>        
+      <div id="loader"></div>
       <div class="loader-section section-left"></div>
       <div class="loader-section section-right"></div>
   </div>
@@ -51,25 +48,10 @@
         <!-- start header nav-->
         <div class="navbar-fixed">
             <nav class="cyan">
-                <div class="nav-wrapper">                    
-                    
-                    <ul class="left">                      
+                <div class="nav-wrapper">
+                    <ul class="left">
                       <li class="no-hover"><a href="#" data-activates="slide-out" class="menu-sidebar-collapse btn-floating btn-flat btn-medium waves-effect waves-light cyan"><i class="mdi-navigation-menu" ></i></a></li>
-                      <li><h1 class="logo-wrapper"><a href="index-2.html" class="brand-logo darken-1"><img src="images/materialize-logo.png" alt="materialize logo"></a> <span class="logo-text">Materialize</span></h1></li>
-                    </ul>
-                    <div class="header-search-wrapper hide-on-med-and-down">
-                        <i class="mdi-action-search"></i>
-                        <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Explore Materialize"/>
-                    </div>
-                    <ul class="right hide-on-med-and-down">                        
-                        <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light toggle-fullscreen"><i class="mdi-action-settings-overscan"></i></a>
-                        </li>
-                        <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light"><i class="mdi-navigation-apps"></i></a>
-                        </li>                        
-                        <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light"><i class="mdi-social-notifications"></i></a>
-                        </li>                        
-                        <li><a href="#" data-activates="chat-out" class="waves-effect waves-block waves-light chat-collapse"><i class="mdi-communication-chat"></i></a>
-                        </li>
+                      <li><h1 class="logo-wrapper "><a href="index-2.html" class="brand-logo darken-1"><img src="images/materialize-logo.png" alt="materialize logo"></a> <span class="logo-text">Materialize</span></h1></li>
                     </ul>
                 </div>
             </nav>
@@ -97,13 +79,7 @@
                         <ul id="profile-dropdown" class="dropdown-content">
                             <li><a href="#"><i class="mdi-action-face-unlock"></i> Profile</a>
                             </li>
-                            <li><a href="#"><i class="mdi-action-settings"></i> Settings</a>
-                            </li>
-                            <li><a href="#"><i class="mdi-communication-live-help"></i> Help</a>
-                            </li>
                             <li class="divider"></li>
-                            <li><a href="#"><i class="mdi-action-lock-outline"></i> Lock</a>
-                            </li>
                             <li><a href="#"><i class="mdi-hardware-keyboard-tab"></i> Logout</a>
                             </li>
                         </ul>
@@ -114,188 +90,26 @@
             </li>
             <li class="bold"><a href="index-2.html" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Dashboard</a>
             </li>
-            <li class="bold"><a href="app-email.html" class="waves-effect waves-cyan"><i class="mdi-communication-email"></i> Mailbox <span class="new badge">4</span></a>
-            </li>
-            <li class="bold"><a href="app-calendar.html" class="waves-effect waves-cyan"><i class="mdi-editor-insert-invitation"></i> Calender</a>
-            </li>
             <li class="no-padding">
                 <ul class="collapsible collapsible-accordion">
-                    <li class="bold"><a class="collapsible-header waves-effect waves-cyan active"><i class="mdi-action-invert-colors"></i> CSS</a>
+                    <li class="bold"><a class="collapsible-header waves-effect waves-cyan active"><i class="mdi-editor-mode-edit"></i> Publications</a>
                         <div class="collapsible-body">
                             <ul>
-                                <li class="active"><a href="css-typography.html">Typography</a>
-                                </li>                                        
-                                <li><a href="css-icons.html">Icons</a>
+                                <li><a href="css-media.html">Published</a>
                                 </li>
-                                <li><a href="css-shadow.html">Shadow</a>
-                                </li>
-                                <li><a href="css-media.html">Media</a>
-                                </li>
-                                <li><a href="css-sass.html">Sass</a>
+                                <li><a href="css-sass.html">In progress</a>
                                 </li>
                             </ul>
                         </div>
                     </li>
-                    <li class="bold"><a class="collapsible-header  waves-effect waves-cyan"><i class="mdi-image-palette"></i> UI Elements</a>
-                        <div class="collapsible-body">
-                            <ul>
-                                <li><a href="ui-buttons.html">Buttons</a>
-                                </li>
-                                <li><a href="ui-badges.html">Badges</a>
-                                </li>
-                                <li><a href="ui-cards.html">Cards</a>
-                                </li>
-                                <li><a href="ui-collections.html">Collections</a>
-                                </li>
-                                <li><a href="ui-accordions.html">Accordian</a>
-                                </li>
-                                <li><a href="ui-tabs.html">Tabs</a>
-                                </li>
-                                <li><a href="ui-navbar.html">Navbar</a>
-                                </li>
-                                <li><a href="ui-pagination.html">Pagination</a>
-                                </li>
-                                <li><a href="ui-preloader.html">Preloader</a>
-                                </li>
-                                <li><a href="ui-modals.html">Modals</a>
-                                </li>
-                                <li><a href="ui-media.html">Media</a>
-                                </li>
-                                <li><a href="ui-toasts.html">Toasts</a>
-                                </li>
-                                <li><a href="ui-tooltip.html">Tooltip</a>
-                                </li>
-                                <li><a href="ui-waves.html">Waves</a>
-                                </li>
-                            </ul>
-                        </div>
+                    <li class="bold"><a href="app-widget.html" class="waves-effect waves-cyan"><i class="mdi-content-content-copy"></i>Contents</span></a>
                     </li>
-                    <li class="bold"><a href="app-widget.html" class="waves-effect waves-cyan"><i class="mdi-device-now-widgets"></i> Widgets <span class="new badge"></span></a>
-                    </li>
-                    <li class="bold"><a class="collapsible-header  waves-effect waves-cyan"><i class="mdi-editor-border-all"></i> Tables</a>
-                        <div class="collapsible-body">
-                            <ul>
-                                <li><a href="table-basic.html">Basic Tables</a>
-                                </li>
-                                <li><a href="table-data.html">Data Tables</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="bold"><a class="collapsible-header  waves-effect waves-cyan"><i class="mdi-editor-insert-comment"></i> Forms</a>
-                        <div class="collapsible-body">
-                            <ul>
-                                <li><a href="form-elements.html">Form Elements</a>
-                                </li>
-                                <li><a href="form-layouts.html">Form Layouts</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="bold"><a class="collapsible-header  waves-effect waves-cyan"><i class="mdi-social-pages"></i> Pages</a>
-                        <div class="collapsible-body">
-                            <ul>                                        
-                                <li><a href="page-contact.html">Contact Page</a>
-                                </li>
-                                <li><a href="page-todo.html">ToDos</a>
-                                </li>
-                                <li><a href="page-blog-1.html">Blog Type 1</a>
-                                </li>
-                                <li><a href="page-blog-2.html">Blog Type 2</a>
-                                </li>
-                                <li><a href="page-404.html">404</a>
-                                </li>
-                                <li><a href="page-500.html">500</a>
-                                </li>
-                                <li><a href="page-blank.html">Blank</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="bold"><a class="collapsible-header  waves-effect waves-cyan"><i class="mdi-action-shopping-cart"></i> eCommers</a>
-                        <div class="collapsible-body">
-                            <ul>
-                                <li><a href="eCommerce-products-page.html">Products Page</a>
-                                </li>                                        
-                                <li><a href="eCommerce-pricing.html">Pricing Table</a>
-                                </li>
-                                <li><a href="eCommerce-invoice.html">Invoice</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="bold"><a class="collapsible-header  waves-effect waves-cyan"><i class="mdi-image-image"></i> Medias</a>
-                        <div class="collapsible-body">
-                            <ul>                                        
-                                <li><a href="media-gallary-page.html">Gallery Page</a>
-                                </li>
-                                <li><a href="media-hover-effects.html">Image Hover Effects</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="bold"><a class="collapsible-header  waves-effect waves-cyan"><i class="mdi-action-account-circle"></i> User</a>
-                        <div class="collapsible-body">
-                            <ul>     
-                                <li><a href="user-profile-page.html">User Profile</a>
-                                </li>                                   
-                                <li><a href="user-login.html">Login</a>
-                                </li>                                        
-                                <li><a href="user-register.html">Register</a>
-                                </li>
-                                <li><a href="user-forgot-password.html">Forgot Password</a>
-                                </li>
-                                <li><a href="user-lock-screen.html">Lock Screen</a>
-                                </li>                                        
-                                <li><a href="user-session-timeout.html">Session Timeout</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    
-                    <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="mdi-editor-insert-chart"></i> Charts</a>
-                        <div class="collapsible-body">
-                            <ul>
-                                <li><a href="charts-chartjs.html">Chart JS</a>
-                                </li>
-                                <li><a href="charts-chartist.html">Chartist</a>
-                                </li>
-                                <li><a href="charts-morris.html">Morris Charts</a>
-                                </li>
-                                <li><a href="charts-xcharts.html">xCharts</a>
-                                </li>
-                                <li><a href="charts-flotcharts.html">Flot Charts</a>
-                                </li>
-                                <li><a href="charts-sparklines.html">Sparkline Charts</a>
-                                </li>
-                            </ul>
-                        </div>
+                    <li class="bold"><a href="app-widget.html" class="waves-effect waves-cyan"><i class="mdi-image-timer-auto"></i>Collaborators</span></a>
                     </li>
                 </ul>
             </li>
-            <li class="li-hover"><div class="divider"></div></li>
-            <li class="li-hover"><p class="ultra-small margin more-text">MORE</p></li>
-            <li><a href="css-grid.html"><i class="mdi-image-grid-on"></i> Grid</a>
-            </li>
-            <li><a href="css-color.html"><i class="mdi-editor-format-color-fill"></i> Color</a>
-            </li>
-            <li><a href="css-helpers.html"><i class="mdi-communication-live-help"></i> Helpers</a>
-            </li>
-            <li><a href="changelogs.html"><i class="mdi-action-swap-vert-circle"></i> Changelogs</a>
-            </li>                    
-            <li class="li-hover"><div class="divider"></div></li>
-            <li class="li-hover"><p class="ultra-small margin more-text">Daily Sales</p></li>
-            <li class="li-hover">
-                <div class="row">
-                    <div class="col s12 m12 l12">
-                        <div class="sample-chart-wrapper">                            
-                            <div class="ct-chart ct-golden-section" id="ct2-chart"></div>
-                        </div>
-                    </div>
-                </div>
-            </li>
         </ul>
-        
+
       </aside>
       <!-- END LEFT SIDEBAR NAV-->
 
@@ -303,24 +117,10 @@
 
       <!-- START CONTENT -->
       <section id="content">
-        
-        <!--breadcrumbs start-->
-        <div id="breadcrumbs-wrapper" class=" grey lighten-3">
-            <!-- Search for small screen -->
-            <div class="header-search-wrapper grey hide-on-large-only">
-                <i class="mdi-action-search active"></i>
-                <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Explore Materialize">
-            </div>
-          <div class="container">
-            
-          </div>
-        </div>
-        <!--breadcrumbs end-->
-        
 
         <!--start container-->
         <div class="container">
-                   
+
         </div>
         <!--end container-->
 
@@ -345,7 +145,7 @@
 
   <!-- START FOOTER -->
   <footer class="page-footer">
- 
+
   </footer>
     <!-- END FOOTER -->
 
@@ -354,20 +154,17 @@
     <!-- ================================================
     Scripts
     ================================================ -->
-    
+
     <!-- jQuery Library -->
-    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>    
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
     <!--materialize js-->
     <script type="text/javascript" src="js/materialize.js"></script>
     <!--prism-->
     <script type="text/javascript" src="js/prism.js"></script>
     <!--scrollbar-->
     <script type="text/javascript" src="js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <!-- chartist -->
-    <script type="text/javascript" src="js/plugins/chartist-js/chartist.min.js"></script>   
-    
     <!--plugins.js - Some Specific JS codes for Plugin Settings-->
     <script type="text/javascript" src="js/plugins.js"></script>
-    
+
 </body>
-</html> 
+</html>
