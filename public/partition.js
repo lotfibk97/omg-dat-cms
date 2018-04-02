@@ -21,6 +21,7 @@ $(document).ready(function() {
     fixScroll(current_scroll);
 
     // select the last visit selected content
+    if ( selected_content !== null )
     selectContent(selected_content);
 
 });
@@ -65,6 +66,18 @@ $('.less-width').click(lessWidth);
 $('.more-height').click(moreHeight);
 $('.less-height').click(lessHeight);
 
+$('.inf-top').click(editTopProperty);
+$('.inf-top').blur(editTopProperty);
+$('.inf-left').click(editLeftProperty);
+$('.inf-left').blur(editLeftProperty);
+$('.inf-width').click(editWidthProperty);
+$('.inf-width').blur(editWidthProperty);
+$('.inf-height').click(editHeightProperty);
+$('.inf-height').blur(editHeightProperty);
+
+$('#horizontal-center').change(editCHProperty);
+$('#vertical-center').change(editCVProperty);
+
 ///////////////////////// defining functions   /////////////////////////
 
 // Select then move/resize then updateOnBoard then updateData then updateDisplay then updateDB
@@ -74,7 +87,6 @@ function createContentSpace() {
 
   var id=getContentId(this.parentElement.id);
   if (contents[id]["displayed"]) return;
-  alert("aaa");
 
   var description=document.createElement("span");
   description.innerHTML=contents[id]["description"];
@@ -108,7 +120,7 @@ function chooseContent() {
 // Set the controls to edit the new selected content
 function selectContent(id) {
 
-  selected_content=id; console.log("id:"+selected_content);
+  selected_content=id;
   selected_content_space=document.getElementById("cs-"+selected_content);
 
   selected_top=contents[id]["top"];
@@ -122,6 +134,8 @@ function selectContent(id) {
 // Ajax post request to save the new position in the database post(contents[selected_content])
 function updateContentDataBase() {
   // ajax  POST , all the array or contents[selectContent]
+
+  // saveContext
 }
 
 // update the displayed properties by the new ones
@@ -200,7 +214,7 @@ function moreWidth() {
 }
 
 function lessWidth() {
-  if(selected_width>1)
+  if(selected_width>2)
   selected_width--;
   updateContentOnTheBoard();
 }
@@ -215,6 +229,50 @@ function lessHeight() {
   if (selected_height>1)
   selected_height--;
   updateContentOnTheBoard();
+}
+
+function editTopProperty() {
+  this.value=Math.floor(this.value);
+  if ( this.value < 1 ) this.value=1;
+  selected_top=parseInt(this.value);
+
+  updateContentOnTheBoard();
+}
+
+function editLeftProperty() {
+  this.value=Math.floor(this.value);
+  if ( this.value < 1 ) this.value=1;
+  if ( (parseInt(this.value) + selected_width) > 13 ) this.value=13-selected_width;
+  selected_left=parseInt(this.value);
+
+  updateContentOnTheBoard();
+}
+
+function editWidthProperty() {
+  this.value=Math.floor(this.value);
+  if ( this.value < 2 ) this.value=2;
+  if ( (parseInt(this.value) + selected_left) > 13 ) this.value=13-selected_left;
+  selected_width=parseInt(this.value);
+
+  updateContentOnTheBoard();
+}
+
+function editHeightProperty() {
+  this.value=Math.floor(this.value);
+  if ( this.value < 1 ) this.value=1;
+  selected_height=parseInt(this.value);
+
+  updateContentOnTheBoard();
+}
+
+function editCHProperty() {
+  contents[selected_content]["center-h"]=this.checked;
+  updateContentDataBase();
+}
+
+function editCVProperty() {
+  contents[selected_content]["center-v"]=this.checked;
+  updateContentDataBase();
 }
 
 ////////////////////// fixing issues functions
