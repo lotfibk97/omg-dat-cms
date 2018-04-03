@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Input;
 use App\Mail\UserMessageCreated;
 
 
-//
 Route::get('/', function () {
-  if(Auth::check()) {
+  if(Auth::check())
+  {
     return redirect()->route('dashboard');
   }
   return redirect()->route('login');

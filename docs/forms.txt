@@ -1,0 +1,78 @@
+
+user registration form // done
+user login form // done
+
+// I DID UPDATE THE MODELS SO THAT A COLLABORATOR CAN LOGIN (session things)
+
+collaborator create form {
+  recieve:
+    "name"
+    "email"
+    "password"
+    "password2"
+    +get user_id from session
+  to do:
+    validate data
+    insert into user(name,email,pw,type=profile)
+    insert into collaborator(user=session.user,profile=new inserted user)
+}
+
+profile update form { // works the same for admin and collab cuz collab profiles infs are stored in user tuple
+  recieve:
+    "name"
+    "email"
+    "profile pic"
+    "new password"
+    "new password2"
+    "password3"
+    +get user_id from session
+  todo:
+    validate data
+    store profile pic in static folder
+    save picture url
+    update user where id = session user id
+}
+
+// ignore
+publication form {
+  "title"
+  "description"
+  "status"
+  "$collaborator":role // for each
+}
+
+// ignore
+publication quick-publish form {
+  "pub id"
+  user from session
+}
+
+content global create/edit form {
+  "title"
+  "description"
+  "responsible"
+  "type"
+}
+
+content working-on form {
+  "title"
+  "description"
+  "html"
+}
+
+// try to if you can
+content ajax settings post {
+  recieve:
+    "top" > 1
+    "left" 12 > > 1
+    "height" > 1
+    "width" 13 > > 2
+    "center-v"
+    "center-h"
+    "displayed"
+    "rows" >=20
+    "selected" exists content where id=selected
+  to do:
+    update content (top left height width ch cv displayed) where id=selected
+    update publication(selected) (rows selected)
+}

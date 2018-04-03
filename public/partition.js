@@ -109,6 +109,8 @@ function createContentSpace() {
 
   grid_board.appendChild(space);
   contents[id]["displayed"]=true;
+
+  // selectContent(id)
 }
 
 // choose content by click
@@ -135,7 +137,9 @@ function selectContent(id) {
 function updateContentDataBase() {
   // ajax  POST , all the array or contents[selectContent]
 
-  // saveContext
+  // saveContext ---> depricated
+  // do:
+  // post context every time in same request
 }
 
 // update the displayed properties by the new ones
