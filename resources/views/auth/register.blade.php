@@ -94,7 +94,7 @@
              <button type="submit" class="btn btn-default">Register</button>
           </div>
           <div class="input-field col s12">
-            <p class="margin center medium-small sign-up">Already have an account? <a href="login.html">Login</a></p>
+            <p class="margin center medium-small sign-up">Already have an account? <a href="#">Login</a></p>
           </div>
         </div>
     </form>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCollaborationTable extends Migration
+class CreatecollaborationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,11 +15,11 @@ class CreateCollaborationTable extends Migration
     {
         Schema::create('collaborations', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedInteger('publication_id');
-            $table->foreign('publication_id')->references('id')->on('publications');
-            $table->string('role');
+            $table->unsignedInteger('publication');
+            $table->foreign('publication')->references('id')->on('publications');
+            $table->unsignedInteger('collaborator');
+            $table->foreign('collaborator')->references('id')->on('collaborators');
+            $table->enum('role',['publicator','editor','media-manager']);
             $table->timestamps();
         });
     }

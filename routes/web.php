@@ -15,6 +15,14 @@ use Illuminate\Support\Facades\Input;
 use App\Mail\UserMessageCreated;
 
 
+//
+Route::get('/', function () {
+  if(Auth::check()) {
+    return redirect()->route('dashboard');
+  }
+  return redirect()->route('login');
+})->name('password.request');
+
 Route::get('/publications', function () {
   $data= [
     'title' => 'Publications',
@@ -94,14 +102,26 @@ Route::get('/contents/video/{cnt}', function () {
   return view('contents/video',$data);
 });
 
-Route::get('/', function () {
-    return view('auth/register');
+Route::get('/login/{hash}',function () {
+    return view('auth/login');
+  })->name('login');
+
+Route::post('/login/{hash}',[
+  'as' =>'login',
+  'uses'=>'LoginController@check'
+
+  ]);
+
+Route::get('/register/{hash}', function () {
+    $data=[
+
+    ];
+    return view('auth/register',$data);
 })->name('register.get');
-Route::post('/', [
 
-'as' => 'register.create',
-'uses' => 'RegistrationController@store'
-
+Route::post('/register/{hash}', [
+  'as' => 'register.create',
+  'uses' => 'RegistrationController@store'
 ]);
 
 
@@ -110,22 +130,14 @@ Route::get('/mail-register',function(){
     'error_name' => '=\')',
     'error_msg' => 'Thank you for your registration, Manage your content with easiness !!!'
   ];
-
-return view('alerts/msg',$data);
-
+  return view('alerts/msg',$data);
 })->name('email');
 
 Route::post('/mail-register',[
   'as' => 'mail.confirm',
   'uses' => 'RegistrationController@confirmation'
 // fix the case of unconfirmed email reregister qui ye9ba7
-
 ]);
-
-
-Route::get('/aa', function () {
-    return view('welcome');
-})->name('password.request');
 
 
 Route::get('/aaa', function () {
@@ -133,16 +145,6 @@ Route::get('/aaa', function () {
 })->name('register');
 
 
-
-Route::get('/login',function () {
-    return view('auth/login');
-  })->name('login');
-
-Route::post('/login',[
-  'as' =>'login',
-  'uses'=>'LoginController@check'
-
-  ]);
 
 Route::get('/user/confirmation/{token}','RegistrationController@confirmation')->name('confirmation');
 
