@@ -22,14 +22,14 @@ Route::get('/publications', function () {
   return view('publications/pubList',$data);
 });
 
-Route::get('/publication{pub}', function () {
+Route::get('/publications/{pub}', function () {
   $data= [
     'title' => 'Edit Publication',
   ];
   return view('publications/pubForm',$data);
 });
 
-Route::get('/contents', function () {
+Route::get('/contents/text', function () {
   $data= [
     'title' => 'Contents',
     'type' => 'Text',
@@ -37,13 +37,62 @@ Route::get('/contents', function () {
   return view('contents/cntList',$data);
 });
 
-Route::get('/contents{cnt}', function () {
+Route::get('/contents/image', function () {
   $data= [
     'title' => 'Contents',
+    'type' => 'Text',
   ];
-  return view('contents/cntForm',$data);
+  return view('contents/cntList',$data);
 });
 
+Route::get('/contents/audio', function () {
+  $data= [
+    'title' => 'Contents',
+    'type' => 'Text',
+  ];
+  return view('contents/cntList',$data);
+});
+
+Route::get('/contents/video', function () {
+  $data= [
+    'title' => 'Contents',
+    'type' => 'Text',
+  ];
+  return view('contents/cntList',$data);
+});
+
+Route::get('/contents/text/{cnt}', function () {
+  $data= [
+    'title' => 'Text Contents',
+    'type' => 'text',
+  ];
+  return view('contents/text',$data);
+});
+
+Route::get('/contents/image/{cnt}', function () {
+  $data= [
+    'title' => 'Image Contents',
+    'type' => 'image',
+  ];
+  return view('contents/image',$data);
+});
+
+
+Route::get('/contents/audio/{cnt}', function () {
+  $data= [
+    'title' => 'Audio Contents',
+    'type' => 'audio',
+  ];
+  return view('contents/audio',$data);
+});
+
+Route::get('/contents/video/{cnt}', function () {
+  $data= [
+    'title' => 'Video Contents',
+    'type' => 'video',
+  ];
+  return view('contents/video',$data);
+});
 
 Route::get('/', function () {
     return view('auth/register');
@@ -57,9 +106,12 @@ Route::post('/', [
 
 
 Route::get('/mail-register',function(){
+  $data=[
+    'error_name' => '=\')',
+    'error_msg' => 'Thank you for your registration, Manage your content with easiness !!!'
+  ];
 
-return view('auth/waitingValidation');
-
+return view('alerts/msg',$data);
 
 })->name('email');
 

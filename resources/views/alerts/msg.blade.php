@@ -69,9 +69,11 @@
                 </div>
                 <div class="row center">
                   <p class="center white-text col s12">{{ $error_msg }}</p>
-                  <p class="center s12"><button onclick="goBack()" class="btn waves-effect waves-light">Back</button> <a href="index-2.html" class="btn waves-effect waves-light">Homepage</a>
-                    <p>
-                    </p>
+                  <p class="center s12">
+                    <button onclick="goBack()" class="btn waves-effect waves-light">Back</button>
+                    <a href="/" class="btn waves-effect waves-light">OK</a>
+                  <p>
+                  </p>
                 </div>
               </div>
             </div>

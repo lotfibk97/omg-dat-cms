@@ -20,16 +20,16 @@
   < For Windows Phone -->
 
   <!-- CORE CSS-->
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="{{ asset ('css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="{{ asset ('css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
   <!-- Custome CSS-->
-  <link href="css/custom-style.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href=" {{ asset ('css/custom-style.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
   <!-- CSS for full screen (Layout-2)-->
-  <link href="css/style-fullscreen.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href=" {{ asset ('css/style-fullscreen.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
 
   <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
-  <link href="css/prism.css" type="text/css" rel="stylesheet" media="screen,projection">
-  <link href="js/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="{{ asset ('css/prism.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="{{ asset ('js/plugins/perfect-scrollbar/perfect-scrollbar.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
 
   @section('style')
     <style>
@@ -64,7 +64,7 @@
                 <div class="nav-wrapper">
                     <ul class="left">
                       <li class="no-hover"><a href="#" data-activates="slide-out" class="menu-sidebar-collapse btn-floating btn-flat btn-medium waves-effect waves-light cyan"><i class="mdi-navigation-menu" ></i></a></li>
-                      <li><h1 class="logo-wrapper "><a href="index-2.html" class="brand-logo darken-1"><img src="images/materialize-logo.png" alt="materialize logo"></a> <span class="logo-text">Materialize</span></h1></li>
+                      <li><h1 class="logo-wrapper "><a href="index-2.html" class="brand-logo darken-1"><img src="{{ asset ('images/materialize-logo.png') }}" alt="materialize logo"></a> <span class="logo-text">Materialize</span></h1></li>
                     </ul>
                 </div>
             </nav>
@@ -86,7 +86,7 @@
             <li class="user-details cyan darken-2">
                 <div class="row">
                     <div class="col col s4 m4 l4">
-                        <img src="images/avatar.jpg" alt="" class="circle responsive-img valign profile-image">
+                        <img src="{{ asset ('images/avatar.jpg') }}" alt="" class="circle responsive-img valign profile-image">
                     </div>
                     <div class="col col s8 m8 l8">
                         <ul id="profile-dropdown" class="dropdown-content">
@@ -177,15 +177,15 @@
     ================================================ -->
 
     <!-- jQuery Library -->
-    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="{{ asset ('js/jquery-1.11.2.min.js') }}"></script>
     <!--materialize js-->
-    <script type="text/javascript" src="js/materialize.js"></script>
+    <script type="text/javascript" src="{{ asset ('js/materialize.js') }}"></script>
     <!--prism-->
-    <script type="text/javascript" src="js/prism.js"></script>
+    <script type="text/javascript" src="{{ asset ('js/prism.js') }}"></script>
     <!--scrollbar-->
-    <script type="text/javascript" src="js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script type="text/javascript" src="{{ asset ('js/plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <!--plugins.js - Some Specific JS codes for Plugin Settings-->
-    <script type="text/javascript" src="js/plugins.js"></script>
+    <script type="text/javascript" src="{{ asset ('js/plugins.js') }}"></script>
 
 </body>
 </html>

@@ -9,7 +9,7 @@
 
 <div class="row blue-text">
   <div class="col m10 offset-m1">
-    <h2> Edit your content </h2>
+    <h2> Edit your {{ $type }} content </h2>
   </div>
 </div>
 
@@ -20,7 +20,7 @@
       <div class="card-panel">
 
         <div class="row">
-          <form class="col s12">
+          <form class="col s12" action="#" method="post" enctype="multipart/form-data">
 
             <div class="row">
               <div class="input-field col s12">
@@ -36,7 +36,9 @@
               </div>
             </div>
 
-            <p>// PUT CK EDITOR HERE</p>
+            @section('media-input')
+              <p>Awesome input will be here</p>
+            @show
 
             <div class="row">
               <div class="input-field col s12">
