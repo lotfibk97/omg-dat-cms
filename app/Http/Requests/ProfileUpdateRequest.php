@@ -28,6 +28,7 @@ class ProfileUpdateRequest extends FormRequest
           'email' => 'required|email|max:255|unique:collaborators',
           'password' => 'required|confirmed|min:6',
           'password3' => 'required|confirmed|min:6',
+          'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
         ];
     }
