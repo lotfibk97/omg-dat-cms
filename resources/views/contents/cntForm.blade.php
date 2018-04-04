@@ -16,7 +16,7 @@
 <div class="row">
   <div class="col s12 m10 offset-m1">
 
-    <div class="col s10 offset-s1">
+    <div class="col s12 l10 offset-l1">
       <div class="card-panel">
 
         <div class="row">
