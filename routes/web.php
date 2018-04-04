@@ -169,9 +169,9 @@ Route::get('/login',function () {
 
 Route::post('/login',[
   'as' =>'login',
-  'uses'=>'LoginController@check'
-
-  ])->with('collab');
+  'uses'=>'LoginController@check',
+  'status' => 'collab'
+  ]);
 
 Route::get('/register', function () {
     $data=[
