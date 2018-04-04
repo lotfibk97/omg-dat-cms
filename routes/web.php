@@ -230,7 +230,11 @@ else{
 
 
 
+Route::post('/profile',[
+    'as' => 'update_profile',
+    'uses' => 'ProfileUpdaterController@update'
 
+]);
 
 
 

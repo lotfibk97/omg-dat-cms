@@ -18,8 +18,8 @@ class CreateCollaboratosrTable extends Migration
             $table->string('email');
             $table->string('password');
             $table->string('username');
-            $table->string('email_user');
-            $table->foreign('email_user')->references('email')->on('users');
+            $table->unsignedInteger('user');
+            $table->foreign('user')->references('id')->on('users');
             $table->unique(['user','email']);
             $table->timestamps();
         });
