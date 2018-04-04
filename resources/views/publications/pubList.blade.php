@@ -1,9 +1,10 @@
 @extends('layouts.base')
 
+
 @section('style')
 
-
 @stop
+
 
 @section('content')
 

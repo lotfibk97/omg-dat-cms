@@ -102,24 +102,42 @@ Route::get('/contents/video/{cnt}', function () {
   return view('contents/video',$data);
 });
 
-Route::get('/login/{hash}',function () {
-    return view('auth/login');
+Route::get('/collaborators', function () {
+
+  return view('collaborators/clbList');
+});
+
+Route::get('/profile', function () {
+
+  return view('auth/profile');
+});
+
+Route::get('/files', function () {
+
+  return view('contents/files');
+});
+
+Route::get('/login',function () {
+    $data=[
+      'collab' => true,
+    ];
+    return view('auth/login',$data);
   })->name('login');
 
-Route::post('/login/{hash}',[
+Route::post('/login',[
   'as' =>'login',
   'uses'=>'LoginController@check'
 
   ]);
 
-Route::get('/register/{hash}', function () {
+Route::get('/register', function () {
     $data=[
-
+      'collab' => true,
     ];
     return view('auth/register',$data);
 })->name('register.get');
 
-Route::post('/register/{hash}', [
+Route::post('/register', [
   'as' => 'register.create',
   'uses' => 'RegistrationController@store'
 ]);

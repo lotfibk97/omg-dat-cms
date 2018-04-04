@@ -50,30 +50,33 @@
   <div id="login-page" class="row">
     <div class="col s12 z-depth-4 card-panel">
       <form class="login-form" method="POST" action="{{ route('login') }}">
-        <!--div class="row">
-          <div class="input-field col s12 center">
+        <div class="row">
+          <div class="input-field col s10 offset-s1 center">
             <img src="images/login-logo.png" alt="" class="circle responsive-img valign profile-image-login">
-            <p class="center login-form-text">Material Design Admin Template</p>
+            <p class="center login-form-text">Manage your content with omg-dat-cms</p>
           </div>
-        </div-->
+        </div>
+        @if ($collab)
         <div class="row margin">
           <div class="input-field col s12">
             <i class="mdi-social-person-outline prefix"></i>
-            <input id="name" type="text">
-            <label for="username" class="center-align">Username</label>
+            <input id="admin" name="admin" type="email">
+            <label for="admin" class="center-align">Admin Email</label>
+          </div>
+        </div>
+        @endif
+        <div class="row margin">
+          <div class="input-field col s12">
+            <i class="mdi-social-person-outline prefix"></i>
+            <input id="email" name="email" type="email">
+            <label for="email" class="center-align">Email</label>
           </div>
         </div>
         <div class="row margin">
           <div class="input-field col s12">
             <i class="mdi-action-lock-outline prefix"></i>
-            <input id="password" type="password">
+            <input id="password" name="password" type="password">
             <label for="password">Password</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12 m12 l12  login-text">
-              <input type="checkbox" id="remember-me" />
-              <label for="remember-me">Remember me</label>
           </div>
         </div>
         <div class="row">
@@ -82,8 +85,8 @@
           </div>
         </div>
         <div class="row">
-          <div class="input-field col s6 m6 l6">
-            <p class="margin medium-small"><a href="{{route('register.get', app('request')->input('hash'))}}">Register Now!</a></p>
+          <div class="input-field col offset-s6 s6 m6 l6">
+            <p class="margin medium-small"><a href="#">Register Now!</a></p>
           </div>
           <!--div class="input-field col s6 m6 l6">
               <p class="margin right-align medium-small"><a href="page-forgot-password.html">Forgot password ?</a></p>

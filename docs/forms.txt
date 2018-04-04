@@ -4,7 +4,7 @@ user login form // done
 
 // I DID UPDATE THE MODELS SO THAT A COLLABORATOR CAN LOGIN (session things)
 
-collaborator create form {
+collaborator register form {
   recieve:
     "name"
     "email"
@@ -15,6 +15,12 @@ collaborator create form {
     validate data
     insert into user(name,email,pw,type=profile)
     insert into collaborator(user=session.user,profile=new inserted user)
+}
+
+collaborator login form {
+  "useremail"
+  "email"
+  "password"
 }
 
 profile update form { // works the same for admin and collab cuz collab profiles infs are stored in user tuple

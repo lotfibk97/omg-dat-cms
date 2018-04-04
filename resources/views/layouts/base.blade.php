@@ -37,12 +37,6 @@
     </style>
   @show
 
-  @section('script')
-    <script type="text/javascript">
-
-    </script>
-  @show
-
 </head>
 
 <body style="background:#e9f8df;">
@@ -123,6 +117,8 @@
                     </li>
                     <li class="bold"><a href="app-widget.html" class="waves-effect waves-cyan"><i class="mdi-image-timer-auto"></i>Collaborators</span></a>
                     </li>
+                    <li class="bold"><a href="app-widget.html" class="waves-effect waves-cyan"><i class="mdi-editor-insert-drive-file"></i>Static Files</span></a>
+                    </li>
                 </ul>
             </li>
         </ul>
@@ -186,6 +182,12 @@
     <script type="text/javascript" src="{{ asset ('js/plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <!--plugins.js - Some Specific JS codes for Plugin Settings-->
     <script type="text/javascript" src="{{ asset ('js/plugins.js') }}"></script>
+
+    @section('script')
+      <script type="text/javascript">
+
+      </script>
+    @show
 
 </body>
 </html>
