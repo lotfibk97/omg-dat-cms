@@ -42,7 +42,7 @@ class RegistrationController extends Controller
       $user->confirmed = 1;
       $user->token ='';
       $user->save();
-      return redirect(route('login'))->with('status','Your activation is completed.');
+      return redirect(route('login_admin'))->with('status','Your activation is completed.');
     }
     return redirect(route('login'))->with('status','something went wrong');
 

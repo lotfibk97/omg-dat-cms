@@ -37,6 +37,14 @@ Route::get('/publications/{pub}', function () {
   return view('publications/pubForm',$data);
 });
 
+
+
+
+
+
+
+
+
 Route::get('/contents/text', function () {
   $data= [
     'title' => 'Contents',
@@ -102,20 +110,48 @@ Route::get('/contents/video/{cnt}', function () {
   return view('contents/video',$data);
 });
 
-Route::get('/collaborators', function () {
 
-  return view('collaborators/clbList');
+
+
+
+
+
+
+Route::get('/collaborators', function () {
+    $data = [
+        'title' => 'collaborators',
+          ];
+  return view('collaborators/clbList',$data);
 });
+
+
+
+
+
 
 Route::get('/profile', function () {
-
-  return view('auth/profile');
+  $data = [
+      'title' => 'profiles',
+        ];
+  return view('auth/profile',$data);
 });
+
+
+
+
+
 
 Route::get('/files', function () {
-
-  return view('contents/files');
+  $data = [
+      'title' => 'files',
+        ];
+  return view('contents/files',$data);
 });
+
+
+
+
+
 
 Route::get('/login',function () {
     $data=[
@@ -124,11 +160,18 @@ Route::get('/login',function () {
     return view('auth/login',$data);
   })->name('login');
 
+Route::get('/login',function () {
+    $data=[
+      'collab' => false,
+    ];
+    return view('auth/login',$data);
+  })->name('login_admin');
+
 Route::post('/login',[
   'as' =>'login',
   'uses'=>'LoginController@check'
 
-  ]);
+  ])->with('collab');
 
 Route::get('/register', function () {
     $data=[
@@ -158,6 +201,14 @@ Route::post('/mail-register',[
 ]);
 
 
+
+
+
+
+
+
+
+
 Route::get('/aaa', function () {
     return view('welcome');
 })->name('register');
@@ -175,6 +226,15 @@ else{
 }
 
 })->name('dashboard');
+
+
+
+
+
+
+
+
+
 
 
 Route::get('/error',function(){

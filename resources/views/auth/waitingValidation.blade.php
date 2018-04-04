@@ -1,1 +1,1 @@
-you have been registered chekc your email for validation
+you have been registered check your email for validation
