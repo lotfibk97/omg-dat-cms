@@ -91,7 +91,7 @@
         </div>
         <div class="row">
           <div class="input-field col s12">
-             <button type="submit" class="btn btn-default">Register</button>
+             <button type="submit" class="btn btn-default col s6 offset-s3">Register</button>
           </div>
           <div class="input-field col s12">
             <p class="margin center medium-small sign-up">Already have an account? <a href="#">Login</a></p>

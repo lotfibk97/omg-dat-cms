@@ -51,11 +51,12 @@
     <div class="col s12 z-depth-4 card-panel">
       <form class="login-form" method="POST" action="{{ route('login') }}">
         <div class="row">
-          <div class="input-field col s10 offset-s1 center">
-            <img src="images/login-logo.png" alt="" class="circle responsive-img valign profile-image-login">
-            <p class="center login-form-text">Manage your content with omg-dat-cms</p>
+          <div class="input-field col s12 center">
+            <h4>Login</h4>
+            <p class="center">Manage your content now !</p>
           </div>
         </div>
+
         @if ($collab)
         <div class="row margin">
           <div class="input-field col s12">
