@@ -16,22 +16,22 @@ class CreatContentsTable extends Migration
         Schema::create('contents', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->string('description');
-            $table->enum('type',['text','image','audio','video']);
+            $table->string('description')->nullable();
+            $table->enum('type',['text','image','audio','video'])->default('text');
             $table->unsignedInteger('publication');
             $table->foreign('publication')->references('id')->on('publications');
             $table->unsignedInteger('creator');
             $table->foreign('creator')->references('id')->on('collaborators');
             $table->unsignedInteger('responsible');
             $table->foreign('responsible')->references('id')->on('collaborators');
-            $table->longText('html');
-            $table->unsignedInteger('top');
-            $table->unsignedInteger('left');
-            $table->unsignedInteger('width');
-            $table->unsignedInteger('height');
-            $table->boolean('center-h');
-            $table->boolean('center-v');
-            $table->boolean('displayed');
+            $table->longText('html')->nullable();
+            $table->unsignedInteger('top')->default(2);
+            $table->unsignedInteger('left')->default(5);
+            $table->unsignedInteger('width')->default(4);
+            $table->unsignedInteger('height')->default(4);
+            $table->boolean('center-h')->default(0);
+            $table->boolean('center-v')->default(0);
+            $table->boolean('displayed')->default(0);
             $table->timestamps();
         });
     }

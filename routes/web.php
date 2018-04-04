@@ -20,8 +20,10 @@ Route::get('/', function () {
   {
     return redirect()->route('dashboard');
   }
-  return redirect()->route('login');
+  return redirect()->route('login_admin');
 })->name('password.request');
+
+///////////////////////////////////////////////////////
 
 Route::get('/publications', function () {
   $data= [
@@ -37,13 +39,7 @@ Route::get('/publications/{pub}', function () {
   return view('publications/pubForm',$data);
 });
 
-
-
-
-
-
-
-
+///////////////////////////////////////////////////////
 
 Route::get('/contents/text', function () {
   $data= [
@@ -93,7 +89,6 @@ Route::get('/contents/image/{cnt}', function () {
   return view('contents/image',$data);
 });
 
-
 Route::get('/contents/audio/{cnt}', function () {
   $data= [
     'title' => 'Audio Contents',
@@ -110,12 +105,7 @@ Route::get('/contents/video/{cnt}', function () {
   return view('contents/video',$data);
 });
 
-
-
-
-
-
-
+///////////////////////////////////////////////////////
 
 Route::get('/collaborators', function () {
     $data = [
@@ -124,11 +114,6 @@ Route::get('/collaborators', function () {
   return view('collaborators/clbList',$data);
 });
 
-
-
-
-
-
 Route::get('/profile', function () {
   $data = [
       'title' => 'profiles',
@@ -136,10 +121,7 @@ Route::get('/profile', function () {
   return view('auth/profile',$data);
 });
 
-
-
-
-
+///////////////////////////////////////////////////////
 
 Route::get('/files', function () {
   $data = [
@@ -148,17 +130,7 @@ Route::get('/files', function () {
   return view('contents/files',$data);
 });
 
-
-
-
-
-
-Route::get('/login',function () {
-    $data=[
-      'collab' => true,
-    ];
-    return view('auth/login',$data);
-  })->name('login');
+///////////////////////////////////////////////////////
 
 Route::get('/login',function () {
     $data=[
@@ -167,24 +139,48 @@ Route::get('/login',function () {
     return view('auth/login',$data);
   })->name('login_admin');
 
-Route::post('/login',[
-  'as' =>'login',
-  'uses'=>'LoginController@check',
-  'status' => 'collab'
-  ]);
-
-Route::get('/register', function () {
+Route::get('/collaborator/login',function () {
     $data=[
       'collab' => true,
     ];
-    return view('auth/register',$data);
+    return view('auth/login',$data);
+  })->name('login_collab');
+
+Route::post('/login',[
+  'as' =>'login',
+  'uses'=>'LoginController@check',
+  ]);
+
+Route::post('/collaborator/login',[
+  'as' =>'collabLogin',
+  'uses'=>'LoginController@check',
+]);
+
+///////////////////////////////////////////////////////
+
+Route::get('/collaborator/register', function () {
+  $data=[
+    'collab' => true,
+  ];
+  return view('auth/register',$data);
+})->name('collab.register.get');
+
+Route::post('/collaborator/register', [
+  'as' => 'collab.register.create',
+  'uses' => 'RegistrationController@collab_store'
+]);
+
+Route::get('/register', function () {
+  $data=[
+    'collab' => false,
+  ];
+  return view('auth/register',$data);
 })->name('register.get');
 
 Route::post('/register', [
   'as' => 'register.create',
   'uses' => 'RegistrationController@store'
 ]);
-
 
 Route::get('/mail-register',function(){
   $data=[
@@ -219,7 +215,7 @@ Route::get('/user/confirmation/{token}','RegistrationController@confirmation')->
 
 Route::get('/dashboard',function(){
 if(Auth::check()){
-  return view('auth/base');
+  return view('home');
 }
 else{
   return redirect('login');
@@ -241,11 +237,27 @@ Route::post('/profile',[
 
 
 
-Route::get('/error',function(){
+Route::get('/error1',function(){
   $data=[
     'error_name' => 'Login error',
     'error_msg' => 'Your account is not validated, please check your email for confirmation'
   ];
 
   return view('alerts/msg',$data);
-})->name('error1');
+})->name('not_validated_error');
+
+Route::get('/error2',function(){
+  $data=[
+    'error_name' => 'Login error',
+    'error_msg' => 'You entered a wrong password'
+  ];
+  return view('alerts/msg',$data);
+})->name('credentials_error');
+
+Route::get('/error3',function(){
+  $data=[
+    'error_name' => 'Login error',
+    'error_msg' => 'This account doesn\'t exist'
+  ];
+  return view('alerts/msg',$data);
+})->name('not_exists_error');

@@ -15,12 +15,10 @@ class CreateCollaboratosrTable extends Migration
     {
         Schema::create('collaborators', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('email');
-            $table->string('password');
-            $table->string('username');
             $table->unsignedInteger('user');
             $table->foreign('user')->references('id')->on('users');
-            $table->unique(['user','email']);
+            $table->unsignedInteger('profile')->unique();
+            $table->foreign('profile')->references('id')->on('users');
             $table->timestamps();
         });
     }

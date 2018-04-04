@@ -16,14 +16,15 @@ class CreatePublicationsTable extends Migration
         Schema::create('publications', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->string('description');
-            $table->date('date');
-            $table->boolean('published');
-            $table->string('url');
-            $table->unsignedInteger('rows');
-            $table->unsignedInteger('selected');
+            $table->string('description')->nullable();
+            $table->date('date')->nullable();
+            $table->boolean('published')->default(0);
+            $table->string('url')->nullable();
+            $table->unsignedInteger('rows')->default(20);
+            $table->unsignedInteger('selected')->nullable();
             $table->unsignedInteger('user');
             $table->foreign('user')->references('id')->on('users');
+            $table->enum('status',['in progress','published'])->default('in progress');
             $table->timestamps();
         });
     }

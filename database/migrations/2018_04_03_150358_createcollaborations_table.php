@@ -19,7 +19,7 @@ class CreatecollaborationsTable extends Migration
             $table->foreign('publication')->references('id')->on('publications');
             $table->unsignedInteger('collaborator');
             $table->foreign('collaborator')->references('id')->on('collaborators');
-            $table->enum('role',['publicator','editor','media-manager']);
+            $table->enum('role',['publicator','editor','media-manager','any'])->default('any');
             $table->timestamps();
         });
     }

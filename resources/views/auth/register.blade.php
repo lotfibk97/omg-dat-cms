@@ -18,20 +18,22 @@
   <meta name="msapplication-TileColor" content="#00bcd4">
   <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png">
   <!-- For Windows Phone -->
-
-
-  <!-- CORE CSS-->
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
-    <!-- Custome CSS-->
-    <link href="css/custom-style.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="{{ asset ('css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="{{ asset ('css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
+  <!-- Custome CSS-->
+  <link href=" {{ asset ('css/custom-style.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
   <!-- CSS for full screen (Layout-2)-->
-  <link href="css/style-fullscreen.css" type="text/css" rel="stylesheet" media="screen,projection">
-  <link href="css/page-center.css" type="text/css" rel="stylesheet" media="screen,projection">
-
+  <link href=" {{ asset ('css/style-fullscreen.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href=" {{ asset ('css/page-center.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
   <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
-  <link href="css/prism.css" type="text/css" rel="stylesheet" media="screen,projection">
-  <link href="js/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="{{ asset ('css/prism.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="{{ asset ('js/plugins/perfect-scrollbar/perfect-scrollbar.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
+
+
+
+
+
+
 
 </head>
 
@@ -48,8 +50,12 @@
 
   <div id="login-page" class="row">
     <div class="col s12 z-depth-4 card-panel">
+     @if(!$collab)
       <form action="{{ route('register.create') }}"  method="POST" >
-                             {!! csrf_field() !!}
+     @else
+      <form action="{{ route('collab.register.create') }}"  method="POST" >
+     @endif
+                               {!! csrf_field() !!}
         <div class="row">
           <div class="input-field col s12 center">
             <h4>Register</h4>
@@ -107,17 +113,17 @@
     Scripts
     ================================================ -->
 
-  <!-- jQuery Library -->
-  <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
-  <!--materialize js-->
-  <script type="text/javascript" src="js/materialize.js"></script>
-  <!--prism-->
-  <script type="text/javascript" src="js/prism.js"></script>
-  <!--scrollbar-->
-  <script type="text/javascript" src="js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <!-- jQuery Library -->
+    <script type="text/javascript" src="{{ asset ('js/jquery-1.11.2.min.js') }}"></script>
+    <!--materialize js-->
+    <script type="text/javascript" src="{{ asset ('js/materialize.js') }}"></script>
+    <!--prism-->
+    <script type="text/javascript" src="{{ asset ('js/prism.js') }}"></script>
+    <!--scrollbar-->
+    <script type="text/javascript" src="{{ asset ('js/plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+    <!--plugins.js - Some Specific JS codes for Plugin Settings-->
+    <script type="text/javascript" src="{{ asset ('js/plugins.js') }}"></script>
 
-  <!--plugins.js - Some Specific JS codes for Plugin Settings-->
-  <script type="text/javascript" src="js/plugins.js"></script>
 
 </body>
 
