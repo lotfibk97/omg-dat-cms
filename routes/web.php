@@ -18,7 +18,8 @@ use App\User;
 use App\Models\Collaboration;
 
 
-
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////// Dashboard Page /////////////////////////////
 
 Route::get('/', function () {
   if(Auth::check())
@@ -28,9 +29,12 @@ Route::get('/', function () {
   return redirect()->route('login_admin');
 })->name('password.request');
 
-///////////////////////////////////////////////////////
 
-Route::get('/publications', function () { //dd((array) Publication::where('owner',Auth::id()));
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////// Publications Pages /////////////////////////////
+
+////////////////////////// Publications list
+Route::get('/publications', function () {
   $data= [
     'title' => 'Publications',
     'publications' => DB::select("
@@ -41,6 +45,7 @@ Route::get('/publications', function () { //dd((array) Publication::where('owner
   return view('publications/pubList',$data);
 })->name('publication.list');
 
+////////////////////////// GOTO Create Publication Page
 Route::get('publications/new', function () {
 
   $user = User::where('id',Auth::id())->first();
@@ -67,11 +72,13 @@ Route::get('publications/new', function () {
   return view('publications/pubForm',$data);
 });
 
+////////////////////////// GETFROM Create Publication Page
 Route::post('/publications/new',[
   'as' => 'publication.create',
   'uses' => 'PublicationController@create'
 ]);
 
+////////////////////////// GOTO Update Publication Page
 Route::get('/publications/{pub}', function ($pub) {
 
   $query = DB::select(DB::raw("
@@ -103,6 +110,7 @@ Route::get('/publications/{pub}', function ($pub) {
   return view('publications/pubForm',$data);
 });
 
+////////////////////////// GETFROM Update Publication Page
 Route::post('/publications/{pub}',[
 
   'as' => 'publication.update',
@@ -111,7 +119,8 @@ Route::post('/publications/{pub}',[
 ]);
 
 
-///////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////// Contents Pages /////////////////////////////
 
 Route::get('/contents/text', function () {
   $data= [
@@ -177,24 +186,6 @@ Route::get('/contents/video/{cnt}', function () {
   return view('contents/video',$data);
 });
 
-///////////////////////////////////////////////////////
-
-Route::get('/collaborators', function () {
-    $data = [
-        'title' => 'collaborators',
-          ];
-  return view('collaborators/clbList',$data);
-});
-
-Route::get('/profile', function () {
-  $data = [
-      'title' => 'profiles',
-        ];
-  return view('auth/profile',$data);
-});
-
-///////////////////////////////////////////////////////
-
 Route::get('/files', function () {
   $data = [
       'title' => 'files',
@@ -202,8 +193,26 @@ Route::get('/files', function () {
   return view('contents/files',$data);
 });
 
-///////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////// Users Pages /////////////////////////////
 
+///////////////////////// Collaborators List
+Route::get('/collaborators', function () {
+    $data = [
+        'title' => 'collaborators',
+          ];
+  return view('collaborators/clbList',$data);
+});
+
+///////////////////////// GOTO User Profile
+Route::get('/profile', function () {
+  $data = [
+      'title' => 'profiles',
+        ];
+  return view('auth/profile',$data);
+});
+
+///////////////////////// GOTO ADMIN LOGIN PAGE
 Route::get('/login',function () {
     $data=[
       'collab' => false,
@@ -211,6 +220,7 @@ Route::get('/login',function () {
     return view('auth/login',$data);
   })->name('login_admin');
 
+///////////////////////// GOTO COLLAB LOGIN PAGE
 Route::get('/collaborators/login',function () {
     $data=[
       'collab' => true,
@@ -218,17 +228,19 @@ Route::get('/collaborators/login',function () {
     return view('auth/login',$data);
   })->name('login_collab');
 
+///////////////////////// GETFROM ADMIN LOGIN PAGE
 Route::post('/login',[
   'as' =>'login',
   'uses'=>'LoginController@check',
   ]);
 
+///////////////////////// GETFROM COLLAB LOGIN PAGE
 Route::post('/collaborators/login',[
   'as' =>'collabLogin',
   'uses'=>'LoginController@check',
 ]);
 
-///////////////////////////////////////////////////////
+///////////////////////// GOTO COLLAB CREATE PAGE
 
 Route::get('/collaborators/register', function () {
   $data=[
@@ -237,11 +249,13 @@ Route::get('/collaborators/register', function () {
   return view('auth/register',$data);
 })->name('collab.register.get');
 
+///////////////////////// GETFROM COLLAB CREATE PAGE
 Route::post('/collaborators/register', [
   'as' => 'collab.register.create',
   'uses' => 'RegistrationController@collab_store'
 ]);
 
+///////////////////////// ADMIN REGISTER WITH MAIL CONFIRMATION
 Route::get('/register', function () {
   $data=[
     'collab' => false,
@@ -265,7 +279,6 @@ Route::get('/mail-register',function(){
 Route::post('/mail-register',[
   'as' => 'mail.confirm',
   'uses' => 'RegistrationController@confirmation'
-// fix the case of unconfirmed email reregister qui ye9ba7
 ]);
 
 
