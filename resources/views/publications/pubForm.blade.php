@@ -28,7 +28,7 @@
           @if($create)
           <form class="col s12" method="post" action="{{ route('publication.create')}}">
           @else
-          <form class="col s12" method="post" action="{{ route('publication.update',$pub)}}">
+          <form class="col s12" method="post" action="publications/{{$publication->id}}">
           @endif
           {!! csrf_field() !!}
             <div class="row">
@@ -47,7 +47,7 @@
                 @if($create)
                 <textarea id="description" name="description" class="materialize-textarea"></textarea>
                 @else
-                <textarea id="description" name="description" class="materialize-textarea active" value="{{$publication->description}}"></textarea>
+                <textarea id="description" name="description" class="materialize-textarea active">{{$publication->description}}</textarea>
                 @endif
                 <label for="description">Description</label>
               </div>
@@ -60,19 +60,35 @@
                 <div class="col s6 l4">
                   <p>{{$collaborator->name}}</p>
                   <p style="margin:0;">
+                    @if( $create || $collaborator->role === 'any')
                     <input name="collab{{$collaborator->id}}" value="any" type="radio" id="any{{$collaborator->id}}" checked="checked"></input>
+                    @else
+                    <input name="collab{{$collaborator->id}}" value="any" type="radio" id="any{{$collaborator->id}}"></input>
+                    @endif
                     <label for="any{{$collaborator->id}}" style="top:0;">Any</label>
                   </p>
                   <p style="margin:0;">
+                    @if( !$create && $collaborator->role === 'publicator')
+                    <input name="collab{{$collaborator->id}}" type="radio" value="publicator" id="publicator{{$collaborator->id}}" checked="checked"></input>
+                    @else
                     <input name="collab{{$collaborator->id}}" type="radio" value="publicator" id="publicator{{$collaborator->id}}"></input>
+                    @endif
                     <label for="publicator{{$collaborator->id}}" style="top:0;">Publicator</label>
                   </p>
                   <p style="margin:0;">
+                    @if( !$create && $collaborator->role === 'editor')
+                    <input name="collab{{$collaborator->id}}" type="radio" value="editor" id="editor{{$collaborator->id}}" checked="checked"></input>
+                    @else
                     <input name="collab{{$collaborator->id}}" type="radio" value="editor" id="editor{{$collaborator->id}}"></input>
+                    @endif
                     <label for="editor{{$collaborator->id}}" style="top:0;">Editor</label>
                   </p>
                   <p style="margin:0;">
+                    @if( !$create && $collaborator->role === 'media-manager')
+                    <input name="collab{{$collaborator->id}}" type="radio" value="media-manager" id="mediamanager{{$collaborator->id}}" checked="checked"></input>
+                    @else
                     <input name="collab{{$collaborator->id}}" type="radio" value="media-manager" id="mediamanager{{$collaborator->id}}"></input>
+                    @endif
                     <label for="mediamanager{{$collaborator->id}}" style="top:0;">Media Manager</label>
                   </p>
                 </div>

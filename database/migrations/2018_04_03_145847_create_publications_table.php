@@ -24,7 +24,7 @@ class CreatePublicationsTable extends Migration
             $table->unsignedInteger('selected')->nullable();
             $table->unsignedInteger('user');
             $table->foreign('user')->references('id')->on('users');
-            $table->enum('status',['in progress','published'])->default('in progress');
+            // $table->enum('status',['in progress','published'])->default('in progress');
             $table->timestamps();
         });
     }

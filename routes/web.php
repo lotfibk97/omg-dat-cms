@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Input;
 use App\Mail\UserMessageCreated;
 use App\Models\Publication;
 use App\User;
+use App\Models\Collaboration;
+
+
+
 
 Route::get('/', function () {
   if(Auth::check())
@@ -69,16 +73,38 @@ Route::post('/publications/new',[
 ]);
 
 Route::get('/publications/{pub}', function ($pub) {
+
+  $query = DB::select(DB::raw("
+    select * from users u
+    where u.type=\"profile\"
+    and exists (
+        select * from collaborations c,collaborators cl
+        where c.collaborator=cl.id
+        and cl.profile=u.id
+        and c.publication=\"".$pub."\"
+      )
+  "));
+
+  foreach ($query as $collab) {
+    $collab->role=(DB::select("
+      select role from collaborations
+      where collaborator=\"".$collab->id."\"
+      and publication=\"".$pub."\"
+    "));
+    var_dump($collab->role);
+  }
+
   $data= [
     'title' => 'Edit Publication',
-    'collaborators' => [],
-    'pub' => $pub,
+    'collaborators' => $query,
+    'publication' => Publication::where('id',$pub)->first(),
     'create' => false,
   ];
   return view('publications/pubForm',$data);
 });
 
 Route::post('/publications/{pub}',[
+
   'as' => 'publication.update',
   'uses' => 'PublicationController@update'
 
