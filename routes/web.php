@@ -99,11 +99,12 @@ Route::get('/publications/{pub}', function ($pub) {
 
   foreach ($query as $collab) {
     $collab->role=(DB::select("
-      select role from collaborations
-      where collaborator=\"".$collab->id."\"
+      select role from collaborations c, collaborators cl, users p
+      where c.collaborator=cl.id
+      and cl.profile=p.id
+      and p.id=\"".$collab->id."\"
       and publication=\"".$pub."\"
-    "));
-    var_dump($collab->role);
+    "))['0']->role;
   }
 
   $data= [
