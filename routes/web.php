@@ -153,7 +153,7 @@ Route::get('/login',function () {
     return view('auth/login',$data);
   })->name('login_admin');
 
-Route::get('/collaborator/login',function () {
+Route::get('/collaborators/login',function () {
     $data=[
       'collab' => true,
     ];
@@ -165,21 +165,21 @@ Route::post('/login',[
   'uses'=>'LoginController@check',
   ]);
 
-Route::post('/collaborator/login',[
+Route::post('/collaborators/login',[
   'as' =>'collabLogin',
   'uses'=>'LoginController@check',
 ]);
 
 ///////////////////////////////////////////////////////
 
-Route::get('/collaborator/register', function () {
+Route::get('/collaborators/register', function () {
   $data=[
     'collab' => true,
   ];
   return view('auth/register',$data);
 })->name('collab.register.get');
 
-Route::post('/collaborator/register', [
+Route::post('/collaborators/register', [
   'as' => 'collab.register.create',
   'uses' => 'RegistrationController@collab_store'
 ]);

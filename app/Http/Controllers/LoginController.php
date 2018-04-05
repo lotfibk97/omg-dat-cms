@@ -38,15 +38,40 @@ class LoginController extends Controller
 
     // collaborator login
 
-    $collaborator = DB::connection()->getPdo()->quote("
-      select * from users profile where exists
-        ( select * from collaborators collab
-          where collab.profile=profile.id
-          and ". $request->email." =
-          ( select email from users admin
-            where admin.id = collab.user )
+    $query = DB::select("
+      select * from users profile
+      where profile.type=\"profile\"
+      and profile.email=\"".$request->email."\"
+      and exists (
+          select * from users u
+          where u.email=\"".$request->admin."\"
+          and exists (
+              select * from collaborators c
+              where c.profile=profile.id
+              and c.user=u.id
+            )
         )
     ");
+    $collaborator = User::where('id',$query['0']->id)->first();
+    // dd($collaborator);
+      //
+      // $collaborator = DB::table('users')
+      //                 ->where('type','profile')
+      //                 ->where('email',$request->email)
+      //                 ->whereExists(function($query,$request){
+      //                   $query->select(DB::raw(1))
+      //                   ->from('users','u')
+      //                   ->where('u.email',$request->admin)
+      //                   ->whereExists(function($q){
+      //                     $q->select(DB::raw(1))
+      //                     ->from('collaborators','c')
+      //                     ->whereRaw('c.profile = users.id')
+      //                     ->whereRaw('c.user = u.id');
+      //                   });
+      //                 })($request)->get();
+
+
+    // dd($collaborator);
 
     if( is_null ($collaborator) ) {
       return redirect()->route('not_exists_error');
@@ -55,7 +80,7 @@ class LoginController extends Controller
       return redirect()->route('credentials_error');
     }
     else{
-      Auth::login($user);
+      Auth::login($collaborator);
       return redirect()->route('dashboard');
     }
 
