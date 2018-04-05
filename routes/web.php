@@ -86,6 +86,11 @@ Route::post('/publications/new',[
 ////////////////////////// GOTO Update Publication Page
 Route::get('/publications/{pub}', function ($pub) {
 
+  $user = User::where('id',Auth::id())->first();
+  $publication = Publication::where('id',$pub)->first();
+  if(is_null($publication)) dd('what is dat');
+  if ($publication->user != $user->id) dd('not yours');
+
   $query = DB::select(DB::raw("
     select * from users u
     where u.type=\"profile\"
@@ -118,10 +123,8 @@ Route::get('/publications/{pub}', function ($pub) {
 
 ////////////////////////// GETFROM Update Publication Page
 Route::post('/publications/{pub}',[
-
   'as' => 'publication.update',
   'uses' => 'PublicationController@update'
-
 ]);
 
 

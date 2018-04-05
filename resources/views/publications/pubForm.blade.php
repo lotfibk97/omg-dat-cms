@@ -28,7 +28,7 @@
           @if($create)
           <form class="col s12" method="post" action="{{ route('publication.create')}}">
           @else
-          <form class="col s12" method="post" action="publications/{{$publication->id}}">
+          <form class="col s12" method="post" action="{{ route('publication.update',$pub)}}">
           @endif
           {!! csrf_field() !!}
             <div class="row">
