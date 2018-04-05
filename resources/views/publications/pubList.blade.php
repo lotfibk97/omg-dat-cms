@@ -27,6 +27,7 @@
           <tr>
             <th>Ref</th>
             <th>Title</th>
+            <th>Description</th>
             <th>Status</th>
             <th>Manage</th>
             <th>View</th>
@@ -40,13 +41,14 @@
           <tr>
             <td>{{ $publication->id }}</td>
             <td>{{ $publication->title }}</td>
+            <td>{{ str_limit($publication->description, $limit = 25, $end = '...') }}</td>
             @if($publication->status == 'published')
             <td>{{ published }}</td>
             @else
             <td><button class="waves-effect waves-light btn teal" href="publications/publish/{{$publication->id}}">publish</button></td>
             @endif
             <td><a class="waves-effect waves-light btn-floating blue" href="publications/manage/{{$publication->id}}"><i class="mdi-action-view-quilt"></i></a></td>
-            <td><a class="waves-effect waves-light btn-floating cyan" href="{{$publication->link}}"><i class="mdi-action-visibility"></i></a></td>
+            <td><a class="waves-effect waves-light btn-floating cyan" href="{{$publication->url}}"><i class="mdi-action-visibility"></i></a></td>
             <td><a class="waves-effect waves-light btn-floating orange" href="publications/{{$publication->id}}"><i class="mdi-editor-mode-edit"></i></a></td>
             <td><a class="waves-effect waves-light btn-floating red" href="publications/delete/{{$publication->id}}"><i class="mdi-action-delete"></i></a></td>
           </tr>

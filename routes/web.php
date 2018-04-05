@@ -14,7 +14,7 @@
 use Illuminate\Support\Facades\Input;
 use App\Mail\UserMessageCreated;
 use App\Models\Publication;
-
+use App\User;
 
 Route::get('/', function () {
   if(Auth::check())
@@ -26,32 +26,64 @@ Route::get('/', function () {
 
 ///////////////////////////////////////////////////////
 
-Route::get('/publications', function () {
+Route::get('/publications', function () { //dd((array) Publication::where('owner',Auth::id()));
   $data= [
     'title' => 'Publications',
-    'publications' => Publication::where('owner',Auth::id()),
+    'publications' => DB::select("
+      select * from publications
+      where user =".Auth::id()
+    ),
   ];
   return view('publications/pubList',$data);
+})->name('publication.list');
+
+Route::get('publications/new', function () {
+
+  $user = User::where('id',Auth::id())->first();
+
+  if($user->type != 'admin'){
+    dd('you can\'t');
+  }
+
+  $query = DB::select("
+    select * from users u
+    where u.type=\"profile\"
+    and exists (
+        select * from collaborators c
+        where c.profile=u.id
+        and c.user=\"".Auth::id()."\"
+      )
+  ");
+
+  $data= [
+    'title' => 'Edit Publication',
+    'collaborators' => $query,
+    'create' => true,
+  ];
+  return view('publications/pubForm',$data);
 });
 
-Route::get('/publications/{pub}', function () {
+Route::post('/publications/new',[
+  'as' => 'publication.create',
+  'uses' => 'PublicationController@create'
+]);
+
+Route::get('/publications/{pub}', function ($pub) {
   $data= [
     'title' => 'Edit Publication',
     'collaborators' => [],
-    'publication' => Publication::where('id',2)->first(),
+    'pub' => $pub,
     'create' => false,
   ];
   return view('publications/pubForm',$data);
 });
 
-Route::get('publications/new', function () {
-  $data= [
-    'title' => 'Edit Publication',
-    'collaborators' => [],
-    'create' => true,
-  ];
-  return view('publications/pubForm',$data);
-});
+Route::post('/publications/{pub}',[
+  'as' => 'publication.update',
+  'uses' => 'PublicationController@update'
+
+]);
+
 
 ///////////////////////////////////////////////////////
 

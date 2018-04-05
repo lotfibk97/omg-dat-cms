@@ -25,8 +25,12 @@
       <div class="card-panel">
 
         <div class="row">
-          <form class="col s12">
-
+          @if($create)
+          <form class="col s12" method="post" action="{{ route('publication.create')}}">
+          @else
+          <form class="col s12" method="post" action="{{ route('publication.update',$pub)}}">
+          @endif
+          {!! csrf_field() !!}
             <div class="row">
               <div class="input-field col s12">
                 @if($create)
@@ -56,19 +60,19 @@
                 <div class="col s6 l4">
                   <p>{{$collaborator->name}}</p>
                   <p style="margin:0;">
-                    <input name="collab{{$collaborator->id}}" type="radio" id="any{{$collaborator->id}}" checked="checked"></input>
+                    <input name="collab{{$collaborator->id}}" value="any" type="radio" id="any{{$collaborator->id}}" checked="checked"></input>
                     <label for="any{{$collaborator->id}}" style="top:0;">Any</label>
                   </p>
                   <p style="margin:0;">
-                    <input name="collab{{$collaborator->id}}" type="radio" id="publicator{{$collaborator->id}}"></input>
+                    <input name="collab{{$collaborator->id}}" type="radio" value="publicator" id="publicator{{$collaborator->id}}"></input>
                     <label for="publicator{{$collaborator->id}}" style="top:0;">Publicator</label>
                   </p>
                   <p style="margin:0;">
-                    <input name="collab{{$collaborator->id}}" type="radio" id="editor{{$collaborator->id}}"></input>
+                    <input name="collab{{$collaborator->id}}" type="radio" value="editor" id="editor{{$collaborator->id}}"></input>
                     <label for="editor{{$collaborator->id}}" style="top:0;">Editor</label>
                   </p>
                   <p style="margin:0;">
-                    <input name="collab{{$collaborator->id}}" type="radio" id="mediamanager{{$collaborator->id}}"></input>
+                    <input name="collab{{$collaborator->id}}" type="radio" value="media-manager" id="mediamanager{{$collaborator->id}}"></input>
                     <label for="mediamanager{{$collaborator->id}}" style="top:0;">Media Manager</label>
                   </p>
                 </div>

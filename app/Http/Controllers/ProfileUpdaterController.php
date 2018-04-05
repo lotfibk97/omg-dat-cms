@@ -9,6 +9,8 @@ class ProfileUpdaterController extends Controller
 {
     public function update(ProfileUpdateRequest $request){
        $collaborator= Collaborator::where('email',$request->email)->where('user',$request->user)->first();
+         if(!is_null($user)){
+
        $image = $request->file('image');
 
        $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
@@ -16,7 +18,7 @@ class ProfileUpdaterController extends Controller
        $destinationPath = public_path('/static/images');
 
        $image->move($destinationPath, $input['imagename']);
-
+}
 
     }
 }
