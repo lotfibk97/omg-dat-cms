@@ -27,9 +27,6 @@
           <tr>
             <th>Ref</th>
             <th>Title</th>
-            <th>Contents</th>
-            <th>Contribs</th>
-            <th>Owner</th>
             <th>Status</th>
             <th>Manage</th>
             <th>View</th>
@@ -39,42 +36,21 @@
         </thead>
 
         <tbody>
+          @foreach ( $publications as $publication )
           <tr>
-            <td>1</td>
-            <td>Mont Fuji</td>
-            <td>5</td>
-            <td>3</td>
-            <td>Lotfi BK</td>
-            <td>Published</td>
-            <td><a class="waves-effect waves-light btn-floating blue" href="#"><i class="mdi-action-view-quilt"></i></a></td>
-            <td><a class="waves-effect waves-light btn-floating cyan" href="#"><i class="mdi-action-visibility"></i></a></td>
-            <td><a class="waves-effect waves-light btn-floating orange" href="#"><i class="mdi-editor-mode-edit"></i></a></td>
-            <td><a class="waves-effect waves-light btn-floating red"><i class="mdi-action-delete"></i></a></td>
+            <td>{{ $publication->id }}</td>
+            <td>{{ $publication->title }}</td>
+            @if($publication->status == 'published')
+            <td>{{ published }}</td>
+            @else
+            <td><button class="waves-effect waves-light btn teal" href="publications/publish/{{$publication->id}}">publish</button></td>
+            @endif
+            <td><a class="waves-effect waves-light btn-floating blue" href="publications/manage/{{$publication->id}}"><i class="mdi-action-view-quilt"></i></a></td>
+            <td><a class="waves-effect waves-light btn-floating cyan" href="{{$publication->link}}"><i class="mdi-action-visibility"></i></a></td>
+            <td><a class="waves-effect waves-light btn-floating orange" href="publications/{{$publication->id}}"><i class="mdi-editor-mode-edit"></i></a></td>
+            <td><a class="waves-effect waves-light btn-floating red" href="publications/delete/{{$publication->id}}"><i class="mdi-action-delete"></i></a></td>
           </tr>
-          <tr>
-            <td>1</td>
-            <td>Mont Fuji</td>
-            <td>5</td>
-            <td>3</td>
-            <td>Lotfi BK</td>
-            <td>Published</td>
-            <td><a class="waves-effect waves-light btn-floating blue" href="#"><i class="mdi-action-view-quilt"></i></a></td>
-            <td><a class="waves-effect waves-light btn-floating cyan" href="#"><i class="mdi-action-visibility"></i></a></td>
-            <td><a class="waves-effect waves-light btn-floating orange" href="#"><i class="mdi-editor-mode-edit"></i></a></td>
-            <td><a class="waves-effect waves-light btn-floating red"><i class="mdi-action-delete"></i></a></td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Mont Fuji</td>
-            <td>5</td>
-            <td>3</td>
-            <td>Lotfi BK</td>
-            <td><button class="waves-effect waves-light btn teal">publish</button></td>
-            <td><a class="waves-effect waves-light btn-floating blue" href="#"><i class="mdi-action-view-quilt"></i></a></td>
-            <td><a class="waves-effect waves-light btn-floating cyan" href="#"><i class="mdi-action-visibility"></i></a></td>
-            <td><a class="waves-effect waves-light btn-floating orange" href="#"><i class="mdi-editor-mode-edit"></i></a></td>
-            <td><a class="waves-effect waves-light btn-floating red"><i class="mdi-action-delete"></i></a></td>
-          </tr>
+          @endforeach
         </tbody>
       </table>
 

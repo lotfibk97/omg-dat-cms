@@ -13,6 +13,7 @@
 
 use Illuminate\Support\Facades\Input;
 use App\Mail\UserMessageCreated;
+use App\Models\Publication;
 
 
 Route::get('/', function () {
@@ -28,6 +29,7 @@ Route::get('/', function () {
 Route::get('/publications', function () {
   $data= [
     'title' => 'Publications',
+    'publications' => Publication::where('owner',Auth::id()),
   ];
   return view('publications/pubList',$data);
 });
@@ -35,6 +37,18 @@ Route::get('/publications', function () {
 Route::get('/publications/{pub}', function () {
   $data= [
     'title' => 'Edit Publication',
+    'collaborators' => [],
+    'publication' => Publication::where('id',2)->first(),
+    'create' => false,
+  ];
+  return view('publications/pubForm',$data);
+});
+
+Route::get('publications/new', function () {
+  $data= [
+    'title' => 'Edit Publication',
+    'collaborators' => [],
+    'create' => true,
   ];
   return view('publications/pubForm',$data);
 });
