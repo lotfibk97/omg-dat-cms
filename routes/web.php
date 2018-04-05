@@ -29,6 +29,11 @@ Route::get('/', function () {
   return redirect()->route('login_admin');
 })->name('password.request');
 
+Route::get('/dashboard',function(){
+  if(Auth::check()) return view('home');
+  return redirect('login');
+})->name('dashboard');
+
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////// Publications Pages /////////////////////////////
@@ -212,6 +217,12 @@ Route::get('/profile', function () {
   return view('auth/profile',$data);
 });
 
+///////////////////////// GETFROM User Profile
+Route::post('/profile',[
+    'as' => 'update_profile',
+    'uses' => 'ProfileUpdaterController@update'
+]);
+
 ///////////////////////// GOTO ADMIN LOGIN PAGE
 Route::get('/login',function () {
     $data=[
@@ -281,45 +292,12 @@ Route::post('/mail-register',[
   'uses' => 'RegistrationController@confirmation'
 ]);
 
-
-
-
-
-
-
-
-
-
-Route::get('/aaa', function () {
-    return view('welcome');
-})->name('register');
-
-
-
 Route::get('/user/confirmation/{token}','RegistrationController@confirmation')->name('confirmation');
 
-Route::get('/dashboard',function(){
-if(Auth::check()){
-  return view('home');
-}
-else{
-  return redirect('login');
-}
-
-})->name('dashboard');
 
 
-
-
-Route::post('/profile',[
-    'as' => 'update_profile',
-    'uses' => 'ProfileUpdaterController@update'
-
-]);
-
-
-
-
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////// Errors Pages /////////////////////////////
 
 
 Route::get('/error1',function(){
