@@ -21,14 +21,14 @@
 <div class="row">
   <div class="col s12 m10 offset-m1">
 
-    <div class="col l8 offset-l2">
+    <div class="col s12 m10 offset-m1 l8 offset-l2">
       <div class="card-panel">
 
         <div class="row">
           @if($create)
           <form class="col s12" method="post" action="{{ route('publication.create')}}">
           @else
-          <form class="col s12" method="post" action="{{ route('publication.update',$pub)}}">
+          <form class="col s12" method="post" action="{{ route('publication.update',['pub'=>$publication->id])}}">
           @endif
           {!! csrf_field() !!}
             <div class="row">
