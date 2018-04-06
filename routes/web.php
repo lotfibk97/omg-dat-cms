@@ -133,6 +133,13 @@ Route::post('/publications/delete/{pub}',[
   'uses' => 'PublicationController@delete'
 ]);
 
+////////////////////////// Goto Partitionning Page
+Route::get('/publications/manage/{pub}', function ($pub) {
+  $data = [
+
+  ];
+  return view('publications/partition',$data);
+})->name('publication.manage');
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////// Contents Pages /////////////////////////////

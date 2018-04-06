@@ -1,0 +1,261 @@
+
+    body , html { margin: 0; padding: 0; position: relative; top: 0; left: 0;
+    width: 100vw; height: 100vh;/* overflow-x: hidden;*/
+    /*overflow: hidden;*/
+  }
+
+
+    /* //////////////////////////////////////////////////// */
+    /************** grid layout ( background ) **************/
+    .vertical-lines {
+      position: fixed;
+      z-index: -3;
+      top: 0;
+      left: 8vw;
+      width: 65vw;
+      height: 100%;
+    }
+
+    .vertical-lines div {
+      width: 2px;
+      height: 100%;
+      margin: 0;
+      position: absolute;
+    }
+
+    .horizontal-lines {
+      z-index: -2;
+      margin: 0;
+      width: 100vw;
+      height: 100vh;
+      padding-top:20vh;
+      padding-bottom: 30vh;
+      overflow: auto;
+      position: absolute;
+      top: 0;
+    }
+
+    .horizontal-line {
+      width: 100%;
+      height: 2px;
+      margin: 0;
+      margin-top: 8vh; /* 4vh */
+    }
+
+    .grid-container {
+      z-index: -1;
+      margin: 0;
+      width: 100vw;
+      height: 100vh;
+      padding-top:20vh;
+      padding-bottom: 0vh;
+      overflow: auto;
+    }
+
+    .grid-board {
+      width: 65vw;
+      margin-left: 8vw;
+      height: auto;
+      /*border: 1px red solid;*/
+      display: grid;
+      grid-template-columns: repeat(12,1fr);
+      grid-template-rows:repeat(20,calc(8vh + 2px));
+    }
+
+    .content-space {
+      border-radius: 2px;
+      border: 0px solid white;
+      padding: 3px;
+      cursor: pointer;
+    }
+
+    .content-itself {
+      background: yellow;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: auto;
+    }
+
+
+
+    /* //////////////////////////////////////////////////// */
+    /************** controls panel ( bottom ) **************/
+    .panel-bottom {
+      position: fixed;
+      bottom: 0;
+      right:1vw;
+      width: 98vw;
+      height:25vh;
+      background: #00BCD4;
+    }
+
+    /************** Selected content infs **************/
+    .target-inf {
+      position: absolute;
+      left: 30%;
+      top:5%;
+      height: 90%;
+      width: 20%;
+      margin: 0px;
+      padding: 10px;
+      box-sizing: border-box;
+      overflow: auto;
+    }
+
+    .edit-content, .delete-content {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+    }
+
+    .edit-content {
+      right: 20%;
+    }
+
+    .edit-content i , .delete-content i {
+      color: #FF6E40;
+    }
+
+    /************** movement & size buttons **************/
+    .move-controls {
+      position: absolute;
+      left: 0;
+      top:0;
+      width: 15%;
+      height: 100%;
+    }
+
+    .move-controls div {
+      position: absolute;
+    }
+
+    .size-controls {
+      position: absolute;
+      left: 15%;
+      top:0;
+      width: 15%;
+      height: 100%;
+    }
+
+    .size-controls div {
+      position: absolute;
+    }
+
+    .move-title,.size-title {
+      padding-left: 5%;
+    }
+
+    /************** content properties **************/
+    .properties-basket {
+      position: absolute;
+      left: 52%;
+      top:5%;
+      width: 46%;
+      height: 90%;
+      padding: 5px;
+      /* Custom texture */
+      box-sizing: border-box;
+      border-radius: 2px;
+      box-shadow: inset 0px 0px 12px 2px #00695C;
+      /* Grid partition */
+      display: grid;
+      grid-template-columns: 3fr 4fr 2fr 2fr 3fr;
+      grid-template-rows: repeat(4,1fr);
+    }
+
+    .properties-basket p {
+      margin: 0;
+      text-align: center;
+      font-weight: bold;
+      position: relative;
+    }
+
+    .properties-basket .input-field label {
+      position: static;
+      transform: translate(20%);
+    }
+
+    .properties-basket .input-field [type="checkbox"] + label:before {
+      border: 2px solid rgba(255,255,255,0.8);
+    }
+    .properties-basket .input-field [type="checkbox"]:checked + label:before {
+      border: 2px solid white;
+      border-top:0px; border-left:0px;
+    }
+
+    .fix-input , .fix-input:focus {
+      height: auto !important;
+      margin: 0!important;
+      border-bottom: 0px!important;
+      box-shadow: none!important;
+      padding-bottom: 1vh!important;
+    }
+
+
+    /* /////////////////////////////////////////// */
+    /************** content panel ( right ) **************/
+    .panel-right {
+      position: fixed;
+      right: 1vw;
+      top: 0;
+      height: 60vh;
+      width: 20vw;
+      box-sizing: border-box;
+      padding: 10px;
+      overflow: auto;
+    }
+
+    /************** content elements **************/
+    .panel-right .card-panel {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+
+    .add-to-board {
+      /*display: none;*/
+      visibility: hidden;
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      transform: scale(0.5);
+      transition: opacity 0.3s , scale 0.3s ;
+    }
+
+    .panel-right .card-panel:hover > .add-to-board {
+      /*display: inline-block;*/
+      transform: scale(1);
+      visibility: visible;
+    }
+    .panel-right .card-panel:hover > .delete-content {
+      /*display: inline-block;*/
+      transform: scale(1);
+      visibility: visible;
+    }
+
+    /************** content add button **************/
+    .add-content {
+      position: fixed;
+      top:63vh;
+      right: 1vw;
+      width: 20vw;
+      display: flex;
+    }
+
+    .btn {
+      margin: auto;
+      width: 100%;
+    }
+
+    /************** content form **************/
+    #content-form  {
+      /*max-height: 100%;*/
+      background: transparent;
+      box-shadow: none;
+    }
+
+    #content-form form .card-panel {
+      margin: 0;
+    }

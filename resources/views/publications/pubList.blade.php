@@ -41,7 +41,7 @@
             <td>{{ $publication->id }}</td>
             <td>{{ $publication->title }}</td>
             <td>{{ str_limit($publication->description, $limit = 25, $end = '...') }}</td>
-            <td><a class="waves-effect waves-light btn-floating blue" href="publications/manage/{{$publication->id}}"><i class="mdi-action-view-quilt"></i></a></td>
+            <td><a class="waves-effect waves-light btn-floating blue" href="{{route('publication.manage',$publication->id)}}"><i class="mdi-action-view-quilt"></i></a></td>
             <td><a class="waves-effect waves-light btn-floating cyan" href="{{$publication->url}}"><i class="mdi-action-visibility"></i></a></td>
             <td><a class="waves-effect waves-light btn-floating orange" href="{{route('publication.update',$publication->id)}}"><i class="mdi-editor-mode-edit"></i></a></td>
             <td>
