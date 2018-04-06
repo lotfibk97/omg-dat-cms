@@ -12,10 +12,12 @@
 */
 
 use Illuminate\Support\Facades\Input;
+use Illuminate\Http\Request;
 use App\Mail\UserMessageCreated;
 use App\Models\Publication;
 use App\User;
 use App\Models\Collaboration;
+use App\Models\Content;
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -136,6 +138,7 @@ Route::post('/publications/delete/{pub}',[
 ////////////////////////// Goto Partitionning Page
 Route::get('/publications/manage/{pub}', function ($pub) {
   $data = [
+    'publication'=>$pub,
     'contents'=>[],
     'collaborators'=>[],
     'selected'=>null,
@@ -144,6 +147,13 @@ Route::get('/publications/manage/{pub}', function ($pub) {
   ];
   return view('publications/partition',$data);
 })->name('publication.manage');
+
+////////////////////////// POST Create Content
+Route::post('/contents/create/{pub}',[
+  'as' => 'content.create',
+  'uses' => 'ContentController@create'
+]);
+
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////// Contents Pages /////////////////////////////

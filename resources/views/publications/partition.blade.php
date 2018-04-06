@@ -93,7 +93,7 @@
   <!-- Content modal form -->
   <div class="modal" id="content-form">
 
-    <form class="col s12" method="post" action="#">
+    <form class="col s12" method="post" action="{{route('content.create',$publication)}}">
     {!! csrf_field() !!}
       <div class="card-panel">
 
@@ -101,14 +101,14 @@
 
         <div class="row">
           <div class="input-field col s12">
-            <input id="content-title" type="text">
+            <input id="content-title" type="text" name="title">
             <label for="content-title">Title</label>
           </div>
         </div>
 
         <div class="row">
           <div class="input-field col s12">
-            <select id="content-type">
+            <select id="content-type" name="type">
               <option value = "0" disabled selected class="dark-text">Content Type</option>
               <option value = "text">Text</option>
               <option value = "image">Image</option>
@@ -121,7 +121,7 @@
 
         <div class="row">
           <div class="input-field col s12">
-            <textarea id="content-description" class="materialize-textarea"></textarea>
+            <textarea id="content-description" name="description" class="materialize-textarea"></textarea>
             <label for="content-description">Description</label>
           </div>
         </div>
