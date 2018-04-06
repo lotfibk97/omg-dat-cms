@@ -14,7 +14,7 @@
   </div>
 </div>
 
-<a href="#" class="waves-effect waves-light btn-floating btn-large raised"
+<a href="{{ route('publication.create')}}" class="waves-effect waves-light btn-floating btn-large raised"
   style="position:fixed; right:3vw; top:15vh;">
   <i class="mdi-content-add"></i>
 </a>
@@ -44,7 +44,12 @@
             <td><a class="waves-effect waves-light btn-floating blue" href="publications/manage/{{$publication->id}}"><i class="mdi-action-view-quilt"></i></a></td>
             <td><a class="waves-effect waves-light btn-floating cyan" href="{{$publication->url}}"><i class="mdi-action-visibility"></i></a></td>
             <td><a class="waves-effect waves-light btn-floating orange" href="{{route('publication.update',$publication->id)}}"><i class="mdi-editor-mode-edit"></i></a></td>
-            <td><a class="waves-effect waves-light btn-floating red" href="publications/delete/{{$publication->id}}"><i class="mdi-action-delete"></i></a></td>
+            <td>
+              <form action="{{route('publication.delete',$publication->id)}}" method="post">
+                  {!! csrf_field() !!}
+              <button class="waves-effect waves-light btn-floating red" type="submit"><i class="mdi-action-delete"></i></button>
+              </form>
+            </td>
           </tr>
           @endforeach
         </tbody>

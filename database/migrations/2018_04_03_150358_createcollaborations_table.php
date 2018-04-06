@@ -16,9 +16,9 @@ class CreatecollaborationsTable extends Migration
         Schema::create('collaborations', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('publication');
-            $table->foreign('publication')->references('id')->on('publications');
+            $table->foreign('publication')->references('id')->on('publications')->onDelete('cascade');
             $table->unsignedInteger('collaborator');
-            $table->foreign('collaborator')->references('id')->on('collaborators');
+            $table->foreign('collaborator')->references('id')->on('collaborators')->onDelete('cascade');
             $table->enum('role',['publicator','editor','media-manager','any'])->default('any');
             $table->timestamps();
         });

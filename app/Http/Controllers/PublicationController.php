@@ -45,6 +45,7 @@ class PublicationController extends Controller
     }
 
 
+    ///////////////////////////////////////////////////////////////////////////
     // update an existing publication controller
     public function update(PublicationRequest $request, $pub){
 
@@ -76,4 +77,23 @@ class PublicationController extends Controller
       // return back to publication edit
       return redirect()->route('publication.update',['pub'=>$publication->id]);
     }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // delete publication controller
+    public function delete(Request $request, $pub){
+
+      // check for user admin and its possession of publication
+      $user = User::where('id',Auth::id())->first();
+      $publication = Publication::where('id',$pub)->first();
+      if(is_null($publication->id)) redirect()->route('error1');
+      if($publication->user != $user->id) dd('not owner');
+      if($user->type != 'admin') dd('u kent');
+
+      // delete the publication
+      $publication->delete();
+
+      // redirect to publications list
+      return redirect()->route('publication.list');
+    }
+
 }

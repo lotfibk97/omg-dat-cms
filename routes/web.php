@@ -127,6 +127,12 @@ Route::post('/publications/{pub}',[
   'uses' => 'PublicationController@update'
 ]);
 
+////////////////////////// Publication Delete Request
+Route::post('/publications/delete/{pub}',[
+  'as' => 'publication.delete',
+  'uses' => 'PublicationController@delete'
+]);
+
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////// Contents Pages /////////////////////////////
