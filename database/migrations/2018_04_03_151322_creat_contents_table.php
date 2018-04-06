@@ -27,8 +27,8 @@ class CreatContentsTable extends Migration
             $table->unsignedInteger('left')->default(5);
             $table->unsignedInteger('width')->default(4);
             $table->unsignedInteger('height')->default(4);
-            $table->boolean('center-h')->default(0);
-            $table->boolean('center-v')->default(0);
+            $table->boolean('hcenter')->default(0);
+            $table->boolean('vcenter')->default(0);
             $table->boolean('displayed')->default(0);
             $table->timestamps();
         });

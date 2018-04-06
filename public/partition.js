@@ -88,7 +88,7 @@ $('#vertical-center').change(editCVProperty);
 // Select then move/resize then updateOnBoard then updateData then updateDisplay then updateDB
 
 // add a new content from the basket to the display board
-function createContentSpace() {
+function createContentSpace() { console.log(this.parentElement.id);
 
   var id=getContentId(this.parentElement.id);
   if (contents[id]["displayed"]) return;

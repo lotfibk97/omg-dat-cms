@@ -65,13 +65,12 @@
         "description":"{{$content->description}}",
         "type":"{{$content->type}}",
         "creator":"{{$content->creator}}",
-        "responsible":"{{$content->responsible}}",
         "top":{{$content->top}},
         "left":{{$content->left}},
         "height":{{$content->height}},
         "width":{{$content->width}},
-        "center-h":{{$content->center-h}},
-        "center-v":{{$content->center-v}},
+        "center-h":{{$content->hcenter}},
+        "center-v":{{$content->vcenter}},
         "displayed":{{$content->displayed}},
       },
       @endforeach
@@ -152,7 +151,7 @@
       <h5 class=""> {{ $content->title }} </h5>
       <span class=""> {{ $content->description }} </span>
 
-      @if (! $content->displayed)
+      @if ($content->displayed == 0)
       <a class="add-to-board btn-floating teal">
         <i class="mdi-content-reply white-text"></i>
       </a>
@@ -280,12 +279,14 @@
     <div class="grid-board">
 
       @foreach ($contents as $content)
+      @if($content->displayed)
       <div class="content-space" id="cs-1" style="grid-area:1 / 3 / span 6 / span 7 ;">
         <div class="content-itself card-panel deep-orange-text">
           <h5> {{$content->title}} </h5>
           <span> {{$content->description}} </span>
         </div>
       </div>
+      @endif
       @endforeach
 
     </div>

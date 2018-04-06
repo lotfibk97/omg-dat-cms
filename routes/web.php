@@ -42,12 +42,28 @@ Route::get('/dashboard',function(){
 
 ////////////////////////// Publications list
 Route::get('/publications', function () {
+
+  $user=User::where('id',Auth::id())->first();
+
+  if ($user->type =="admin")
+  $query=DB::select("
+      select * from publications
+      where user =".Auth::id()."
+  ");
+
+  else $query=DB::select("
+      select * from publications p
+      where exists (
+        select * from collaborations c,collaborators cl
+        where c.collaborator=cl.id
+        and cl.profile=\"".Auth::id()."\"
+        and c.publication=p.id
+      )
+    ");
+
   $data= [
     'title' => 'Publications',
-    'publications' => DB::select("
-      select * from publications
-      where user =".Auth::id()
-    ),
+    'publications' => $query,
   ];
   return view('publications/pubList',$data);
 })->name('publication.list');
@@ -137,10 +153,14 @@ Route::post('/publications/delete/{pub}',[
 
 ////////////////////////// Goto Partitionning Page
 Route::get('/publications/manage/{pub}', function ($pub) {
+  $contents=DB::select("
+      select * from contents
+      where publication=".$pub."
+  ");
+
   $data = [
     'publication'=>$pub,
-    'contents'=>[],
-    'collaborators'=>[],
+    'contents'=>$contents,
     'selected'=>null,
     'rows'=>20,
     'scroll'=>0,
@@ -312,7 +332,7 @@ Route::post('/register', [
 
 Route::get('/mail-register',function(){
   $data=[
-    'error_name' => '=\')',
+    'error_name' => '=\'D',
     'error_msg' => 'Thank you for your registration, Manage your content with easiness !!!'
   ];
   return view('alerts/msg',$data);

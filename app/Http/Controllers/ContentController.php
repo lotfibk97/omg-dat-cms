@@ -21,7 +21,7 @@ class ContentController extends Controller
     $user=User::where('id',Auth::id())->first();
 
     // if admin user check that the publication belongs to him
-    if ($user->type ='admin') {
+    if ($user->type =='admin') {
       if ($publication->user != $user->id ) dd('not urs');
     }
     // if collaborator user check that he contributes as publicator in this pub
@@ -33,6 +33,7 @@ class ContentController extends Controller
 
     // create the content
     $data=$request->all();
+    if(!$data['type']) dd('choose type');
     Content::create([
       'title' => $data["title"],
       'description' => $data["description"],
