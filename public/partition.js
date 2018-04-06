@@ -20,8 +20,11 @@ $(document).ready(function() {
     // scroll to last visit scroll
     fixScroll(current_scroll);
 
+    // make the grid extended to hold all the contents
+    extendGrid();
+
     // select the last visit selected content
-    if ( selected_content !== null )
+    if ( selected_content != null )
     selectContent(selected_content);
 
 });
@@ -53,6 +56,8 @@ var inf_ch=document.querySelector("#horizontal-center");
 ///////////////////////// attaching listeners   /////////////////////////
 
 $('.add-to-board').click(createContentSpace);
+$('.add-content').click(newContent);
+$('.edit-content').click(editContent);
 $('.content-space').click(chooseContent);
 $('.contents-basket .card-panel').click(chooseContent);
 
@@ -277,6 +282,26 @@ function editCHProperty() {
 function editCVProperty() {
   contents[selected_content]["center-v"]=this.checked;
   updateContentDataBase();
+}
+
+////////////////////// managing forms functions
+
+function editContent() {
+  if (selected_content == null ) return;
+  document.getElementById("content-title").value=contents[selected_content]["title"];
+  document.getElementById("content-description").value=contents[selected_content]["description"];
+
+  var index=1;
+  if ( contents[selected_content]["type"] == "image") index=2;
+  if ( contents[selected_content]["type"] == "audio") index=3;
+  if ( contents[selected_content]["type"] == "video") index=4;
+  document.querySelector('#content-form #content-type').options.selectedIndex=index;
+}
+
+function newContent() {
+  document.getElementById("content-title").value="";
+  document.getElementById("content-description").value="";
+  document.getElementById("content-type").value="0";
 }
 
 ////////////////////// fixing issues functions

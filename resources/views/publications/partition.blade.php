@@ -27,7 +27,8 @@
   <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
   <link href="{{ asset ('css/prism.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
   <link href="{{ asset ('js/plugins/perfect-scrollbar/perfect-scrollbar.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
-  <link rel="stylesheet" href="{{ asset ('css/partition.css') }}">
+  <!--link href="{{ asset ('css/partition.css') }}" rel="stylesheet"-->
+  <link href="/partition.css" rel="stylesheet">
 
 </head>
 
@@ -49,57 +50,31 @@
   <!-- Contents data array -->
 
   <script type="text/javascript">
-
-    var selected_content=1;
-    var current_scroll=0;
-    var grid_rows=20;
+    @if ($selected)
+    var selected_content={{$selected}};
+    @else
+    var selected_content;
+    @endif
+    var current_scroll={{$scroll}};
+    var grid_rows={{$rows}};
 
     var contents = {
-      "0":{
-        "title":"Header",
-        "description":"A picture of the mountain",
-        "type":"Media",
-        "owner":"Mounir",
-        "creator":"Mounir",
-        "responsible":"Lotfi BK",
-        "top":7,
-        "left":2,
-        "height":3,
-        "width":10,
-        "center-h":true,
-        "center-v":false,
-        "displayed":false,
+      @foreach($contents as $content)
+      "{{$content->id}}":{
+        "title":"{{$content->title}}",
+        "description":"{{$content->description}}",
+        "type":"{{$content->type}}",
+        "creator":"{{$content->creator}}",
+        "responsible":"{{$content->responsible}}",
+        "top":{{$content->top}},
+        "left":{{$content->left}},
+        "height":{{$content->height}},
+        "width":{{$content->width}},
+        "center-h":{{$content->center-h}},
+        "center-v":{{$content->center-v}},
+        "displayed":{{$content->displayed}},
       },
-      "1":{
-        "title":"Introduction",
-        "description":"Mont Fuji overview",
-        "type":"Text",
-        "owner":"Lotfi BK",
-        "creator":"Lotfi BK",
-        "responsible":"Mounir",
-        "top":1,
-        "left":3,
-        "height":6,
-        "width":7,
-        "center-h":false,
-        "center-v":true,
-        "displayed":true,
-      },
-      "2":{
-        "title":"aa",
-        "description":"aa",
-        "type":"Text",
-        "owner":"Lotfi BK",
-        "creator":"Lotfi BK",
-        "responsible":"Mounir",
-        "top":10,
-        "left":2,
-        "height":8,
-        "width":8,
-        "center-h":false,
-        "center-v":false,
-        "displayed":false,
-      },
+      @endforeach
     };
 
   </script>
@@ -118,10 +93,11 @@
   <!-- Content modal form -->
   <div class="modal" id="content-form">
 
-    <form class="col s12">
+    <form class="col s12" method="post" action="#">
+    {!! csrf_field() !!}
       <div class="card-panel">
 
-        <h4 class="header2">New Content</h4>
+        <h4 class="header2">Define The Content</h4>
 
         <div class="row">
           <div class="input-field col s12">
@@ -133,24 +109,13 @@
         <div class="row">
           <div class="input-field col s12">
             <select id="content-type">
-              <option value = "" disabled selected class="dark-text">Type</option>
-              <option value = "1">Mango</option>
-              <option value = "2">Orange</option>
-              <option value = "3">Apple</option>
+              <option value = "0" disabled selected class="dark-text">Content Type</option>
+              <option value = "text">Text</option>
+              <option value = "image">Image</option>
+              <option value = "audio">Audio</option>
+              <option value = "video">Video</option>
             </select>
             <label for="content-type" class="">Type</label>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="input-field col s12">
-            <select id="content-responsible">
-              <option value = "" disabled selected class="dark-text">Assigned To</option>
-              <option value = "1">Mohamed</option>
-              <option value = "2">Lotfi</option>
-              <option value = "3">Mounir</option>
-            </select>
-            <label for="content-responsible" class="">Responsible</label>
           </div>
         </div>
 
@@ -182,41 +147,19 @@
   <!-- Content List -->
   <div class="card-panel teal panel-right contents-basket">
 
+    @foreach ($contents as $content)
     <div class="card-panel white teal-text waves-effect" id="c-0">
-      <h5 class=""> Header </h5>
-      <span class=""> A picture of the mountain </span>
+      <h5 class=""> {{ $content->title }} </h5>
+      <span class=""> {{ $content->description }} </span>
 
+      @if (! $content->displayed)
       <a class="add-to-board btn-floating teal">
         <i class="mdi-content-reply white-text"></i>
       </a>
+      @endif
+
     </div>
-
-    <div class="card-panel white teal-text waves-effect" id="c-1">
-      <h5 class=""> Introduction </h5>
-      <span class=""> Mont Fuji overview  </span>
-
-      <a class="add-to-board btn-floating teal">
-        <i class="mdi-content-reply white-text"></i>
-      </a>
-    </div>
-
-    <div class="card-panel white teal-text waves-effect" id="c-2">
-      <h5 class=""> History </h5>
-      <span class=""> The History of the mountain </span>
-
-      <a class="add-to-board btn-floating teal">
-        <i class="mdi-content-reply white-text"></i>
-      </a>
-    </div>
-
-    <div class="card-panel white teal-text waves-effect" id="c-3">
-      <h5 class=""> Tourism </h5>
-      <span class=""> Tourism in mont Fuji</span>
-
-      <a class="add-to-board btn-floating teal">
-        <i class="mdi-content-reply white-text"></i>
-      </a>
-    </div>
+    @endforeach
 
   </div>
 
@@ -336,12 +279,14 @@
   <div class="grid-container">
     <div class="grid-board">
 
+      @foreach ($contents as $content)
       <div class="content-space" id="cs-1" style="grid-area:1 / 3 / span 6 / span 7 ;">
         <div class="content-itself card-panel deep-orange-text">
-          <h5> Introduction </h5>
-          <span> Mont Fuji overview </span>
+          <h5> {{$content->title}} </h5>
+          <span> {{$content->description}} </span>
         </div>
       </div>
+      @endforeach
 
     </div>
   </div>
@@ -483,7 +428,7 @@
     <!--plugins.js - Some Specific JS codes for Plugin Settings-->
     <script type="text/javascript" src="{{ asset ('js/plugins.js') }}"></script>
     <!--customJs-->
-    <script type="text/javascript" src="{{ asset ('js/partition.js') }}"></script>
+    <script type="text/javascript" src="/partition.js"></script>
 
 </body>
 </html>

@@ -136,7 +136,11 @@ Route::post('/publications/delete/{pub}',[
 ////////////////////////// Goto Partitionning Page
 Route::get('/publications/manage/{pub}', function ($pub) {
   $data = [
-
+    'contents'=>[],
+    'collaborators'=>[],
+    'selected'=>null,
+    'rows'=>20,
+    'scroll'=>0,
   ];
   return view('publications/partition',$data);
 })->name('publication.manage');
