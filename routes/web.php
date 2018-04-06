@@ -168,6 +168,12 @@ Route::get('/publications/manage/{pub}', function ($pub) {
   return view('publications/partition',$data);
 })->name('publication.manage');
 
+////////////////////////// AJAX Content Position
+Route::post('/ajax',[
+  'as' => 'content.ajax',
+  'uses' => 'ContentController@ajax'
+]);
+
 ////////////////////////// POST Create Content
 Route::post('/contents/create/{pub}',[
   'as' => 'content.create',

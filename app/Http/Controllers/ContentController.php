@@ -42,7 +42,12 @@ class ContentController extends Controller
       'publication' => $publication->id,
     ]);
 
-  return redirect()->route('publication.manage',$pub);
+    return redirect()->route('publication.manage',$pub);
+  }
+
+  public function ajax(Request $request, $pub) {
+    //dd($request);
+    return redirect()->route('error1');
   }
 
 }

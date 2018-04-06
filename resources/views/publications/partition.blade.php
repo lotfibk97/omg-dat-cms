@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="msapplication-tap-highlight" content="no">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title> Manage your content</title>
 
   <!-- Favicons>
@@ -147,7 +148,7 @@
   <div class="card-panel teal panel-right contents-basket">
 
     @foreach ($contents as $content)
-    <div class="card-panel white teal-text waves-effect" id="c-0">
+    <div class="card-panel white teal-text waves-effect" id="c-{{$content->id}}">
       <h5 class=""> {{ $content->title }} </h5>
       <span class=""> {{ $content->description }} </span>
 
@@ -280,7 +281,7 @@
 
       @foreach ($contents as $content)
       @if($content->displayed)
-      <div class="content-space" id="cs-1" style="grid-area:1 / 3 / span 6 / span 7 ;">
+      <div class="content-space" id="cs-{{$content->id}}" style="grid-area:1 / 3 / span 6 / span 7 ;">
         <div class="content-itself card-panel deep-orange-text">
           <h5> {{$content->title}} </h5>
           <span> {{$content->description}} </span>

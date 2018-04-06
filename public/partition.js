@@ -27,6 +27,13 @@ $(document).ready(function() {
     if ( selected_content != null )
     selectContent(selected_content);
 
+    // configure token for ajax post
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+
 });
 
 
@@ -88,7 +95,7 @@ $('#vertical-center').change(editCVProperty);
 // Select then move/resize then updateOnBoard then updateData then updateDisplay then updateDB
 
 // add a new content from the basket to the display board
-function createContentSpace() { console.log(this.parentElement.id);
+function createContentSpace() {
 
   var id=getContentId(this.parentElement.id);
   if (contents[id]["displayed"]) return;
@@ -115,12 +122,12 @@ function createContentSpace() { console.log(this.parentElement.id);
   grid_board.appendChild(space);
   contents[id]["displayed"]=true;
 
-  // selectContent(id)
+  content_spaces=document.querySelectorAll(".content-space");
 }
 
 // choose content by click
 function chooseContent() {
-  if ( contents[getContentId(this.id)]["displayed"])
+  if (contents[getContentId(this.id)]["displayed"])
   selectContent(getContentId(this.id));
 }
 
@@ -140,11 +147,24 @@ function selectContent(id) {
 
 // Ajax post request to save the new position in the database post(contents[selected_content])
 function updateContentDataBase() {
-  // ajax  POST , all the array or contents[selectContent]
 
-  // saveContext ---> depricated
-  // do:
-  // post context every time in same request
+  var data=contents[selected_content];
+  data["id"]=selected_content;
+  data["rows"]=grid_rows;
+  data["scroll"]=current_scroll;
+
+  $.ajax({
+    type: "POST",
+    url: "/ajax",
+    data: data,
+    success: function(msg){
+      alert( "Data Saved: " + msg );
+    },
+    error: function(XMLHttpRequest, textStatus, errorThrown) {
+      alert("fails");
+    },
+  });
+
 }
 
 // update the displayed properties by the new ones
@@ -183,8 +203,6 @@ function updateContentOnTheBoard() {
   selected_content_space.style.gridArea=""+selected_top+" / "+selected_left+" / span "+selected_height+" / span "+selected_width;
   updateContentDataArray();
 
-  //move to update database
-  //saveContext();
   fixScroll();
   extendGrid();
 }
@@ -305,10 +323,6 @@ function newContent() {
 }
 
 ////////////////////// fixing issues functions
-
-function saveContext() {
-  // ajax post of the last selected content and the actual grid rows number
-}
 
 function getContentId(id) {
   return id.substr(id.indexOf('-')+1,id.length);
