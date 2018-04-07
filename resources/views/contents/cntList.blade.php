@@ -19,40 +19,29 @@
     <table class="striped centered table-responsive">
         <thead>
           <tr>
-            <th>Title</th>
-            <th>Description</th>
             <th>Publication</th>
-            <th>Owner</th>
+            <th>Content</th>
+            <th>Description</th>
             <th>Creator</th>
+            <th>Last update</th>
             <th>Edit</th>
           </tr>
         </thead>
 
         <tbody>
+          @foreach ($contents as $content)
           <tr>
-            <td>History</td>
-            <td>Mountain History</td>
-            <td>Mont Fuji</td>
-            <td>Lotfi BK</td>
-            <td>Mounir</td>
-            <td><a class="waves-effect waves-light btn-floating orange" href="#"><i class="mdi-editor-mode-edit"></i></a></td>
+            <td>{{ $content->publication}}</td>
+            <td>{{ $content->title}}</td>
+            <td>{{ $content->description}}</td>
+            <td>{{ $content->creator}}</td>
+            <td>{{ $content->updated_at}}</td>
+            <td><a class="waves-effect waves-light btn-floating orange"
+              href="/contents/{{$type}}/{{$content->id}}">
+              <i class="mdi-editor-mode-edit"></i>
+            </a></td>
           </tr>
-          <tr>
-            <td>History</td>
-            <td>Mountain History</td>
-            <td>Mont Fuji</td>
-            <td>Lotfi BK</td>
-            <td>Mounir</td>
-            <td><a class="waves-effect waves-light btn-floating orange" href="#"><i class="mdi-editor-mode-edit"></i></a></td>
-          </tr>
-          <tr>
-            <td>History</td>
-            <td>Mountain History</td>
-            <td>Mont Fuji</td>
-            <td>Lotfi BK</td>
-            <td>Mounir</td>
-            <td><a class="waves-effect waves-light btn-floating orange" href="#"><i class="mdi-editor-mode-edit"></i></a></td>
-          </tr>
+          @endforeach
         </tbody>
       </table>
 

@@ -176,6 +176,10 @@ Route::post('/ajax',[
   'uses' => 'ContentController@ajax'
 ]);
 
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////// Contents Pages /////////////////////////////
+
 ////////////////////////// POST Create Content
 Route::post('/contents/create/{pub}',[
   'as' => 'content.create',
@@ -194,80 +198,71 @@ Route::post('/contents/delete',[
   'uses' => 'ContentController@delete'
 ]);
 
-
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////// Contents Pages /////////////////////////////
-
+////////////////////////// Text Content list per user
 Route::get('/contents/text', function () {
+
+  $user = User::where('id',Auth::id())->first();
+  if($user->type == 'admin')
+  $contents=DB::select("
+      select c.* from contents c , publications p
+      where c.publication=p.id
+      and p.user=".Auth::id()."
+      and c.type=\"text\"
+  ");
+  else {
+  $contents=DB::select("
+      select c.* from contents c,publication p
+      where c.publication=p.id
+      and c.type=\"text\"
+      and exists (
+          select * from collaborations cb, collaborators cl
+          where cb.publication=p.id
+          and cl.profile=".$user->id."
+          and ( cb.role=\"editor\" or cb.role=\"publicator\" )
+      )
+  ");
+  }
+
+  // adding publication title
+  foreach($contents as $content) {
+    $content->publication=DB::select("
+        select title from publications
+        where id=".$content->publication."
+    ")[0]->title;
+  }
+  // adding creator name
+  foreach($contents as $content) {
+    $content->creator=DB::select("
+        select u.name from collaborators cl,users u
+        where cl.profile=u.id
+        and cl.id=".$content->creator."
+    ")[0]->name;
+  }
+
   $data= [
     'title' => 'Contents',
-    'type' => 'Text',
+    'contents' => $contents,
+    'type' =>"text",
   ];
   return view('contents/cntList',$data);
-});
+})->name('content.list');
 
-Route::get('/contents/image', function () {
-  $data= [
-    'title' => 'Contents',
-    'type' => 'Text',
-  ];
-  return view('contents/cntList',$data);
-});
-
-Route::get('/contents/audio', function () {
-  $data= [
-    'title' => 'Contents',
-    'type' => 'Text',
-  ];
-  return view('contents/cntList',$data);
-});
-
-Route::get('/contents/video', function () {
-  $data= [
-    'title' => 'Contents',
-    'type' => 'Text',
-  ];
-  return view('contents/cntList',$data);
-});
-
-Route::get('/contents/text/{cnt}', function () {
+////////////////////////// GOTO Content fill page
+Route::get('/contents/{type}/{cnt}', function ($type, $cnt) {
   $data= [
     'title' => 'Text Contents',
-    'type' => 'text',
+    'type' => $type,
   ];
   return view('contents/text',$data);
-});
+})->name('content.fill');
 
-Route::get('/contents/image/{cnt}', function () {
-  $data= [
-    'title' => 'Image Contents',
-    'type' => 'image',
-  ];
-  return view('contents/image',$data);
-});
-
-Route::get('/contents/audio/{cnt}', function () {
-  $data= [
-    'title' => 'Audio Contents',
-    'type' => 'audio',
-  ];
-  return view('contents/audio',$data);
-});
-
-Route::get('/contents/video/{cnt}', function () {
-  $data= [
-    'title' => 'Video Contents',
-    'type' => 'video',
-  ];
-  return view('contents/video',$data);
-});
-
+////////////////////////// GOTO Static files management
 Route::get('/files', function () {
   $data = [
       'title' => 'files',
         ];
   return view('contents/files',$data);
-});
+})->name('content.manage');
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////// Users Pages /////////////////////////////
