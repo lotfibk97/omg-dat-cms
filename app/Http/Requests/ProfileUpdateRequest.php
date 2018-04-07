@@ -24,11 +24,11 @@ class ProfileUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-          'name' => 'required|max:30|unique:collaborators',
-          'email' => 'required|email|max:255|unique:collaborators',
-          'password' => 'required|confirmed|min:6',
-          'password3' => 'required|confirmed|min:6',
-          'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+          'name' => 'required|max:30|unique:users',
+          'email' => 'required|email|max:255|unique:users',
+          'password' => 'required|min:6',
+          // 'password3' => 'required|confirmed|min:6',
+          // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
 
         ];
     }

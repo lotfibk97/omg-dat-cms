@@ -5,13 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Collaborator;
 use App\User;
+use App\Http\Requests\ProfileUpdateRequest;
+use Auth;
+
 
 class ProfileUpdaterController extends Controller
 {
     public function update(ProfileUpdateRequest $request){
-        if($request->type === 'profile'){
-
-       $collaborator= User::where('email',$request->email)->where('type',$request->type)->first();
+// dd('a');
+$user = User::where('id',Auth::id())->first();
+dd($user);
+        if($user->getType() === 'profile'){
+// dd('a');
+       $collaborator= User::where('email',$user->getEmail())->first();
 
          if(!is_null($collaborator)){
 
@@ -30,5 +36,6 @@ class ProfileUpdaterController extends Controller
 }
 
     }
-}
+    else{dd('b');
+}}
 }

@@ -34,4 +34,11 @@ class User extends Authenticatable
         }
       return false;
     }
+    protected function getType(){
+
+         return $this->type;
+  }
+    protected function getEmail(){
+    return $this->email;
+}
 }

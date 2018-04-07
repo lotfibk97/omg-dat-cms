@@ -433,7 +433,7 @@ Route::get('/profile', function () {
 
 ///////////////////////// GETFROM User Profile
 Route::post('/profile',[
-    'as' => 'update_profile',
+    'as' => 'profile.update',
     'uses' => 'ProfileUpdaterController@update'
 ]);
 

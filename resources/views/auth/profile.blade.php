@@ -20,12 +20,13 @@
       <div class="card-panel">
 
         <div class="row">
-          <form class="col s12" action="#" method="post" enctype="multipart/form-data">
-
+          <form class="col s12" action="{{ route('profile.update') }}" method="post" enctype="multipart/form-data">
+{!! csrf_field() !!}
             <div class="row">
               <div class="input-field col s12">
                 <i class="mdi-social-person-outline prefix"></i>
-                <input id="username" type="text" name="username">
+                <input id="username" type="text" name="name">
+                  {!! $errors->first('username', '<span class="text-danger">:message</span>') !!}
                 <label for="username">Name</label>
               </div>
             </div>
@@ -34,6 +35,7 @@
               <div class="input-field col s12">
                 <i class="mdi-communication-email prefix"></i>
                 <input id="email" name="email" type="email"></input>
+                  {!! $errors->first('email', '<span class="text-danger">:message</span>') !!}
                 <label for="email">Email</label>
               </div>
             </div>
@@ -42,6 +44,7 @@
               <div class="input-field col s12">
                 <i class="mdi-action-lock-outline prefix"></i>
                 <input id="password" name="password" type="password"></input>
+                  {!! $errors->first('password', '<span class="text-danger">:message</span>') !!}
                 <label for="password">New Password</label>
               </div>
             </div>
@@ -58,6 +61,7 @@
               <div class="input-field col s12">
                 <i class="mdi-action-lock-outline prefix"></i>
                 <input id="password3" name="password3" type="password"></input>
+                {!! $errors->first('password', '<span class="text-danger">:message</span>') !!}
                 <label for="password3">Old password</label>
               </div>
             </div>
@@ -71,6 +75,7 @@
 
                 <div class="file-field col s8 offset-s1">
                   <input class="file-path validate" type="text" name="image">
+                  {!! $errors->first('image', '<span class="text-danger">:message</span>') !!}
                   <div class="btn">
                     <span>File</span>
                     <input type="file">
