@@ -58,6 +58,7 @@
     @endif
     var current_scroll={{$scroll}};
     var grid_rows={{$rows}};
+    var create_url="{{route('content.create',$publication)}}";
 
     var contents = {
       @foreach($contents as $content)

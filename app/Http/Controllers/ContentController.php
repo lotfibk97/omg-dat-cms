@@ -80,4 +80,32 @@ class ContentController extends Controller
 
   }
 
+
+  public function update(Request $request , $cnt) {
+
+    $content=Content::where('id',$cnt)->first();
+    $publication=Publication::where('id',$content->publication)->first();
+    $user=User::where('id',Auth::id())->first();
+
+    // if admin user check that the publication belongs to him
+    if ($user->type =='admin') {
+      if ($publication->user != $user->id ) dd('not urs');
+    }
+    // if collaborator user check that he contributes as publicator in this pub
+    else {
+      $collaborator=Collaborator::where('profile',$user->id)->first();
+      $collaboration=Collaboration::where('collaborator',$collaborator->id)->where('publication',$pub)->first();
+      if(is_null($collaboration) || $collaboration->role != 'publicator') dd('u kent manage dis publication');
+    }
+
+    // update content
+    $data=$request->all();
+    $content->title=$data["title"];
+    $content->description=$data["description"];
+    $content->type=$data["type"];
+    $content->save();
+
+    return redirect()->route('publication.manage',$publication->id);
+  }
+
 }

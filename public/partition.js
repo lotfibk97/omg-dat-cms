@@ -311,16 +311,21 @@ function editCVProperty() {
 function editContent() {
   if (selected_content == null ) return;
   document.getElementById("content-title").value=contents[selected_content]["title"];
+  //document.getElementById("content-title").classList.toggle("active");
   document.getElementById("content-description").value=contents[selected_content]["description"];
+  //document.getElementById("content-description").classList.toggle("active");
 
   var index=1;
   if ( contents[selected_content]["type"] == "image") index=2;
   if ( contents[selected_content]["type"] == "audio") index=3;
   if ( contents[selected_content]["type"] == "video") index=4;
   document.querySelector('#content-form #content-type').options.selectedIndex=index;
+
+  document.querySelector("#content-form form").action="/contents/update/"+selected_content;
 }
 
 function newContent() {
+  document.querySelector("#content-form form").action=create_url;
   document.getElementById("content-title").value="";
   document.getElementById("content-description").value="";
   document.getElementById("content-type").value="0";

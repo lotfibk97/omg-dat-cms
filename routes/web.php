@@ -182,6 +182,12 @@ Route::post('/contents/create/{pub}',[
   'uses' => 'ContentController@create'
 ]);
 
+////////////////////////// POST Update Content
+Route::post('/contents/update/{cnt}',[
+  'as' => 'content.update',
+  'uses' => 'ContentController@update'
+]);
+
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////// Contents Pages /////////////////////////////
