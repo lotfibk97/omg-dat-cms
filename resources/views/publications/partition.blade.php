@@ -103,7 +103,7 @@
         <div class="row">
           <div class="input-field col s12">
             <input id="content-title" type="text" name="title">
-            <label for="content-title">Title</label>
+            <label for="content-title" id="content-title-label">Title</label>
           </div>
         </div>
 
@@ -116,14 +116,14 @@
               <option value = "audio">Audio</option>
               <option value = "video">Video</option>
             </select>
-            <label for="content-type" class="">Type</label>
+            <label for="content-type" id="content-type-label">Type</label>
           </div>
         </div>
 
         <div class="row">
           <div class="input-field col s12">
             <textarea id="content-description" name="description" class="materialize-textarea"></textarea>
-            <label for="content-description">Description</label>
+            <label for="content-description" id="content-description-label">Description</label>
           </div>
         </div>
 
