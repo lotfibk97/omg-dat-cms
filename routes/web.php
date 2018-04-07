@@ -188,6 +188,12 @@ Route::post('/contents/update/{cnt}',[
   'uses' => 'ContentController@update'
 ]);
 
+////////////////////////// POST Delete Content
+Route::post('/contents/delete',[
+  'as' => 'content.delete',
+  'uses' => 'ContentController@delete'
+]);
+
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////// Contents Pages /////////////////////////////

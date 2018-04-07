@@ -59,7 +59,7 @@ class ContentController extends Controller
     // if collaborator user check that he contributes as publicator in this pub
     else {
       $collaborator=Collaborator::where('profile',$user->id)->first();
-      $collaboration=Collaboration::where('collaborator',$collaborator->id)->where('publication',$pub)->first();
+      $collaboration=Collaboration::where('collaborator',$collaborator->id)->where('publication',$publication->id)->first();
       if(is_null($collaboration) || $collaboration->role != 'publicator') dd('u kent manage dis publication');
     }
 
@@ -94,7 +94,7 @@ class ContentController extends Controller
     // if collaborator user check that he contributes as publicator in this pub
     else {
       $collaborator=Collaborator::where('profile',$user->id)->first();
-      $collaboration=Collaboration::where('collaborator',$collaborator->id)->where('publication',$pub)->first();
+      $collaboration=Collaboration::where('collaborator',$collaborator->id)->where('publication',$publication->id)->first();
       if(is_null($collaboration) || $collaboration->role != 'publicator') dd('u kent manage dis publication');
     }
 
@@ -106,6 +106,31 @@ class ContentController extends Controller
     $content->save();
 
     return redirect()->route('publication.manage',$publication->id);
+  }
+
+
+  public function delete(Request $request) {
+
+    $json=$request->all();
+    $content=Content::where('id',$json["id"])->first();
+    $publication=Publication::where('id',$content->publication)->first();
+    $user=User::where('id',Auth::id())->first();
+
+    // if admin user check that the publication belongs to him
+    if ($user->type =='admin') {
+      if ($publication->user != $user->id ) dd('not urs');
+    }
+    // if collaborator user check that he contributes as publicator in this pub
+    else {
+      $collaborator=Collaborator::where('profile',$user->id)->first();
+      $collaboration=Collaboration::where('collaborator',$collaborator->id)->where('publication',$publication->id)->first();
+      if(is_null($collaboration) || $collaboration->role != 'publicator') dd('u kent manage dis publication');
+    }
+
+    // delete content and set null selected item for the publication
+    $content->delete();
+    $publication->selected=null;
+
   }
 
 }

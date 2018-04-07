@@ -65,6 +65,7 @@ var inf_ch=document.querySelector("#horizontal-center");
 $('.add-to-board').click(createContentSpace);
 $('.add-content').click(newContent);
 $('.edit-content').click(editContent);
+$('.delete-content').click(deleteContent);
 $('.content-space').click(chooseContent);
 $('.contents-basket .card-panel').click(chooseContent);
 
@@ -329,6 +330,23 @@ function newContent() {
   document.getElementById("content-title").value="";
   document.getElementById("content-description").value="";
   document.getElementById("content-type").value="0";
+}
+
+function deleteContent() {
+
+  $.ajax({
+    type: "POST",
+    url: "/contents/delete",
+    data: {"id":selected_content},
+    success: function(msg){
+      location.reload();
+    },
+    error: function(XMLHttpRequest, textStatus, errorThrown) {
+      alert("an error has occured while saving data");
+    },
+
+  });
+
 }
 
 ////////////////////// fixing issues functions
