@@ -158,12 +158,14 @@ Route::get('/publications/manage/{pub}', function ($pub) {
       where publication=".$pub."
   ");
 
+  $publication=Publication::where('id',$pub)->first();
+
   $data = [
     'publication'=>$pub,
     'contents'=>$contents,
-    'selected'=>null,
-    'rows'=>20,
-    'scroll'=>0,
+    'selected'=>$publication->selected,
+    'rows'=>$publication->rows,
+    'scroll'=>$publication->scroll,
   ];
   return view('publications/partition',$data);
 })->name('publication.manage');

@@ -21,6 +21,7 @@ class CreatePublicationsTable extends Migration
             $table->string('url')->nullable();
             $table->unsignedInteger('rows')->default(20);
             $table->unsignedInteger('selected')->nullable();
+            $table->unsignedInteger('scroll')->default(0)->nullable();
             $table->unsignedInteger('user');
             $table->foreign('user')->references('id')->on('users');
             $table->timestamps();

@@ -3,6 +3,13 @@
 
 $(document).ready(function() {
 
+    // configure token for ajax post
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+      }
+    });
+
     // materialize selectbox
     $('select').material_select();
     // materialize modal reopen fix
@@ -26,13 +33,6 @@ $(document).ready(function() {
     // select the last visit selected content
     if ( selected_content != null )
     selectContent(selected_content);
-
-    // configure token for ajax post
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-    });
 
 });
 
@@ -120,7 +120,7 @@ function createContentSpace() {
   space.addEventListener("click",chooseContent);
 
   grid_board.appendChild(space);
-  contents[id]["displayed"]=true;
+  contents[id]["displayed"]=1;
 
   content_spaces=document.querySelectorAll(".content-space");
 }
@@ -158,10 +158,10 @@ function updateContentDataBase() {
     url: "/ajax",
     data: data,
     success: function(msg){
-      alert( "Data Saved: " + msg );
+      //alert( "Data Saved: " + msg );
     },
     error: function(XMLHttpRequest, textStatus, errorThrown) {
-      alert("fails");
+      alert("an error has occured while saving data");
     },
   });
 
@@ -293,12 +293,16 @@ function editHeightProperty() {
 }
 
 function editCHProperty() {
-  contents[selected_content]["center-h"]=this.checked;
+  var tmp=0;
+  if (this.checked) tmp=1;
+  contents[selected_content]["center-h"]=tmp;
   updateContentDataBase();
 }
 
 function editCVProperty() {
-  contents[selected_content]["center-v"]=this.checked;
+  var tmp=0;
+  if (this.checked) tmp=1;
+  contents[selected_content]["center-v"]=tmp;
   updateContentDataBase();
 }
 

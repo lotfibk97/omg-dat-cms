@@ -45,9 +45,39 @@ class ContentController extends Controller
     return redirect()->route('publication.manage',$pub);
   }
 
-  public function ajax(Request $request, $pub) {
-    //dd($request);
-    return redirect()->route('error1');
+  public function ajax(Request $request) {
+
+    $json=$request->all();
+    $content=Content::where('id',$json["id"])->first();
+    $publication=Publication::where('id',$content->publication)->first();
+    $user=User::where('id',Auth::id())->first();
+
+    // if admin user check that the publication belongs to him
+    if ($user->type =='admin') {
+      if ($publication->user != $user->id ) dd('not urs');
+    }
+    // if collaborator user check that he contributes as publicator in this pub
+    else {
+      $collaborator=Collaborator::where('profile',$user->id)->first();
+      $collaboration=Collaboration::where('collaborator',$collaborator->id)->where('publication',$pub)->first();
+      if(is_null($collaboration) || $collaboration->role != 'publicator') dd('u kent manage dis publication');
+    }
+
+    // save content updates
+    $content->top=$json["top"];
+    $content->left=$json["left"];
+    $content->height=$json["height"];
+    $content->width=$json["width"];
+    $content->hcenter=$json["center-h"];
+    $content->vcenter=$json["center-v"];
+    $content->displayed=$json["displayed"];
+    $content->save();
+    // save publication updates
+    $publication->rows=$json["rows"];
+    $publication->scroll=$json["scroll"];
+    $publication->selected=$json["id"];
+    $publication->save();
+
   }
 
 }

@@ -281,7 +281,11 @@
 
       @foreach ($contents as $content)
       @if($content->displayed)
-      <div class="content-space" id="cs-{{$content->id}}" style="grid-area:1 / 3 / span 6 / span 7 ;">
+      <div class="content-space" id="cs-{{$content->id}}" style="grid-area:
+        {{$content->top}} /
+        {{$content->left}} / span
+        {{$content->height}} / span
+        {{$content->width}} ;">
         <div class="content-itself card-panel deep-orange-text">
           <h5> {{$content->title}} </h5>
           <span> {{$content->description}} </span>
