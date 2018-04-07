@@ -240,12 +240,160 @@ Route::get('/contents/text', function () {
   }
 
   $data= [
-    'title' => 'Contents',
+    'title' => 'Text Contents',
     'contents' => $contents,
     'type' =>"text",
   ];
   return view('contents/cntList',$data);
-})->name('content.list');
+})->name('content.text');
+
+////////////////////////// Image Content list per user
+Route::get('/contents/image', function () {
+
+  $user = User::where('id',Auth::id())->first();
+  if($user->type == 'admin')
+  $contents=DB::select("
+      select c.* from contents c , publications p
+      where c.publication=p.id
+      and p.user=".Auth::id()."
+      and c.type=\"image\"
+  ");
+  else {
+  $contents=DB::select("
+      select c.* from contents c,publication p
+      where c.publication=p.id
+      and c.type=\"image\"
+      and exists (
+          select * from collaborations cb, collaborators cl
+          where cb.publication=p.id
+          and cl.profile=".$user->id."
+          and ( cb.role=\"editor\" or cb.role=\"publicator\" or cb.role=\"media-manager\" )
+      )
+  ");
+  }
+
+  // adding publication title
+  foreach($contents as $content) {
+    $content->publication=DB::select("
+        select title from publications
+        where id=".$content->publication."
+    ")[0]->title;
+  }
+  // adding creator name
+  foreach($contents as $content) {
+    $content->creator=DB::select("
+        select u.name from collaborators cl,users u
+        where cl.profile=u.id
+        and cl.id=".$content->creator."
+    ")[0]->name;
+  }
+
+  $data= [
+    'title' => 'Image Contents',
+    'contents' => $contents,
+    'type' =>"image",
+  ];
+  return view('contents/cntList',$data);
+})->name('content.image');
+
+////////////////////////// Audio Content list per user
+Route::get('/contents/audio', function () {
+
+  $user = User::where('id',Auth::id())->first();
+  if($user->type == 'admin')
+  $contents=DB::select("
+      select c.* from contents c , publications p
+      where c.publication=p.id
+      and p.user=".Auth::id()."
+      and c.type=\"audio\"
+  ");
+  else {
+  $contents=DB::select("
+      select c.* from contents c,publication p
+      where c.publication=p.id
+      and c.type=\"audio\"
+      and exists (
+          select * from collaborations cb, collaborators cl
+          where cb.publication=p.id
+          and cl.profile=".$user->id."
+          and ( cb.role=\"editor\" or cb.role=\"publicator\" or cb.role=\"media-manager\" )
+      )
+  ");
+  }
+
+  // adding publication title
+  foreach($contents as $content) {
+    $content->publication=DB::select("
+        select title from publications
+        where id=".$content->publication."
+    ")[0]->title;
+  }
+  // adding creator name
+  foreach($contents as $content) {
+    $content->creator=DB::select("
+        select u.name from collaborators cl,users u
+        where cl.profile=u.id
+        and cl.id=".$content->creator."
+    ")[0]->name;
+  }
+
+  $data= [
+    'title' => 'Audio Contents',
+    'contents' => $contents,
+    'type' =>"audio",
+  ];
+  return view('contents/cntList',$data);
+})->name('content.audio');
+
+////////////////////////// Video Content list per user
+Route::get('/contents/video', function () {
+
+  $user = User::where('id',Auth::id())->first();
+  if($user->type == 'admin')
+  $contents=DB::select("
+      select c.* from contents c , publications p
+      where c.publication=p.id
+      and p.user=".Auth::id()."
+      and c.type=\"video\"
+  ");
+  else {
+  $contents=DB::select("
+      select c.* from contents c,publication p
+      where c.publication=p.id
+      and c.type=\"video\"
+      and exists (
+          select * from collaborations cb, collaborators cl
+          where cb.publication=p.id
+          and cl.profile=".$user->id."
+          and ( cb.role=\"editor\" or cb.role=\"publicator\" or cb.role=\"media-manager\" )
+      )
+  ");
+  }
+
+  // adding publication title
+  foreach($contents as $content) {
+    $content->publication=DB::select("
+        select title from publications
+        where id=".$content->publication."
+    ")[0]->title;
+  }
+  // adding creator name
+  foreach($contents as $content) {
+    $content->creator=DB::select("
+        select u.name from collaborators cl,users u
+        where cl.profile=u.id
+        and cl.id=".$content->creator."
+    ")[0]->name;
+  }
+
+  $data= [
+    'title' => 'Video Contents',
+    'contents' => $contents,
+    'type' =>"video",
+  ];
+  return view('contents/cntList',$data);
+})->name('content.video');
+
 
 ////////////////////////// GOTO Content fill page
 Route::get('/contents/{type}/{cnt}', function ($type, $cnt) {
