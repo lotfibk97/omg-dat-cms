@@ -25,18 +25,18 @@
             <div class="row">
               <div class="input-field col s12">
                 <i class="mdi-social-person-outline prefix"></i>
-                <input id="username" type="text" name="name">
+                <input id="username" type="text" name="name" value="{{$user->name}}">
                   {!! $errors->first('username', '<span class="text-danger">:message</span>') !!}
-                <label for="username">Name</label>
+                <label for="username" class="active">Name</label>
               </div>
             </div>
 
             <div class="row">
               <div class="input-field col s12">
                 <i class="mdi-communication-email prefix"></i>
-                <input id="email" name="email" type="email"></input>
+                <input id="email" name="email" type="email" value="{{$user->email}}"></input>
                   {!! $errors->first('email', '<span class="text-danger">:message</span>') !!}
-                <label for="email">Email</label>
+                <label for="email" class="active">Email</label>
               </div>
             </div>
 
@@ -45,7 +45,7 @@
                 <i class="mdi-action-lock-outline prefix"></i>
                 <input id="password" name="password" type="password"></input>
                   {!! $errors->first('password', '<span class="text-danger">:message</span>') !!}
-                <label for="password">New Password</label>
+                <label for="password" class="active">New Password</label>
               </div>
             </div>
 
@@ -53,7 +53,7 @@
               <div class="input-field col s12">
                 <i class="mdi-action-lock-outline prefix"></i>
                 <input id="password2" name="password2" type="password"></input>
-                <label for="password2">New Password Again</label>
+                <label for="password2" class="active">New Password Again</label>
               </div>
             </div>
 
@@ -62,7 +62,7 @@
                 <i class="mdi-action-lock-outline prefix"></i>
                 <input id="password3" name="password3" type="password"></input>
                 {!! $errors->first('password', '<span class="text-danger">:message</span>') !!}
-                <label for="password3">Old password</label>
+                <label for="password3" class="active">Old password</label>
               </div>
             </div>
 

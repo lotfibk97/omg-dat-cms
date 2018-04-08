@@ -425,7 +425,9 @@ Route::get('/collaborators', function () {
 
 ///////////////////////// GOTO User Profile
 Route::get('/profile', function () {
+  $user =User::where('id',Auth::id())->first();
   $data = [
+      'user' => $user,
       'title' => 'profiles',
         ];
   return view('auth/profile',$data);

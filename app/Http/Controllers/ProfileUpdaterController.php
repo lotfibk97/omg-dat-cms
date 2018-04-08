@@ -14,15 +14,15 @@ class ProfileUpdaterController extends Controller
     public function update(ProfileUpdateRequest $request){
 // dd('a');
 $user = User::where('id',Auth::id())->first();
-dd($user);
-        if($user->getType() === 'profile'){
+// dd($user);
+        if($user->type === 'profile'){
 // dd('a');
-       $collaborator= User::where('email',$user->getEmail())->first();
+       $collaborator= User::where('email',$user->email)->first();
 
          if(!is_null($collaborator)){
 
-       $image = $request->file('image');
-
+       $image = $request->all()['image'];
+// dd($request->all()['image']);
        $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
 
        $destinationPath = public_path('/static/images');
