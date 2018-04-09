@@ -77,44 +77,56 @@
             <li class="user-details cyan darken-2">
                 <div class="row">
                     <div class="col col s4 m4 l4">
-                        <img src="{{ asset ('images/avatar.jpg') }}" alt="" class="circle responsive-img valign profile-image">
+                        <img src="{{Auth::user()->picture}}" alt="" class="circle responsive-img valign profile-image">
                     </div>
                     <div class="col col s8 m8 l8">
                         <ul id="profile-dropdown" class="dropdown-content">
-                            <li><a href="#"><i class="mdi-action-face-unlock"></i> Profile</a>
+                            <li><a href="{{route('profile.update')}}"><i class="mdi-action-face-unlock"></i> Profile</a>
                             </li>
                             <li class="divider"></li>
                             <li><a href="#"><i class="mdi-hardware-keyboard-tab"></i> Logout</a>
                             </li>
                         </ul>
-                        <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" href="#" data-activates="profile-dropdown">John Doe<i class="mdi-navigation-arrow-drop-down right"></i></a>
-                        <p class="user-roal">15 Contributions</p>
+                        <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" href="#" data-activates="profile-dropdown">{{Auth::user()->name}}<i class="mdi-navigation-arrow-drop-down right"></i></a>
+                        @if( Auth::user()->type == 'admin')
+                        <p class="user-roal">Admin<p>
+                        @else
+                        <p class="user-roal">Collaborator<p>
+                        @endif
                     </div>
                 </div>
             </li>
-            <li class="bold"><a href="index-2.html" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Dashboard</a>
+            <li class="bold">
+              <a href="{{route('dashboard')}}" class="waves-effect waves-cyan">
+              <i class="mdi-action-dashboard"></i> Dashboard</a>
             </li>
-            <li class="bold"><a href="app-widget.html" class="waves-effect waves-cyan"><i class="mdi-editor-mode-edit"></i>Publications</span></a>
+            <li class="bold">
+              <a href="{{route('publication.list')}}" class="waves-effect waves-cyan"><i class="mdi-editor-mode-edit">
+              </i>Publications</span></a>
             </li>
             <li class="no-padding">
                 <ul class="collapsible collapsible-accordion">
                     <li class="bold"><a class="collapsible-header waves-effect waves-cyan active"><i class="mdi-content-content-copy"></i>Contents</a>
                         <div class="collapsible-body">
                             <ul>
-                                <li><a href="#">Texts</a>
+                                <li><a href="{{route('content.text')}}">Texts</a>
                                 </li>
-                                <li><a href="#">Images</a>
+                                <li><a href="{{route('content.image')}}">Images</a>
                                 </li>
-                                <li><a href="#">Videos</a>
+                                <li><a href="{{route('content.audio')}}">Audio</a>
                                 </li>
-                                <li><a href="#">Audio</a>
+                                <li><a href="{{route('content.video')}}">Video</a>
                                 </li>
                             </ul>
                         </div>
                     </li>
-                    <li class="bold"><a href="app-widget.html" class="waves-effect waves-cyan"><i class="mdi-image-timer-auto"></i>Collaborators</span></a>
+                    <li class="bold">
+                      <a href="{{route('collaborator.list')}}" class="waves-effect waves-cyan">
+                      <i class="mdi-image-timer-auto"></i>Collaborators</span></a>
                     </li>
-                    <li class="bold"><a href="app-widget.html" class="waves-effect waves-cyan"><i class="mdi-editor-insert-drive-file"></i>Static Files</span></a>
+                    <li class="bold">
+                      <a href="#" class="waves-effect waves-cyan">
+                        <i class="mdi-editor-insert-drive-file"></i>Static Files</span></a>
                     </li>
                 </ul>
             </li>

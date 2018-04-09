@@ -480,7 +480,7 @@ Route::get('/profile', function () {
       'title' => 'profiles',
         ];
   return view('auth/profile',$data);
-});
+})->name('profile.update');
 
 ///////////////////////// GETFROM User Profile
 Route::post('/profile',[
