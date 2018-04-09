@@ -21,18 +21,18 @@ $user = User::where('id',Auth::id())->first();
 //
          if(!is_null($collaborator)){
 //
-//        $image = $request->file($request->all()['image']);
-// dd( $request->all()['image']);
-//        $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
-//
-//        $destinationPath = public_path('/static/images');
-//
-//        $image->move($destinationPath, $input['imagename']);
+       $image = $request->all()['image'];
+dd( $image->getClientOriginalExtension);
+       $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
 
-         $url = $request->all()['image'];
-         $contents = file_get_contents($url);
-         $name = substr($url, strrpos($url, '/') + 1);
-         Storage::put($name, $contents);
+       $destinationPath = public_path('/static/images');
+
+       $image->move($destinationPath, $input['imagename']);
+
+         // $url = $request->all()['image'];
+         // $contents = file_get_contents($url);
+         // $name = substr($url, strrpos($url, '/') + 1);
+         // Storage::put($name, $contents);
 
          $collaborator->email = $request->email;
          $collaborator->name = $request->name;
