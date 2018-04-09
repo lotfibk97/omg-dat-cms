@@ -66,7 +66,9 @@
         "title":"{{$content->title}}",
         "description":"{{$content->description}}",
         "type":"{{$content->type}}",
+        "publication":"{{$content->publication}}",
         "creator":"{{$content->creator}}",
+        "owner":"{{$content->owner}}",
         "top":{{$content->top}},
         "left":{{$content->left}},
         "height":{{$content->height}},
@@ -235,7 +237,7 @@
       <!-- col 1 -->
       <p style="grid-column:1; grid-row:1;">Owner</p>
       <p style="grid-column:1; grid-row:2;">Creator</p>
-      <p style="grid-column:1; grid-row:3;">Responsible</p>
+      <p style="grid-column:1; grid-row:3;">Publication</p>
       <p style="grid-column:1; grid-row:4;">Type</p>
 
       <!-- col 2 -->

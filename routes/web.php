@@ -153,12 +153,23 @@ Route::post('/publications/delete/{pub}',[
 
 ////////////////////////// Goto Partitionning Page
 Route::get('/publications/manage/{pub}', function ($pub) {
+
+  $publication=Publication::where('id',$pub)->first();
+
   $contents=DB::select("
       select * from contents
       where publication=".$pub."
   ");
 
-  $publication=Publication::where('id',$pub)->first();
+  foreach($contents as $content) {
+      $content->publication=$publication->title;
+      $content->owner=User::where('id',$publication->user)->first()->name;
+      $content->creator=DB::select("
+          select u.name from collaborators cl, users u
+          where cl.profile=u.id
+          and cl.id=".$content->creator."
+      ")[0]->name;
+  }
 
   $data = [
     'publication'=>$pub,
@@ -167,6 +178,7 @@ Route::get('/publications/manage/{pub}', function ($pub) {
     'rows'=>$publication->rows,
     'scroll'=>$publication->scroll,
   ];
+
   return view('publications/partition',$data);
 })->name('publication.manage');
 

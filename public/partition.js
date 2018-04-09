@@ -3,6 +3,7 @@
 
 $(document).ready(function() {
 
+
     // configure token for ajax post
     $.ajaxSetup({
       headers: {
@@ -49,7 +50,7 @@ var inf_title=document.querySelector(".target-inf h5");
 var inf_description=document.querySelector(".target-inf span");
 var inf_owner=document.querySelector(".properties-basket p:nth-child(5)");
 var inf_creator=document.querySelector(".properties-basket p:nth-child(6)");
-var inf_responsible=document.querySelector(".properties-basket p:nth-child(7)");
+var inf_publication=document.querySelector(".properties-basket p:nth-child(7)");
 var inf_type=document.querySelector(".properties-basket p:nth-child(8)");
 var inf_top=document.querySelector(".inf-top");
 var inf_left=document.querySelector(".inf-left");
@@ -176,7 +177,7 @@ function updatePropertiesDisplay() {
 
   inf_owner.innerHTML=contents[selected_content]["owner"];
   inf_creator.innerHTML=contents[selected_content]["creator"];
-  inf_responsible.innerHTML=contents[selected_content]["responsible"];
+  inf_publication.innerHTML=contents[selected_content]["publication"];
   inf_type.innerHTML=contents[selected_content]["type"];
 
   inf_top.value=contents[selected_content]["top"];
