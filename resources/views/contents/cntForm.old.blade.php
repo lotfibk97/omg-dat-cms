@@ -21,6 +21,7 @@
 
         <div class="row">
           <form class="col s12" action="#" method="post" enctype="multipart/form-data">
+          {!! csrf_field() !!}
 
             <div class="row">
               <div class="input-field col s12">

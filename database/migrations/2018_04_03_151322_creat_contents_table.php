@@ -19,7 +19,7 @@ class CreatContentsTable extends Migration
             $table->longText('description')->nullable();
             $table->enum('type',['text','image','audio','video'])->default('text');
             $table->unsignedInteger('publication');
-            $table->foreign('publication')->references('id')->on('publications');
+            $table->foreign('publication')->references('id')->on('publications')->onDelete('cascade');
             $table->unsignedInteger('creator');
             $table->foreign('creator')->references('id')->on('collaborators');
             $table->longText('html')->nullable();

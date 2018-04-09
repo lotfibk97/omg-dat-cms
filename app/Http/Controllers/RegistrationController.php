@@ -80,9 +80,7 @@ class RegistrationController extends Controller
            'profile' => $data['id'],
            'user' => Auth::id(),
        ]);
-       return redirect()->route('dashboard');
-
-
+       return redirect()->route('collaborator.list');
 
       }
 

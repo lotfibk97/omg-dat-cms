@@ -14,7 +14,8 @@
   <!-- Add collaborator account form-->
   <div class="col s12 l3">
     <h4 class="blue-text">New Collaborator</h4>
-    <form class="card-panel col s12" action="index.html" method="post">
+    <form class="card-panel col s12" action="{{route('collab.register.create')}}" method="post">
+          {!! csrf_field() !!}
 
       <div class="input-field col s12 {{ $errors->has('username') ? 'has-error' : '' }}">
         <i class="mdi-social-person-outline prefix"></i>
@@ -52,7 +53,7 @@
   <div class="col s12 l9">
 
     <div class="col m10 offset-m1 blue-text">
-      <h2>List of your Collaborators </h2>
+      <h2>All Collaborators </h2>
     </div>
 
     <div class="col s12 m10 offset-m1">
@@ -63,33 +64,23 @@
             <th>Name</th>
             <th>Email</th>
             <th>Hiring date</th>
-            <th>Edit</th>
             <th>delete</th>
           </tr>
         </thead>
 
         <tbody>
+          @foreach($collabs as $collab)
           <tr>
-            <td>Lotfi BK</td>
-            <td>lotfibk97@gmail.com</td>
-            <td>04/04/2018</td>
-            <td><a class="waves-effect waves-light btn-floating orange" href="#"><i class="mdi-editor-mode-edit"></i></a></td>
-            <td><a class="waves-effect waves-light btn-floating red" href="#"><i class="mdi-action-delete"></i></a></td>
+            <td>{{$collab->name}}</td>
+            <td>{{$collab->email}}</td>
+            <td>{{$collab->created_at}}</td>
+            <form action="{{route('collaborator.delete',$collab->id)}}" method="post">
+              {!! csrf_field() !!}
+            <td><button type="submit" class="waves-effect waves-light btn-floating red">
+              <i class="mdi-action-delete"></i></button></td>
+            </form>
           </tr>
-          <tr>
-            <td>Lotfi BK</td>
-            <td>lotfibk97@gmail.com</td>
-            <td>04/04/2018</td>
-            <td><a class="waves-effect waves-light btn-floating orange" href="#"><i class="mdi-editor-mode-edit"></i></a></td>
-            <td><a class="waves-effect waves-light btn-floating red" href="#"><i class="mdi-action-delete"></i></a></td>
-          </tr>
-          <tr>
-            <td>Lotfi BK</td>
-            <td>lotfibk97@gmail.com</td>
-            <td>04/04/2018</td>
-            <td><a class="waves-effect waves-light btn-floating orange" href="#"><i class="mdi-editor-mode-edit"></i></a></td>
-            <td><a class="waves-effect waves-light btn-floating red" href="#"><i class="mdi-action-delete"></i></a></td>
-          </tr>
+          @endforeach
         </tbody>
 
       </table>

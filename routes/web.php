@@ -430,6 +430,9 @@ Route::get('/contents/{cnt}', function ($cnt) {
 
 })->name('content.fill');
 
+////////////////////////// GETFROM Content fill page
+////////////////////////////////////////////////////////////////////////////////
+
 ////////////////////////// GOTO Static files management
 Route::get('/files', function () {
   $data = [
@@ -443,11 +446,31 @@ Route::get('/files', function () {
 
 ///////////////////////// Collaborators List
 Route::get('/collaborators', function () {
+    $user = User::where('id',Auth::id())->first();
+    if ($user->type =="profile") dd("wech dekhlek fihom");
+
+    $collabs=DB::select("
+        select * from users u
+        where type='profile'
+        and exists (
+          select * from collaborators cl
+          where cl.profile=u.id
+          and cl.user=".$user->id."
+          )
+    ");
+
     $data = [
         'title' => 'collaborators',
-          ];
+        'collabs' => $collabs,
+    ];
   return view('collaborators/clbList',$data);
-});
+})->name('collaborator.list');
+
+////////////////////////// Collaborator Delete Request
+Route::post('/collaborators/delete/{collab}',[
+  'as' => 'collaborator.delete',
+  'uses' => 'CollaboratorController@delete'
+]);
 
 ///////////////////////// GOTO User Profile
 Route::get('/profile', function () {
