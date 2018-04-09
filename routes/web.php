@@ -28,13 +28,17 @@ Route::get('/', function () {
   {
     return redirect()->route('dashboard');
   }
-  return redirect()->route('login_admin');
+  return redirect()->route('welcome');
 })->name('password.request');
 
 Route::get('/dashboard',function(){
-  if(Auth::check()) return view('home');
+  if(Auth::check()) return view('layouts/dashboard',["title"=>"dashboard"]);
   return redirect('login');
 })->name('dashboard');
+
+Route::get('/welcome',function() {
+  return view('layouts/welcome');
+})->name('welcome');
 
 
 ////////////////////////////////////////////////////////////////////////////////

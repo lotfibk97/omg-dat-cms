@@ -125,7 +125,7 @@
                       <i class="mdi-image-timer-auto"></i>Collaborators</span></a>
                     </li>
                     <li class="bold">
-                      <a href="#" class="waves-effect waves-cyan">
+                      <a href="{{route('dashboard')}}" class="waves-effect waves-cyan">
                         <i class="mdi-editor-insert-drive-file"></i>Static Files</span></a>
                     </li>
                 </ul>
