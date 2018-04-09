@@ -408,12 +408,26 @@ Route::get('/contents/video', function () {
 
 
 ////////////////////////// GOTO Content fill page
-Route::get('/contents/{type}/{cnt}', function ($type, $cnt) {
+Route::get('/contents/{cnt}', function ($cnt) {
+
+  $content=Content::where('id',$cnt)->first();
   $data= [
-    'title' => 'Text Contents',
-    'type' => $type,
+    'title' => $content->title,
+    'content' => $content,
   ];
+
+  if($content->type=="text")
   return view('contents/text',$data);
+
+  if($content->type=="image")
+  return view('contents/image',$data);
+
+  if($content->type=="audio")
+  return view('contents/audio',$data);
+
+  if($content->type=="video")
+  return view('contents/video',$data);
+
 })->name('content.fill');
 
 ////////////////////////// GOTO Static files management
