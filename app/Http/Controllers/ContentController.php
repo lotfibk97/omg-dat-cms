@@ -43,7 +43,7 @@ class ContentController extends Controller
     ]);
 
     if($content->type=="image") {
-      $content->html="/static/images/aaa.jpg";
+      $content->html="/static/images/default-pic.jpg";
       $content->save();
     }
 
@@ -140,7 +140,7 @@ class ContentController extends Controller
 
   public function fill(Request $request, $cnt) {
 
-    
+
   }
 
 }
