@@ -186,9 +186,19 @@ Route::get('/publications/manage/{pub}', function ($pub) {
 Route::get('/publications/view/{pub}',function ($pub){
 
   $publication=Publication::where('id',$pub)->first();
-  $contents=Content::where('publication',$pub)->toArray();
-  dd($contents);
+  $contents=DB::select("select * from contents where publication=".$pub);
+  $rows=0;
+  foreach($contents as $content) {
+    $offset=$content->top+$content->height;
+    if($offset>$rows) $rows=$offset;
+  }
+  $data = [
+    'rows' => $rows,
+    'publication' => $publication,
+    'contents' => $contents,
+  ];
 
+  return view('publications/view',$data);
 })->name('publication.view');
 
 ////////////////////////// AJAX Content Position
