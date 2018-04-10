@@ -67,28 +67,39 @@
 
 
     @foreach($contents as $content)
+    @if($content->displayed)
 
-    @if($content->type=="text")
-    <div style="grid-area:{{$content->top}} / {{$content->left}} / span {{$content->height}} / span {{ $content->width}};
-      padding:3px;">
+      @if($content->type=="text")
+      <div style="grid-area:{{$content->top}} / {{$content->left}} / span {{$content->height}} / span {{ $content->width}};
+        padding:3px;" @if($content->hcenter) class="center" @endif>
+        {!! $content->html !!}
+      </div>
+      @endif
+
+      @if($content->type=="image")
+      <div class="card-panel"
+      style="grid-area:{{$content->top}} / {{$content->left}} / span {{$content->height}} / span {{ $content->width}};
+      padding:1px; margin-top:0;">
+        <img src="{{$content->html}}" alt="{{$content->title}}" width="100%;" height="100%">
+      </div>
+      @endif
+
+      @if($content->type=="video")
+      <div class=""
+      style="grid-area:{{$content->top}} / {{$content->left}} / span {{$content->height}} / span {{ $content->width}};
+      padding:0px; margin-top:0;">
       {!! $content->html !!}
-    </div>
-    @endif
+      </div>
+      @endif
 
-    @if($content->type=="image")
-    <div class="card-panel"
-    style="grid-area:{{$content->top}} / {{$content->left}} / span {{$content->height}} / span {{ $content->width}};
-    padding:1px; margin-top:0;">
-      <img src="{{$content->html}}" alt="{{$content->title}}" width="100%;" height="100%">
-    </div>
-    @endif
+      @if($content->type=="audio")
+      <div class="card-panel"
+      style="grid-area:{{$content->top}} / {{$content->left}} / span {{$content->height}} / span {{ $content->width}};
+      padding:0px; margin-top:0;">
+        <audio src="{{$content->html}}" controls width="100%" height="100%"></audio>
+      </div>
+      @endif
 
-    @if($content->type=="video")
-    <div class="card-panel"
-    style="grid-area:{{$content->top}} / {{$content->left}} / span {{$content->height}} / span {{ $content->width}};
-    padding:0px; margin-top:0;">
-      <video src="{{$content->html}}" controls width="100%" height="100%"></video>
-    </div>
     @endif
     @endforeach
 
