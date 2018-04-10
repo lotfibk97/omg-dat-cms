@@ -139,7 +139,11 @@ class ContentController extends Controller
   }
 
   public function fill(Request $request, $cnt) {
-
+        // dd($request);
+        $content = Content::where('id',$cnt)->first();
+        $content->html = $request->html;
+        $content->save();
+        return redirect()->route('publication.list');
 
   }
 

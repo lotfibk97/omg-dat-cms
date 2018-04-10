@@ -428,7 +428,7 @@ Route::get('/contents/{cnt}', function ($cnt) {
 ////////////////////////// GETFROM Content fill page
 Route::post('/contents/{cnt}',[
     'as' => 'content.fill.post',
-    'uses' => 'ProfileUpdaterController@fill'
+    'uses' => 'ContentController@fill'
 ]);
 
 ////////////////////////////////////////////////////////////////////////////////

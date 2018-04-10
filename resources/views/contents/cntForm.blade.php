@@ -20,8 +20,8 @@
       <div class="card-panel">
 
         <div class="row">
-          <form class="col s12" action="#" method="post" enctype="multipart/form-data">
-
+          <form class="col s12" action="{{route('content.fill.post',$content->id)}}" method="post" enctype="multipart/form-data">
+          {!! csrf_field() !!}
             <div class="row">
               <div class="col s4"><p class="center pink-text">title</p></div>
               <div class="col s8"><h4>{{$content->title}}</h4></div>
