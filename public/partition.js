@@ -371,6 +371,7 @@ function extendGrid() {
       grid_rows=offset_rows+5;
       var calc = document.documentElement.clientHeight*0.08+2;
       grid_board.style.gridTemplateRows="repeat("+grid_rows+","+calc+"px)";
+      fixScroll();
     }
   }
   //alert(grid_board.style.gridTemplateRows);

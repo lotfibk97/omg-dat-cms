@@ -168,11 +168,7 @@ Route::get('/publications/manage/{pub}', function ($pub) {
   foreach($contents as $content) {
       $content->publication=$publication->title;
       $content->owner=User::where('id',$publication->user)->first()->name;
-      $content->creator=DB::select("
-          select u.name from collaborators cl, users u
-          where cl.profile=u.id
-          and cl.id=".$content->creator."
-      ")[0]->name;
+      $content->creator=User::where('id',$content->creator)->first()->name;
   }
 
   $data = [
@@ -185,6 +181,15 @@ Route::get('/publications/manage/{pub}', function ($pub) {
 
   return view('publications/partition',$data);
 })->name('publication.manage');
+
+////////////////////////// GET Publication view page
+Route::get('/publications/view/{pub}',function ($pub){
+
+  $publication=Publication::where('id',$pub)->first();
+  $contents=Content::where('publication',$pub)->toArray();
+  dd($contents);
+
+})->name('publication.view');
 
 ////////////////////////// AJAX Content Position
 Route::post('/ajax',[
