@@ -37,7 +37,7 @@
             <td>{{ $content->creator}}</td>
             <td>{{ $content->updated_at}}</td>
             <td><a class="waves-effect waves-light btn-floating orange"
-              href="/contents/{{$type}}/{{$content->id}}">
+              href="/contents/{{$content->id}}">
               <i class="mdi-editor-mode-edit"></i>
             </a></td>
           </tr>

@@ -85,6 +85,12 @@
   <!-- //////////////////////////////////////////////////////////////////////////// -->
 
 
+  <!-- Back button -->
+  <div style="position:fixed; top:5vh; left:5vh;">
+    <a class="btn-floating btn-large waves-effect waves-light white"
+      href="{{route('publication.list')}}">
+      <i class="mdi-action-home teal-text"></i></a>
+  </div>
 
   <!-- Content add button -->
   <div class="add-content">
