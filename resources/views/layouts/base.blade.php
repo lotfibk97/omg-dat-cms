@@ -8,14 +8,11 @@
   <meta name="msapplication-tap-highlight" content="no">
   <title> {{ $title }}</title>
 
-  <!-- Favicons>
-  <link rel="icon" href="images/favicon/favicon-32x32.png" sizes="32x32">
-  < Favicons>
+  <!-- Favicons -->
+  <link rel="icon" href="images/favicon/puzzle.png" sizes="32x32">
   <link rel="apple-touch-icon-precomposed" href="images/favicon/apple-touch-icon-152x152.png">
-  < For iPhone >
   <meta name="msapplication-TileColor" content="#00bcd4">
   <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png">
-  < For Windows Phone -->
 
   <!-- CORE CSS-->
   <link href="{{ asset ('css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
@@ -55,7 +52,7 @@
                 <div class="nav-wrapper">
                     <ul class="left">
                       <li class="no-hover"><a href="#" data-activates="slide-out" class="menu-sidebar-collapse btn-floating btn-flat btn-medium waves-effect waves-light cyan"><i class="mdi-navigation-menu" ></i></a></li>
-                      <li><h1 class="logo-wrapper "><a href="index-2.html" class="brand-logo darken-1"><img src="{{ asset ('images/materialize-logo.png') }}" alt="materialize logo"></a> <span class="logo-text">Materialize</span></h1></li>
+                      <li><h1 class="logo-wrapper "><a href="{{route('dashboard')}}" class="brand-logo darken-1"><img src="{{ asset ('images/custom_logo.png') }}" alt="materialize logo"></a> <span class="logo-text">Materialize</span></h1></li>
                     </ul>
                 </div>
             </nav>
