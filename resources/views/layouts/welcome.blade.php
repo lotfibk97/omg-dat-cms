@@ -30,6 +30,17 @@
   <link href="{{ asset ('js/plugins/perfect-scrollbar/perfect-scrollbar.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
 
   <style media="screen">
+
+    @font-face {
+      font-family: "hand";
+      src: url("/font/youmurdererbb_reg.ttf");
+    }
+
+    @font-face {
+      font-family: "hand2";
+      src: url("/font/kalam.bold.ttf");
+    }
+
     body {
       height: 100vh;
       width: 100vw;
@@ -46,8 +57,9 @@
     }
 
     .title {
+      font-family: "hand2";
       font-size: 5vw;
-      font-style: italic;
+      /*font-style: italic;*/
       margin: 3vh;
     }
 
@@ -55,7 +67,8 @@
       position: absolute;
       top:10vh; left:35vw;
       z-index: -1;
-      font-size: 3vw;
+      font-size: 5vw;
+      font-family: "hand";
       color: white;
       transform: rotate(10deg);
     }
@@ -64,7 +77,8 @@
       position: absolute;
       bottom: :10vh; left:35vw;
       z-index: -1;
-      font-size: 3vw;
+      font-family: "hand";
+      font-size: 5vw;
       color: white;
       transform: rotate(-10deg);
     }
