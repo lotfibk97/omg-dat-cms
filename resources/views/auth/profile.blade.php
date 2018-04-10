@@ -74,11 +74,11 @@
                 </div>
 
                 <div class="file-field col s8 offset-s1">
-                  <input class="file-path validate" type="text" name="image">
+                  <input class="file-path validate" type="text" name="image_name">
                   {!! $errors->first('image', '<span class="text-danger">:message</span>') !!}
                   <div class="btn">
                     <span>File</span>
-                    <input type="file">
+                    <input type="file" name="image">
                   </div>
                 </div>
 

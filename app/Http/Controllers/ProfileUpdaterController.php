@@ -8,6 +8,8 @@ use App\User;
 use App\Http\Requests\ProfileUpdateRequest;
 use Auth;
 use Storage;
+use Illuminate\Support\Facades\Input;
+use Hash;
 
 class ProfileUpdaterController extends Controller
 {
@@ -22,7 +24,7 @@ $user = User::where('id',Auth::id())->first();
          if(!is_null($collaborator)){
 //
        $image = $request->all()['image'];
-dd( $image->getClientOriginalExtension);
+// dd( Input::file('image')->getClientOriginalExtension());
        $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
 
        $destinationPath = public_path('/static/images');
@@ -36,8 +38,9 @@ dd( $image->getClientOriginalExtension);
 
          $collaborator->email = $request->email;
          $collaborator->name = $request->name;
-         $collaborator->password = $request->password;
+         $collaborator->password = Hash::make($request->password);
          $collaborator->save();
+         return redirect()->route('profile.update');
 }
 
     }
