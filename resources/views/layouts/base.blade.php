@@ -74,14 +74,14 @@
             <li class="user-details cyan darken-2">
                 <div class="row">
                     <div class="col col s4 m4 l4">
-                        <img src="{{Auth::user()->picture}}" alt="" class="circle responsive-img valign profile-image">
+                        <img src="{{Auth::user()->picture}}" alt="" class="circle responsive-img valign profile-image" style="height:50px !important;">
                     </div>
                     <div class="col col s8 m8 l8">
                         <ul id="profile-dropdown" class="dropdown-content">
                             <li><a href="{{route('profile.update')}}"><i class="mdi-action-face-unlock"></i> Profile</a>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="#"><i class="mdi-hardware-keyboard-tab"></i> Logout</a>
+                            <li><a href="{{route('logout')}}"><i class="mdi-hardware-keyboard-tab"></i> Logout</a>
                             </li>
                         </ul>
                         <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" href="#" data-activates="profile-dropdown">{{Auth::user()->name}}<i class="mdi-navigation-arrow-drop-down right"></i></a>

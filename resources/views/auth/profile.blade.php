@@ -70,7 +70,7 @@
               <div class="input-field col s12">
 
                 <div class="card-panel col s3" style="height:25vmin; padding:0;">
-                  <img src="/static/images/aaa.jpg" alt="Profile" width="100%" height="100%">
+                  <img src="{{$user->picture}}" alt="Profile" width="100%" height="100%">
                 </div>
 
                 <div class="file-field col s8 offset-s1">

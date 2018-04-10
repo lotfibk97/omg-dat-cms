@@ -227,7 +227,7 @@ Route::get('/contents/text', function () {
   ");
   else {
   $contents=DB::select("
-      select c.* from contents c,publication p
+      select c.* from contents c,publications p
       where c.publication=p.id
       and c.type=\"text\"
       and exists (
@@ -276,7 +276,7 @@ Route::get('/contents/image', function () {
   ");
   else {
   $contents=DB::select("
-      select c.* from contents c,publication p
+      select c.* from contents c,publications p
       where c.publication=p.id
       and c.type=\"image\"
       and exists (
@@ -325,7 +325,7 @@ Route::get('/contents/audio', function () {
   ");
   else {
   $contents=DB::select("
-      select c.* from contents c,publication p
+      select c.* from contents c,publications p
       where c.publication=p.id
       and c.type=\"audio\"
       and exists (
@@ -374,7 +374,7 @@ Route::get('/contents/video', function () {
   ");
   else {
   $contents=DB::select("
-      select c.* from contents c,publication p
+      select c.* from contents c,publications p
       where c.publication=p.id
       and c.type=\"video\"
       and exists (
@@ -482,7 +482,7 @@ Route::get('/profile', function () {
   $data = [
       'user' => $user,
       'title' => 'profiles',
-        ];
+  ];
   return view('auth/profile',$data);
 })->name('profile.update');
 
@@ -499,6 +499,12 @@ Route::get('/login',function () {
     ];
     return view('auth/login',$data);
   })->name('login_admin');
+
+///////////////////////// LOGOUT
+Route::get('/logout',function () {
+  Auth::logout();
+  return redirect()->route('welcome');
+})->name('logout');
 
 ///////////////////////// GOTO COLLAB LOGIN PAGE
 Route::get('/collaborators/login',function () {
