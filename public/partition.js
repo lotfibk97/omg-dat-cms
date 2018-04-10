@@ -363,15 +363,17 @@ function getContentId(id) {
 }
 
 function extendGrid() {
+  grid_rows=20;
   for (var i =0 ; i< content_spaces.length ; i++ ) {
     var str = content_spaces[i].style.gridRow;
     var offset_rows = parseInt( str.substr(0,str.indexOf('/')) ) + parseInt( str.substr(str.indexOf('n')+1,str.length) );
     if ( grid_rows <= offset_rows ) {
-      grid_rows=offset_rows+2;
+      grid_rows=offset_rows+5;
       var calc = document.documentElement.clientHeight*0.08+2;
       grid_board.style.gridTemplateRows="repeat("+grid_rows+","+calc+"px)";
     }
   }
+  //alert(grid_board.style.gridTemplateRows);
 }
 
 function fixScroll() {

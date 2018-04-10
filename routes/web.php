@@ -227,12 +227,12 @@ Route::get('/contents/text', function () {
   ");
   else {
   $contents=DB::select("
-      select c.* from contents c,publications p
-      where c.publication=p.id
-      and c.type=\"text\"
+      select c.* from contents c
+      where c.type=\"text\"
       and exists (
           select * from collaborations cb, collaborators cl
-          where cb.publication=p.id
+          where cb.publication=c.publication
+          and cb.collaborator=cl.id
           and cl.profile=".$user->id."
           and ( cb.role=\"editor\" or cb.role=\"publicator\" )
       )
@@ -248,11 +248,7 @@ Route::get('/contents/text', function () {
   }
   // adding creator name
   foreach($contents as $content) {
-    $content->creator=DB::select("
-        select u.name from collaborators cl,users u
-        where cl.profile=u.id
-        and cl.id=".$content->creator."
-    ")[0]->name;
+    $content->creator=User::where('id',$content->creator)->first()->name;
   }
 
   $data= [
@@ -282,6 +278,7 @@ Route::get('/contents/image', function () {
       and exists (
           select * from collaborations cb, collaborators cl
           where cb.publication=p.id
+          and cb.collaborator=cl.id
           and cl.profile=".$user->id."
           and ( cb.role=\"editor\" or cb.role=\"publicator\" or cb.role=\"media-manager\" )
       )
@@ -297,11 +294,7 @@ Route::get('/contents/image', function () {
   }
   // adding creator name
   foreach($contents as $content) {
-    $content->creator=DB::select("
-        select u.name from collaborators cl,users u
-        where cl.profile=u.id
-        and cl.id=".$content->creator."
-    ")[0]->name;
+    $content->creator=User::where('id',$content->creator)->first()->name;
   }
 
   $data= [
@@ -331,6 +324,7 @@ Route::get('/contents/audio', function () {
       and exists (
           select * from collaborations cb, collaborators cl
           where cb.publication=p.id
+          and cb.collaborator=cl.id
           and cl.profile=".$user->id."
           and ( cb.role=\"editor\" or cb.role=\"publicator\" or cb.role=\"media-manager\" )
       )
@@ -346,11 +340,7 @@ Route::get('/contents/audio', function () {
   }
   // adding creator name
   foreach($contents as $content) {
-    $content->creator=DB::select("
-        select u.name from collaborators cl,users u
-        where cl.profile=u.id
-        and cl.id=".$content->creator."
-    ")[0]->name;
+    $content->creator=User::where('id',$content->creator)->first()->name;
   }
 
   $data= [
@@ -380,6 +370,7 @@ Route::get('/contents/video', function () {
       and exists (
           select * from collaborations cb, collaborators cl
           where cb.publication=p.id
+          and cb.collaborator=cl.id
           and cl.profile=".$user->id."
           and ( cb.role=\"editor\" or cb.role=\"publicator\" or cb.role=\"media-manager\" )
       )
@@ -395,11 +386,7 @@ Route::get('/contents/video', function () {
   }
   // adding creator name
   foreach($contents as $content) {
-    $content->creator=DB::select("
-        select u.name from collaborators cl,users u
-        where cl.profile=u.id
-        and cl.id=".$content->creator."
-    ")[0]->name;
+    $content->creator=User::where('id',$content->creator)->first()->name;
   }
 
   $data= [
@@ -409,7 +396,6 @@ Route::get('/contents/video', function () {
   ];
   return view('contents/cntList',$data);
 })->name('content.video');
-
 
 ////////////////////////// GOTO Content fill page
 Route::get('/contents/{cnt}', function ($cnt) {
@@ -435,6 +421,11 @@ Route::get('/contents/{cnt}', function ($cnt) {
 })->name('content.fill');
 
 ////////////////////////// GETFROM Content fill page
+Route::post('/contents/{cnt}',[
+    'as' => 'content.fill.post',
+    'uses' => 'ProfileUpdaterController@fill'
+]);
+
 ////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////// GOTO Static files management

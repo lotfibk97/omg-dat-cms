@@ -34,13 +34,18 @@ class ContentController extends Controller
     // create the content
     $data=$request->all();
     if(!$data['type']) dd('choose type');
-    Content::create([
+    $content=Content::create([
       'title' => $data["title"],
       'description' => $data["description"],
       'type' => $data["type"],
       'creator' => $user->id,
       'publication' => $publication->id,
     ]);
+
+    if($content->type=="image") {
+      $content->html="/static/images/aaa.jpg";
+      $content->save();
+    }
 
     return redirect()->route('publication.manage',$pub);
   }
@@ -131,6 +136,11 @@ class ContentController extends Controller
     $content->delete();
     $publication->selected=null;
 
+  }
+
+  public function fill(Request $request, $cnt) {
+
+    
   }
 
 }

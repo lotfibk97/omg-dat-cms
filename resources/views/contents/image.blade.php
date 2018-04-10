@@ -17,7 +17,7 @@
               </div>
 
               <div class="col s3 ">
-                <img width="100%" height="180px"src="/images/default-pic.png" alt="default picture">
+                <img width="100%" height="180px"src="{{$content->html}}" alt="default picture">
               </div>
 
             </div>

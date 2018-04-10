@@ -21,7 +21,7 @@ class CreatContentsTable extends Migration
             $table->unsignedInteger('publication');
             $table->foreign('publication')->references('id')->on('publications')->onDelete('cascade');
             $table->unsignedInteger('creator');
-            $table->foreign('creator')->references('id')->on('collaborators');
+            $table->foreign('creator')->references('id')->on('users');
             $table->longText('html')->nullable();
             $table->unsignedInteger('top')->default(2);
             $table->unsignedInteger('left')->default(5);
