@@ -7,10 +7,10 @@
               <div class="input-field col s8 offset-s1">
 
                 <div class="file-field input-field">
-                  <input class="file-path validate" type="text" name="image">
+                  <input class="file-path validate" type="text" name="imagename">
                   <div class="btn">
                     <span>File</span>
-                    <input type="file">
+                    <input type="file" name="image">
                   </div>
                 </div>
 

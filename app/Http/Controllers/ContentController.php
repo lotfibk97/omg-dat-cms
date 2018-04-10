@@ -140,10 +140,43 @@ class ContentController extends Controller
 
   public function fill(Request $request, $cnt) {
         // dd($request);
+
         $content = Content::where('id',$cnt)->first();
+        if($content->type === 'text'){
         $content->html = $request->html;
         $content->save();
         return redirect()->route('publication.list');
+        }
+        if($content->type === 'image'){
+          if(isset($request->all()['image'])){
+            $image = $request->all()['image'];
+            // dd($request->all()['image']);
+            $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/static/images');
+            $image->move($destinationPath, $input['imagename']);
+            $pos = strpos($destinationPath, "static");
+            $endpoint = $pos + strlen("static");
+            $destinationPath = "/static".substr($destinationPath,$endpoint)."/".$input['imagename'];
+            $content->html = $destinationPath;
+            $content->save();
+            return redirect()->route('publication.list');
+          }
+        }
+        if($content->type === 'video'){
+        // dd($request->url);
+          $content->html = $request->url;
+          $content->save();
+          return redirect()->route('publication.list');
+
+        }
+        if($content->type === 'audio') {
+          $content->html = $request->url;
+          $content->save();
+          return redirect()->route('publication.list');
+        }
+
+
+
 
   }
 
