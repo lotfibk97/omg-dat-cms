@@ -145,7 +145,7 @@ class ContentController extends Controller
         if($content->type === 'text'){
         $content->html = $request->html;
         $content->save();
-        return redirect()->route('publication.list');
+        return redirect()->route('content.text');
         }
         if($content->type === 'image'){
           if(isset($request->all()['image'])){
@@ -159,20 +159,20 @@ class ContentController extends Controller
             $destinationPath = "/static".substr($destinationPath,$endpoint)."/".$input['imagename'];
             $content->html = $destinationPath;
             $content->save();
-            return redirect()->route('publication.list');
+            return redirect()->route('content.image');
           }
         }
         if($content->type === 'video'){
         // dd($request->url);
           $content->html = $request->url;
           $content->save();
-          return redirect()->route('publication.list');
+          return redirect()->route('content.video');
 
         }
         if($content->type === 'audio') {
           $content->html = $request->url;
           $content->save();
-          return redirect()->route('publication.list');
+          return redirect()->route('content.audio');
         }
 
 

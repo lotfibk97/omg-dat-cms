@@ -69,11 +69,27 @@
     @foreach($contents as $content)
 
     @if($content->type=="text")
-    <div style="grid-area:{{$content->top}} / {{$content->left}} / span {{$content->height}} / span {{ $content->width}};">
+    <div style="grid-area:{{$content->top}} / {{$content->left}} / span {{$content->height}} / span {{ $content->width}};
+      padding:3px;">
       {!! $content->html !!}
     </div>
     @endif
 
+    @if($content->type=="image")
+    <div class="card-panel"
+    style="grid-area:{{$content->top}} / {{$content->left}} / span {{$content->height}} / span {{ $content->width}};
+    padding:1px; margin-top:0;">
+      <img src="{{$content->html}}" alt="{{$content->title}}" width="100%;" height="100%">
+    </div>
+    @endif
+
+    @if($content->type=="video")
+    <div class="card-panel"
+    style="grid-area:{{$content->top}} / {{$content->left}} / span {{$content->height}} / span {{ $content->width}};
+    padding:0px; margin-top:0;">
+      <video src="{{$content->html}}" controls width="100%" height="100%"></video>
+    </div>
+    @endif
     @endforeach
 
   </div>
