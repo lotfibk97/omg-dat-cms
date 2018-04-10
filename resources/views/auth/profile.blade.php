@@ -43,9 +43,9 @@
             <div class="row">
               <div class="input-field col s12">
                 <i class="mdi-action-lock-outline prefix"></i>
-                <input id="password" name="password" type="password"></input>
-                  {!! $errors->first('password', '<span class="text-danger">:message</span>') !!}
-                <label for="password" class="active">New Password</label>
+                <input id="password1" name="password1" type="password"></input>
+                  {!! $errors->first('password1', '<span class="text-danger">:message</span>') !!}
+                <label for="password1" class="active">New Password</label>
               </div>
             </div>
 
@@ -60,9 +60,9 @@
             <div class="row">
               <div class="input-field col s12">
                 <i class="mdi-action-lock-outline prefix"></i>
-                <input id="password3" name="password3" type="password"></input>
+                <input id="password" name="password" type="password"></input>
                 {!! $errors->first('password', '<span class="text-danger">:message</span>') !!}
-                <label for="password3" class="active">Old password</label>
+                <label for="password" class="active">Old password</label>
               </div>
             </div>
 

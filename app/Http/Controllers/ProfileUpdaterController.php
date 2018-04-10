@@ -17,33 +17,46 @@ class ProfileUpdaterController extends Controller
 // dd('a');
 $user = User::where('id',Auth::id())->first();
 // dd($user->type);
-        if($user->type === 'profile'){
+
 // // dd('a');
          $collaborator= User::where('email',$user->email)->first();
 //
          if(!is_null($collaborator)){
-//
+        if( Hash::check($request->password,$collaborator->password)) {
+            $destinationPath=$collaborator->picture;
+          if(isset($request->all()['image'])){
        $image = $request->all()['image'];
 // dd( Input::file('image')->getClientOriginalExtension());
+
        $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
-
        $destinationPath = public_path('/static/images');
-
        $image->move($destinationPath, $input['imagename']);
-
+       $destinationPath = $destinationPath.'/'.$image;
+       $collaborator->picture = $destinationPath;
          // $url = $request->all()['image'];
          // $contents = file_get_contents($url);
          // $name = substr($url, strrpos($url, '/') + 1);
          // Storage::put($name, $contents);
-
+        // dd('a');
+      }
+          if(!is_null($request->email)){
          $collaborator->email = $request->email;
+       }
+         if(!is_null($request->name)){
          $collaborator->name = $request->name;
-         $collaborator->password = Hash::make($request->password);
+       }
+       if(!is_null($request->password1)){
+         $collaborator->password = Hash::make($request->password1);
+      }
          $collaborator->save();
-         return redirect()->route('profile.update');
-}
 
-    }
-    else{dd('b');
-}}
+         return redirect()->route('profile.update')->with([
+           'path' => $destinationPath
+         ]);
+}
+else{
+  return redirect()->route('credentials_error');
+}
+}
+}
 }
