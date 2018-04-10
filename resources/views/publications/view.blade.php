@@ -41,7 +41,7 @@
 
 </head>
 
-<body class="cyan lighten-4">
+<body>
 
 
   <!-- //////////////////////////////////////////////////////////////////////////// -->
@@ -70,11 +70,7 @@
 
     @if($content->type=="text")
     <div style="grid-area:{{$content->top}} / {{$content->left}} / span {{$content->height}} / span {{ $content->width}};">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris bibendum
-      vestibulum est nec varius. Nullam finibus et odio eget efficitur. Ut vel nibh
-      pellentesque, bibendum metus a, finibus mi. Morbi feugiat fringilla ante, vitae
-      dapibus libero facilisis id. Mauris at nisi et magna tempor efficitur.
-      Pellentesque sapien orci, faucibus nec tellus et, maximus posuere nisl. Nam ac augue enim.
+      {!! $content->html !!}
     </div>
     @endif
 
