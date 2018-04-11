@@ -52,7 +52,7 @@
                 <div class="nav-wrapper">
                     <ul class="left">
                       <li class="no-hover"><a href="#" data-activates="slide-out" class="menu-sidebar-collapse btn-floating btn-flat btn-medium waves-effect waves-light cyan"><i class="mdi-navigation-menu" ></i></a></li>
-                      <li><h1 class="logo-wrapper "><a href="{{route('dashboard')}}" class="brand-logo darken-1"><img src="{{ asset ('images/custom_logo.png') }}" alt="materialize logo"></a> <span class="logo-text">Materialize</span></h1></li>
+                      <li><h1 class="logo-wrapper "><a href="{{route('welcome')}}" class="brand-logo darken-1"><img src="{{ asset ('images/custom_logo.png') }}" alt="materialize logo"></a> <span class="logo-text">Materialize</span></h1></li>
                     </ul>
                 </div>
             </nav>
@@ -94,8 +94,8 @@
                 </div>
             </li>
             <li class="bold">
-              <a href="{{route('dashboard')}}" class="waves-effect waves-cyan">
-              <i class="mdi-action-dashboard"></i> Dashboard</a>
+              <a href="{{route('blog',1)}}" class="waves-effect waves-cyan">
+              <i class="mdi-action-dashboard"></i>Blog</a>
             </li>
             <li class="bold">
               <a href="{{route('publication.list')}}" class="waves-effect waves-cyan"><i class="mdi-editor-mode-edit">
@@ -122,7 +122,7 @@
                       <i class="mdi-image-timer-auto"></i>Collaborators</span></a>
                     </li>
                     <li class="bold">
-                      <a href="{{route('dashboard')}}" class="waves-effect waves-cyan">
+                      <a href="{{route('content.manage')}}" class="waves-effect waves-cyan">
                         <i class="mdi-editor-insert-drive-file"></i>Static Files</span></a>
                     </li>
                 </ul>

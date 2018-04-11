@@ -17,28 +17,52 @@ use App\Mail\UserMessageCreated;
 use App\Models\Publication;
 use App\User;
 use App\Models\Collaboration;
+use App\Models\Collaborator;
 use App\Models\Content;
 
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////// Dashboard Page /////////////////////////////
 
+/////////////////////////////// DOMAIN NAME ONLY
 Route::get('/', function () {
   if(Auth::check())
   {
-    return redirect()->route('dashboard');
+    return redirect()->route('publication.list');
   }
   return redirect()->route('welcome');
 })->name('password.request');
 
-Route::get('/dashboard',function(){
-  if(Auth::check()) return view('layouts/dashboard',["title"=>"dashboard"]);
-  return redirect('login');
-})->name('dashboard');
-
+/////////////////////////////// Welcome page
 Route::get('/welcome',function() {
   return view('layouts/welcome');
 })->name('welcome');
+
+/////////////////////////////// Blog page
+Route::get('/blog/{user}',function($user){
+
+  $blog = User::where('id',$user)->first();
+  if ($blog->type=="admin") $id=$blog->id;
+  else $id=Collaborator::where('profile',$blog->id)->first()->user;
+
+  $publications = DB::select("
+      select * from publications where user=".$id."
+  ");
+
+  $collabs = DB::select("
+      select * from collaborators where user=".$id."
+  ");
+
+  $data = [
+    "title" => "blog",
+    "blog" => $blog,
+    "publications" => $publications,
+    "collabs" => $collabs,
+  ];
+
+  if(Auth::check()) return view('layouts/blog',$data);
+  return redirect('login');
+})->name('blog');
 
 
 ////////////////////////////////////////////////////////////////////////////////
