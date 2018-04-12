@@ -474,12 +474,19 @@ Route::get('/files', function () {
   if ($blog->type=="admin") $id=$blog->id;
   else $id=Collaborator::where('profile',$blog->id)->first()->user;
 
-  $images=DB::select("
-      select c.* from contents c , publications p
-      where c.publication=p.id
-      and c.type='image'
-      and p.user=".$id."
-  ");
+  $all=File::allFiles(Public_path()."/static/images");
+  $images=array();
+
+  foreach($all as $image) {
+    if($image->getFilename(){0}==='B') {
+      $pos = strpos($image->getPathname(), "static");
+      $endpoint = $pos + strlen("static");
+      //dd(substr($image->getPathname(),$endpoint));
+      $destinationPath = "/static".substr($image->getPathname(),$endpoint);
+      //dd($destinationPath);
+      array_push($images,$destinationPath);
+    }
+  }
 
   $audios=DB::select("
       select c.* from contents c , publications p

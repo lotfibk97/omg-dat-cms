@@ -27,7 +27,7 @@ class ProfileUpdaterController extends Controller
 
         if(isset($request->all()['image'])){
           $image = $request->all()['image'];
-          $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
+          $input['imagename'] = 'P'.$user->id.'_'.time().'.'.$image->getClientOriginalExtension();
           $destinationPath = public_path('/static/images');
           $image->move($destinationPath, $input['imagename']);
           $pos = strpos($destinationPath, "static");

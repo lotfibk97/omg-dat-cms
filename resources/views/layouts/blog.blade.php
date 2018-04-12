@@ -78,7 +78,7 @@
       <nav class="cyan">
           <div class="nav-wrapper">
               <ul class="left">
-                <li style="display:hidden;" class="no-hover"><a href="#" class="menu-sidebar-collapse btn-floating btn-flat btn-medium waves-effect waves-light cyan"></a></li>
+                <li style="display:hidden; pointer-events:none;" class="no-hover"><a href="#" class="menu-sidebar-collapse btn-floating btn-flat btn-medium waves-effect waves-light cyan"></a></li>
                 <li><h1 class="logo-wrapper "><a href="{{route('welcome')}}" class="brand-logo darken-1"><img src="{{ asset ('images/custom_logo.png') }}" alt="materialize logo"></a> <span class="logo-text">Materialize</span></h1></li>
               </ul>
           </div>
@@ -90,7 +90,7 @@
 
   <!--h3 class="center" style="color:#ff4081;">Welcome in {{$blog->name}}'s blog</h3-->
   <!--h3 class="yellow-text text-darken-4" style="padding-left:15vw;"> {{$blog->name}}'s blog</h3-->
-  <h3 class="amber-text" style="padding-left:15vw;"> {{$blog->name}}'s blog</h3>
+  <h3 class="grey-text" style="padding-left:15vw;"> {{$blog->name}}'s blog</h3>
 
   <div class="col s12 m5 l3">
 

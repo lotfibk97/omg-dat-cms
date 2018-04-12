@@ -10,6 +10,7 @@ use App\Models\Content;
 use App\User;
 use App\Http\Requests\PublicationRequest;
 use Auth;
+use File;
 
 
 class ContentController extends Controller
@@ -139,44 +140,73 @@ class ContentController extends Controller
   }
 
   public function fill(Request $request, $cnt) {
-        // dd($request);
 
-        $content = Content::where('id',$cnt)->first();
-        if($content->type === 'text'){
-        $content->html = $request->html;
+    $content = Content::where('id',$cnt)->first();
+
+    if($content->type === 'text'){
+      $content->html = $request->html;
+      $content->save();
+      return redirect()->route('content.fill',$cnt);
+    }
+
+    if($content->type === 'image'){
+      if(isset($request->all()['image'])){ dd("img");
+
+        $blog = User::where('id',Auth::id())->first();
+        if ($blog->type=="admin") $id=$blog->id;
+        else $id=Collaborator::where('profile',$blog->id)->first()->user;
+
+        $image = $request->all()['image'];
+        $input['imagename'] = 'B'.$id.'_'.time().'.'.$image->getClientOriginalExtension();
+        $destinationPath = public_path('/static/images');
+        $image->move($destinationPath, $input['imagename']);
+        $pos = strpos($destinationPath, "static");
+        $endpoint = $pos + strlen("static");
+        $destinationPath = "/static".substr($destinationPath,$endpoint).'/'.$input['imagename'];
+        $content->html = $destinationPath;
         $content->save();
-        return redirect()->route('content.text');
+
+        return redirect()->route('content.fill',$cnt);
+
+      }
+
+      else {
+
+        $all=File::allFiles(Public_path()."/static/images");
+        $images=array();
+        $exists=false;
+        foreach($all as $image) {
+          $pos = strpos($image->getPathname(), "static");
+          $endpoint = $pos + strlen("static");
+          $destinationPath = "/static".substr($image->getPathname(),$endpoint);
+          if($destinationPath===$request->all()['imagename'])
+          $exists=true;
         }
-        if($content->type === 'image'){
-          if(isset($request->all()['image'])){
-            $image = $request->all()['image'];
-            // dd($request->all()['image']);
-            $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = public_path('/static/images');
-            $image->move($destinationPath, $input['imagename']);
-            $pos = strpos($destinationPath, "static");
-            $endpoint = $pos + strlen("static");
-            $destinationPath = "/static".substr($destinationPath,$endpoint)."/".$input['imagename'];
-            $content->html = $destinationPath;
-            $content->save();
-            return redirect()->route('content.image');
-          }
-        }
-        if($content->type === 'video'){
-        // dd($request->url);
-          $content->html = $request->url;
+
+        if($exists) {
+          $content->html=$request->all()['imagename'];
           $content->save();
-          return redirect()->route('content.video');
-
-        }
-        if($content->type === 'audio') {
-          $content->html = $request->url;
+        } else {
+          $content->html='/static/images/default-pic.png';
           $content->save();
-          return redirect()->route('content.audio');
         }
 
+        return redirect()->route('content.fill',$cnt);
+      }
 
+    }
 
+    if($content->type === 'video'){
+      $content->html = $request->url;
+      $content->save();
+      return redirect()->route('content.fill',$cnt);
+    }
+
+    if($content->type === 'audio') {
+      $content->html = $request->url;
+      $content->save();
+      return redirect()->route('content.fill',$cnt);
+    }
 
   }
 

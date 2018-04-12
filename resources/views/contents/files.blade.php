@@ -25,6 +25,19 @@
 </style>
 @stop
 
+@section('script')
+<script type="text/javascript">
+
+$(".use").click(function () {
+  var link=this.parentElement.querySelector(".col input");
+  link.select();
+  document.execCommand("Copy");
+  Materialize.toast("LINK COPIED\n"+link.value,3000);
+});
+
+</script>
+@stop
+
 @section('content')
 
 <h3 class="blue-text center" >Mange your static files</h3>
@@ -39,12 +52,18 @@
       @endif
       @foreach($images as $image)
         <div class="row mt">
-          <div class="col s4"><img src="{{$image->html}}" alt="img" width="90%" height="100px"></div>
-          <div class="col s4">{{$image->title}}</div>
-          <button type="button" name="button" class=" col s2 btn waves-effect waves-light orange">Use</button>
-          <form class="col s2 nop" action="#" method="post">
-            <button type="submit" name="button" class="btn waves-effect waves-light btn-floating red"><i class="mdi-action-delete"></i></button>
-          </form>
+          <!-- image view -->
+          <div class="col s4"><img src="{{$image}}" alt="img" width="90%" height="100px"></div>
+          <div class="col s8">
+            <!-- image url -->
+            <div class="col s12 url"><input type="text" name="url" value="{{$image}}"></div>
+            <!-- copy button -->
+            <button type="button" name="button" class="use col s3 offset-s7 btn waves-effect waves-light orange">use</button>
+            <!-- remove button -->
+            <form class="col s2 nop" action="#" method="post">
+              <button type="submit" name="button" class="btn waves-effect waves-light btn-floating red"><i class="mdi-action-delete"></i></button>
+            </form>
+          </div>
         </div>
       @endforeach
     </div>
