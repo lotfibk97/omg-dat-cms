@@ -54,7 +54,7 @@ Route::get('/blog/{user}',function($user){
   ");
 
   $data = [
-    "title" => "blog",
+    "title" => $blog->name."'s blog",
     "blog" => $blog,
     "publications" => $publications,
     "collabs" => $collabs,
@@ -469,9 +469,31 @@ Route::post('/contents/{cnt}',[
 
 ////////////////////////// GOTO Static files management
 Route::get('/files', function () {
+
+  $blog = User::where('id',Auth::id())->first();
+  if ($blog->type=="admin") $id=$blog->id;
+  else $id=Collaborator::where('profile',$blog->id)->first()->user;
+
+  $images=DB::select("
+      select c.* from contents c , publications p
+      where c.publication=p.id
+      and c.type='image'
+      and p.user=".$id."
+  ");
+
+  $audios=DB::select("
+      select c.* from contents c , publications p
+      where c.publication=p.id
+      and c.type='audio'
+      and p.user=".$id."
+  ");
+
   $data = [
-      'title' => 'files',
-        ];
+      'title' => 'Static Files',
+      'images' => $images,
+      'audios' => $audios,
+  ];
+
   return view('contents/files',$data);
 })->name('content.manage');
 

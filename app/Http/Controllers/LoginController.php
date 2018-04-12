@@ -32,7 +32,7 @@ class LoginController extends Controller
       }
 
       Auth::login($user);
-      return redirect()->route('dashboard');
+      return redirect()->route('publication.list');
 
     }
 
@@ -81,7 +81,7 @@ class LoginController extends Controller
     }
     else{
       Auth::login($collaborator);
-      return redirect()->route('dashboard');
+      return redirect()->route('publication.list');
     }
 
 

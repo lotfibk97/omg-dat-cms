@@ -89,7 +89,8 @@
 
 
   <!--h3 class="center" style="color:#ff4081;">Welcome in {{$blog->name}}'s blog</h3-->
-  <h3 class="center orange-text">Welcome in {{$blog->name}}'s blog</h3>
+  <!--h3 class="yellow-text text-darken-4" style="padding-left:15vw;"> {{$blog->name}}'s blog</h3-->
+  <h3 class="amber-text" style="padding-left:15vw;"> {{$blog->name}}'s blog</h3>
 
   <div class="col s12 m5 l3">
 
@@ -117,7 +118,7 @@
 
       @foreach($publications as $publication)
 
-      <div class="col s12 card medium">
+      <div class="col s12 card medium ">
         <div class="desc">
           <h4>{{$publication->title}}</h4>
           <p>{{$publication->description}}</p>
