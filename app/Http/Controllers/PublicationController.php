@@ -9,9 +9,71 @@ use App\Models\Collaborator;
 use App\User;
 use App\Http\Requests\PublicationRequest;
 use Auth;
+use DB;
 
 class PublicationController extends Controller
 {
+    //////////////////////////////////////////////////////////////////////////
+    // publications list controller
+    public function list(Request $request) {
+
+      $user=User::where('id',Auth::id())->first();
+
+      if ($user->type =="admin")
+      $query=DB::select("
+          select * from publications
+          where user =".Auth::id()."
+      ");
+
+      else $query=DB::select("
+          select * from publications p
+          where exists (
+            select * from collaborations c,collaborators cl
+            where c.collaborator=cl.id
+            and cl.profile=\"".Auth::id()."\"
+            and c.publication=p.id
+          )
+        ");
+
+      $data= [
+        'title' => 'Publications',
+        'publications' => $query,
+      ];
+
+      return view('publications/pubList',$data);
+
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    // Goto create publication page controller
+    public function creation(PublicationRequest $request){
+
+      $user = User::where('id',Auth::id())->first();
+
+      if($user->type != 'admin'){
+        dd('you can\'t');
+      }
+
+      $query = DB::select("
+        select * from users u
+        where u.type=\"profile\"
+        and exists (
+            select * from collaborators c
+            where c.profile=u.id
+            and c.user=\"".Auth::id()."\"
+          )
+      ");
+
+      $data= [
+        'title' => 'Edit Publication',
+        'collaborators' => $query,
+        'create' => true,
+      ];
+      return view('publications/pubForm',$data);
+
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     // create new publication controller
     public function create(PublicationRequest $request){
 
@@ -44,6 +106,45 @@ class PublicationController extends Controller
       return redirect()->route('publication.list');
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+    // Goto update existing publication page controller
+    public function modification(Request $request, $pub){
+
+      $user = User::where('id',Auth::id())->first();
+      $publication = Publication::where('id',$pub)->first();
+      if(is_null($publication)) dd('what is dat');
+      if ($publication->user != $user->id) dd('not yours');
+
+      $query = DB::select(DB::raw("
+        select * from users u
+        where u.type=\"profile\"
+        and exists (
+            select * from collaborations c,collaborators cl
+            where c.collaborator=cl.id
+            and cl.profile=u.id
+            and c.publication=\"".$pub."\"
+          )
+      "));
+
+      foreach ($query as $collab) {
+        $collab->role=(DB::select("
+          select role from collaborations c, collaborators cl, users p
+          where c.collaborator=cl.id
+          and cl.profile=p.id
+          and p.id=\"".$collab->id."\"
+          and publication=\"".$pub."\"
+        "))['0']->role;
+      }
+
+      $data= [
+        'title' => 'Edit Publication',
+        'collaborators' => $query,
+        'publication' => Publication::where('id',$pub)->first(),
+        'create' => false,
+      ];
+      return view('publications/pubForm',$data);
+
+    }
 
     ///////////////////////////////////////////////////////////////////////////
     // update an existing publication controller
@@ -76,6 +177,56 @@ class PublicationController extends Controller
 
       // return back to publication edit
       return redirect()->route('publication.update',['pub'=>$publication->id]);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Manage publication page controller
+    public function manage(Request $request, $pub){
+
+      $publication=Publication::where('id',$pub)->first();
+
+      $contents=DB::select("
+          select * from contents
+          where publication=".$pub."
+      ");
+
+      foreach($contents as $content) {
+          $content->publication=$publication->title;
+          $content->owner=User::where('id',$publication->user)->first()->name;
+          $content->creator=User::where('id',$content->creator)->first()->name;
+      }
+
+      $data = [
+        'publication'=>$pub,
+        'contents'=>$contents,
+        'selected'=>$publication->selected,
+        'rows'=>$publication->rows,
+        'scroll'=>$publication->scroll,
+      ];
+
+      return view('publications/partition',$data);
+
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // delete publication controller
+    public function view(Request $request, $pub){
+
+      $publication=Publication::where('id',$pub)->first();
+      $contents=DB::select("select * from contents where publication=".$pub);
+      $rows=0;
+      foreach($contents as $content) {
+        $offset=$content->top+$content->height;
+        if($offset>$rows) $rows=$offset;
+      }
+      $data = [
+        'rows' => $rows,
+        'publication' => $publication,
+        'contents' => $contents,
+      ];
+
+      return view('publications/view',$data);
+
     }
 
     ///////////////////////////////////////////////////////////////////////////

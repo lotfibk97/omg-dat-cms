@@ -11,11 +11,13 @@ use App\User;
 use App\Http\Requests\PublicationRequest;
 use Auth;
 use File;
+use DB;
 
 
 class ContentController extends Controller
 {
-
+  //////////////////////////////////////////////////////////////////////////
+  // Create Content POST
   public function create(Request $request, $pub) {
 
     $publication=Publication::where('id',$pub)->first();
@@ -51,6 +53,8 @@ class ContentController extends Controller
     return redirect()->route('publication.manage',$pub);
   }
 
+  //////////////////////////////////////////////////////////////////////////
+  // Update Content Position with ajax post
   public function ajax(Request $request) {
 
     $json=$request->all();
@@ -86,7 +90,8 @@ class ContentController extends Controller
 
   }
 
-
+  //////////////////////////////////////////////////////////////////////////
+  // Update Content POST
   public function update(Request $request , $cnt) {
 
     $content=Content::where('id',$cnt)->first();
@@ -114,7 +119,8 @@ class ContentController extends Controller
     return redirect()->route('publication.manage',$publication->id);
   }
 
-
+  //////////////////////////////////////////////////////////////////////////
+  // Delete Content POST
   public function delete(Request $request) {
 
     $json=$request->all();
@@ -139,6 +145,32 @@ class ContentController extends Controller
 
   }
 
+  //////////////////////////////////////////////////////////////////////////
+  // Fill Content Get
+  public function filling(Request $request, $cnt) {
+
+    $content=Content::where('id',$cnt)->first();
+    $data= [
+      'title' => $content->title,
+      'content' => $content,
+    ];
+
+    if($content->type=="text")
+    return view('contents/text',$data);
+
+    if($content->type=="image")
+    return view('contents/image',$data);
+
+    if($content->type=="audio")
+    return view('contents/audio',$data);
+
+    if($content->type=="video")
+    return view('contents/video',$data);
+
+  }
+
+  //////////////////////////////////////////////////////////////////////////
+  // Fill Content POST
   public function fill(Request $request, $cnt) {
 
     $content = Content::where('id',$cnt)->first();
@@ -150,11 +182,12 @@ class ContentController extends Controller
     }
 
     if($content->type === 'image'){
-      if(isset($request->all()['image'])){ dd("img");
+      if(isset($request->all()['image'])){
 
         $blog = User::where('id',Auth::id())->first();
         if ($blog->type=="admin") $id=$blog->id;
         else $id=Collaborator::where('profile',$blog->id)->first()->user;
+        $blog = User::where('id',$id)->first();
 
         $image = $request->all()['image'];
         $input['imagename'] = 'B'.$id.'_'.time().'.'.$image->getClientOriginalExtension();
@@ -207,6 +240,235 @@ class ContentController extends Controller
       $content->save();
       return redirect()->route('content.fill',$cnt);
     }
+
+  }
+
+  //////////////////////////////////////////////////////////////////////////
+  // Text Contents List
+  public function textList(Request $request) {
+
+    $user = User::where('id',Auth::id())->first();
+    if($user->type == 'admin')
+    $contents=DB::select("
+        select c.* from contents c , publications p
+        where c.publication=p.id
+        and p.user=".Auth::id()."
+        and c.type=\"text\"
+    ");
+    else {
+    $contents=DB::select("
+        select c.* from contents c
+        where c.type=\"text\"
+        and exists (
+            select * from collaborations cb, collaborators cl
+            where cb.publication=c.publication
+            and cb.collaborator=cl.id
+            and cl.profile=".$user->id."
+            and ( cb.role=\"editor\" or cb.role=\"publicator\" )
+        )
+    ");
+    }
+
+    // adding publication title
+    foreach($contents as $content) {
+      $content->publication=DB::select("
+          select title from publications
+          where id=".$content->publication."
+      ")[0]->title;
+    }
+    // adding creator name
+    foreach($contents as $content) {
+      $content->creator=User::where('id',$content->creator)->first()->name;
+    }
+
+    $data= [
+      'title' => 'Text Contents',
+      'contents' => $contents,
+      'type' =>"text",
+    ];
+    return view('contents/cntList',$data);
+
+  }
+
+  //////////////////////////////////////////////////////////////////////////
+  // Image Contents List
+  public function imageList(Request $request) {
+
+    $user = User::where('id',Auth::id())->first();
+    if($user->type == 'admin')
+    $contents=DB::select("
+        select c.* from contents c , publications p
+        where c.publication=p.id
+        and p.user=".Auth::id()."
+        and c.type=\"image\"
+    ");
+    else {
+    $contents=DB::select("
+        select c.* from contents c,publications p
+        where c.publication=p.id
+        and c.type=\"image\"
+        and exists (
+            select * from collaborations cb, collaborators cl
+            where cb.publication=p.id
+            and cb.collaborator=cl.id
+            and cl.profile=".$user->id."
+            and ( cb.role=\"editor\" or cb.role=\"publicator\" or cb.role=\"media-manager\" )
+        )
+    ");
+    }
+
+    // adding publication title
+    foreach($contents as $content) {
+      $content->publication=DB::select("
+          select title from publications
+          where id=".$content->publication."
+      ")[0]->title;
+    }
+    // adding creator name
+    foreach($contents as $content) {
+      $content->creator=User::where('id',$content->creator)->first()->name;
+    }
+
+    $data= [
+      'title' => 'Image Contents',
+      'contents' => $contents,
+      'type' =>"image",
+    ];
+    return view('contents/cntList',$data);
+
+  }
+
+  //////////////////////////////////////////////////////////////////////////
+  // Audio Contents List
+  public function audioList(Request $request) {
+
+    $user = User::where('id',Auth::id())->first();
+    if($user->type == 'admin')
+    $contents=DB::select("
+        select c.* from contents c , publications p
+        where c.publication=p.id
+        and p.user=".Auth::id()."
+        and c.type=\"audio\"
+    ");
+    else {
+    $contents=DB::select("
+        select c.* from contents c,publications p
+        where c.publication=p.id
+        and c.type=\"audio\"
+        and exists (
+            select * from collaborations cb, collaborators cl
+            where cb.publication=p.id
+            and cb.collaborator=cl.id
+            and cl.profile=".$user->id."
+            and ( cb.role=\"editor\" or cb.role=\"publicator\" or cb.role=\"media-manager\" )
+        )
+    ");
+    }
+
+    // adding publication title
+    foreach($contents as $content) {
+      $content->publication=DB::select("
+          select title from publications
+          where id=".$content->publication."
+      ")[0]->title;
+    }
+    // adding creator name
+    foreach($contents as $content) {
+      $content->creator=User::where('id',$content->creator)->first()->name;
+    }
+
+    $data= [
+      'title' => 'Audio Contents',
+      'contents' => $contents,
+      'type' =>"audio",
+    ];
+    return view('contents/cntList',$data);
+
+  }
+
+  //////////////////////////////////////////////////////////////////////////
+  // Video Contents List
+  public function videoList(Request $request) {
+
+    $user = User::where('id',Auth::id())->first();
+    if($user->type == 'admin')
+    $contents=DB::select("
+        select c.* from contents c , publications p
+        where c.publication=p.id
+        and p.user=".Auth::id()."
+        and c.type=\"video\"
+    ");
+    else {
+    $contents=DB::select("
+        select c.* from contents c,publications p
+        where c.publication=p.id
+        and c.type=\"video\"
+        and exists (
+            select * from collaborations cb, collaborators cl
+            where cb.publication=p.id
+            and cb.collaborator=cl.id
+            and cl.profile=".$user->id."
+            and ( cb.role=\"editor\" or cb.role=\"publicator\" or cb.role=\"media-manager\" )
+        )
+    ");
+    }
+
+    // adding publication title
+    foreach($contents as $content) {
+      $content->publication=DB::select("
+          select title from publications
+          where id=".$content->publication."
+      ")[0]->title;
+    }
+    // adding creator name
+    foreach($contents as $content) {
+      $content->creator=User::where('id',$content->creator)->first()->name;
+    }
+
+    $data= [
+      'title' => 'Video Contents',
+      'contents' => $contents,
+      'type' =>"video",
+    ];
+    return view('contents/cntList',$data);
+
+  }
+
+  //////////////////////////////////////////////////////////////////////////
+  // BLOG's Static Files Managment
+  public function static(Request $request) {
+
+    $blog = User::where('id',Auth::id())->first();
+    if ($blog->type=="admin") $id=$blog->id;
+    else $id=Collaborator::where('profile',$blog->id)->first()->user;
+    $blog = User::where('id',$id)->first();
+
+    $all=File::allFiles(Public_path()."/static/images");
+    $images=array();
+
+    foreach($all as $image) {
+      if($image->getFilename(){0}==='B') {
+        $pos = strpos($image->getPathname(), "static");
+        $endpoint = $pos + strlen("static");
+        $destinationPath = "/static".substr($image->getPathname(),$endpoint);
+        array_push($images,$destinationPath);
+      }
+    }
+
+    $audios=DB::select("
+        select c.* from contents c , publications p
+        where c.publication=p.id
+        and c.type='audio'
+        and p.user=".$id."
+    ");
+
+    $data = [
+        'title' => 'Static Files',
+        'images' => $images,
+        'audios' => $audios,
+    ];
+
+    return view('contents/files',$data);
 
   }
 

@@ -11,7 +11,27 @@ use DB;
 
 class LoginController extends Controller
 {
+  /////////////////////////////////////////////////////////////////////////
+  // Goto admin login
+  public function adminLog(Request $request) {
+    $data=[
+      'collab' => false,
+    ];
+    return view('auth/login',$data);
+  }
 
+  /////////////////////////////////////////////////////////////////////////
+  // Goto collab login
+  public function collabLog(Request $request) {
+    $data=[
+      'collab' => true,
+    ];
+    return view('auth/login',$data);
+  }
+
+
+  /////////////////////////////////////////////////////////////////////////
+  // Login POST check
   public function check(Request $request){
 
     // admin login
@@ -37,7 +57,6 @@ class LoginController extends Controller
     }
 
     // collaborator login
-
     $query = DB::select("
       select * from users profile
       where profile.type=\"profile\"
@@ -52,26 +71,8 @@ class LoginController extends Controller
             )
         )
     ");
+
     $collaborator = User::where('id',$query['0']->id)->first();
-    // dd($collaborator);
-      //
-      // $collaborator = DB::table('users')
-      //                 ->where('type','profile')
-      //                 ->where('email',$request->email)
-      //                 ->whereExists(function($query,$request){
-      //                   $query->select(DB::raw(1))
-      //                   ->from('users','u')
-      //                   ->where('u.email',$request->admin)
-      //                   ->whereExists(function($q){
-      //                     $q->select(DB::raw(1))
-      //                     ->from('collaborators','c')
-      //                     ->whereRaw('c.profile = users.id')
-      //                     ->whereRaw('c.user = u.id');
-      //                   });
-      //                 })($request)->get();
-
-
-    // dd($collaborator);
 
     if( is_null ($collaborator) ) {
       return redirect()->route('not_exists_error');
@@ -84,6 +85,12 @@ class LoginController extends Controller
       return redirect()->route('publication.list');
     }
 
+  }
 
+  /////////////////////////////////////////////////////////////////////////
+  // Logout
+  public function logout(Request $request){
+    Auth::logout();
+    return redirect()->route('welcome');
   }
 }

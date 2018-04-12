@@ -19,6 +19,13 @@ use Auth;
 class RegistrationController extends Controller
 {
 
+  public function adminReg(Request $request) {
+    $data=[
+      'collab' => false,
+    ];
+    return view('auth/register',$data);
+  }
+
   protected function validator(array $data)
   {
       return Validator::make($data, [
