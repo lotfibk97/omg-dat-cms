@@ -55,4 +55,13 @@ class GlobalController extends Controller
       return view('layouts/blog',$data);
 
     }
+
+    // Controller for messages and alerts
+    public function message(Request $request, $title, $description) {
+      $data = [
+        'title' => str_replace("+"," ",$title),
+        'description' => str_replace("+"," ",$description),
+      ];
+      return view('alerts/msg',$data);
+    }
 }
