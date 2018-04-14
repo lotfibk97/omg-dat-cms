@@ -121,6 +121,7 @@
               <option value = "image">Image</option>
               <option value = "audio">Audio</option>
               <option value = "video">Video</option>
+              <option value = "menu">Menu</option>
             </select>
             <label for="content-type" id="content-type-label">Type</label>
           </div>

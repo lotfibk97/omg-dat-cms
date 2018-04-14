@@ -12,6 +12,7 @@ use App\Http\Requests\PublicationRequest;
 use Auth;
 use File;
 use DB;
+use App\Models\Menu;
 
 
 class ContentController extends Controller
@@ -49,7 +50,11 @@ class ContentController extends Controller
       $content->html="/static/images/default-pic.jpg";
       $content->save();
     }
-
+    if($content->type==="menu"){
+      $menu=Menu::create([
+      'content_id' => $content->id,
+      ]);
+    }
     return redirect()->route('publication.manage',$pub);
   }
 
@@ -167,6 +172,9 @@ class ContentController extends Controller
     if($content->type=="video")
     return view('contents/video',$data);
 
+    if($content->type==='menu')
+    return view('contents/menu',$data);
+
   }
 
   //////////////////////////////////////////////////////////////////////////
@@ -240,7 +248,10 @@ class ContentController extends Controller
       $content->save();
       return redirect()->route('content.fill',$cnt);
     }
+    if($content->type === 'menu') {
 
+      return redirect()->route('content.fill',$cnt);
+    }
   }
 
   //////////////////////////////////////////////////////////////////////////
