@@ -249,6 +249,8 @@ class ContentController extends Controller
       return redirect()->route('content.fill',$cnt);
     }
     if($content->type === 'menu') {
+      
+
 
       return redirect()->route('content.fill',$cnt);
     }
