@@ -114,6 +114,8 @@
                                 </li>
                                 <li><a href="{{route('content.video')}}">Video</a>
                                 </li>
+                                <li><a href="{{route('content.menu')}}">Menu</a>
+                                </li>
                             </ul>
                         </div>
                     </li>

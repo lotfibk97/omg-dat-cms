@@ -147,6 +147,12 @@ Route::get('/contents/video', [
   'uses' => 'ContentController@videoList'
 ]);
 
+
+Route::get('/contents/menu', [
+  'as' => 'content.menu',
+  'uses' => 'ContentController@menuList'
+]);
+
 ////////////////////////// GOTO Content fill page
 Route::get('/contents/{cnt}', [
   'as' => 'content.fill',

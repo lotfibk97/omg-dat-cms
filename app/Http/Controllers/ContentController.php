@@ -145,7 +145,10 @@ class ContentController extends Controller
     }
 
     // delete content and set null selected item for the publication
-    $content->delete();
+    if($content->type === 'menu'){
+      $content->menus()->detach();
+    }
+    $content->delete()->onCascade();
     $publication->selected=null;
 
   }
@@ -248,10 +251,11 @@ class ContentController extends Controller
       $content->save();
       return redirect()->route('content.fill',$cnt);
     }
+
     if($content->type === 'menu') {
-
-
-
+      $menu = Menu::where('content_id',$content->id)->first();
+      $menu->bg_color = $request->bg_color;
+      $menu->save();
       return redirect()->route('content.fill',$cnt);
     }
   }
@@ -446,7 +450,51 @@ class ContentController extends Controller
     return view('contents/cntList',$data);
 
   }
+  public function menuList(Request $request) {
 
+    $user = User::where('id',Auth::id())->first();
+    if($user->type == 'admin')
+    $contents=DB::select("
+        select c.* from contents c , publications p
+        where c.publication=p.id
+        and p.user=".Auth::id()."
+        and c.type=\"menu\"
+    ");
+    else {
+    $contents=DB::select("
+        select c.* from contents c,publications p
+        where c.publication=p.id
+        and c.type=\"menu\"
+        and exists (
+            select * from collaborations cb, collaborators cl
+            where cb.publication=p.id
+            and cb.collaborator=cl.id
+            and cl.profile=".$user->id."
+            and ( cb.role=\"editor\" or cb.role=\"publicator\" or cb.role=\"media-manager\" )
+        )
+    ");
+    }
+
+    // adding publication title
+    foreach($contents as $content) {
+      $content->publication=DB::select("
+          select title from publications
+          where id=".$content->publication."
+      ")[0]->title;
+    }
+    // adding creator name
+    foreach($contents as $content) {
+      $content->creator=User::where('id',$content->creator)->first()->name;
+    }
+
+    $data= [
+      'title' => 'Menu Contents',
+      'contents' => $contents,
+      'type' =>"menu",
+    ];
+    return view('contents/cntList',$data);
+
+  }
   //////////////////////////////////////////////////////////////////////////
   // BLOG's Static Files Managment
   // for the moment it displays all the static files for all the blogs

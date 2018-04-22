@@ -7,10 +7,8 @@
               <div class="input-field col s8 offset-s1">
 
                 <div class="file-field input-field">
-                  <input class="file-path validate" type="text" name="imagename">
-                  <div class="btn">
-                    <span>File</span>
-                    <input type="file" name="image">
+                  <input class="form-control" type="color" name="bg_color">
+                  <label for="bg_color" class="center-align">Color</label>
                   </div>
                 </div>
 
