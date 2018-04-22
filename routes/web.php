@@ -256,18 +256,12 @@ Route::get('/user/confirmation/{token}', [
 ////////////////////////// Message Pages /////////////////////////////
 
 Route::get('/mail-register',function(){
-  /*$data=[
+  $data=[
     'error_name' => '=\'D',
     'error_msg' => 'Thank you for your registration, Manage your content with easiness !!!'
   ];
-  return view('alerts/msg',$data);*/
-  return redirect()->route('message',"=D","Thank+you+for+your+registration,+Manage+your+content+with+ease!!!");
+  return view('alerts/msg',$data);
 })->name('email');
-
-Route::get('/message/{title}/{description}',[
-  'as' => 'message',
-  'uses' => 'GlobalController@message',
-]);
 
 Route::get('/error1',function(){
   $data=[

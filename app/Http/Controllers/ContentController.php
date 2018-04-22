@@ -249,7 +249,7 @@ class ContentController extends Controller
       return redirect()->route('content.fill',$cnt);
     }
     if($content->type === 'menu') {
-      
+
 
 
       return redirect()->route('content.fill',$cnt);
@@ -449,6 +449,7 @@ class ContentController extends Controller
 
   //////////////////////////////////////////////////////////////////////////
   // BLOG's Static Files Managment
+  // for the moment it displays all the static files for all the blogs
   public function static(Request $request) {
 
     $blog = User::where('id',Auth::id())->first();

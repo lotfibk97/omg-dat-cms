@@ -94,7 +94,7 @@
                 </div>
             </li>
             <li class="bold">
-              <a href="{{route('blog',1)}}" class="waves-effect waves-cyan">
+              <a href="{{route('blog',Auth::id())}}" class="waves-effect waves-cyan">
               <i class="mdi-action-dashboard"></i>Blog</a>
             </li>
             <li class="bold">
