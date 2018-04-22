@@ -46,7 +46,7 @@ class PublicationController extends Controller
 
     //////////////////////////////////////////////////////////////////////////
     // Goto create publication page controller
-    public function creation(PublicationRequest $request){
+    public function creation(Request $request){
 
       $user = User::where('id',Auth::id())->first();
 
