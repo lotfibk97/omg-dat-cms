@@ -37,6 +37,40 @@
       grid-template-columns:repeat(12,1fr);
     }
 
+    #menu {
+      visibility: hidden;
+      transition: opacity 0.7s;
+      position: absolute;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      z-index: 100;
+      background: rgba(33, 150, 243, 0.8);
+      overflow: hidden;
+    }
+
+    #menu a {
+      display: block;
+      font-size: 4em;
+      color: white;
+      width: 100%;
+      text-align: center;
+      margin: auto;
+      transition:color 0.5s;
+      min-height: 15vh;
+    }
+
+    #menu .scroller {
+      position: absolute;
+      width: 100%; height: 100%;
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #menu a:hover {
+      color: #ff4081;
+    }
+
   </style>
 
 </head>
@@ -62,6 +96,31 @@
   </script>
 
   <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+
+  <!-- BEGIN IF MENU.TYPE == Hambuger -->
+  <!-- Hamburger menu button -->
+  <div style="position:fixed; top:5vh; left:5vh;" id="open">
+    <button class="btn-floating btn-large waves-effect waves-light blue">
+      <i class="mdi-navigation-menu white-text"></i></button>
+  </div>
+
+  <!-- Hamburger menu  -->
+  <div id="menu">
+    <div style="position:fixed; top:5vh; left:5vh; z-index:100; cursor:pointer;"
+      id="close">
+      <i class="mdi-navigation-close medium white-text"></i>
+    </div>
+
+    <div class="scroller">
+      <a href="/publications">Accueil</a>
+      <a href="/publications">Blog</a>
+      <a href="/publications">Contact</a>
+      <a href="/publications">Whatever</a>
+      <a href="/publications">Whatever2</a>
+    </div>
+  </div>
+  <!-- END IF MENU.TYPE == Hambuger -->
 
   <div id="contents_grid" style="grid-template-rows: repeat({{$rows}},50px);">
 
@@ -119,6 +178,16 @@
     <!--plugins.js - Some Specific JS codes for Plugin Settings-->
     <script type="text/javascript" src="{{ asset ('js/plugins.js') }}"></script>
     <!--customJs-->
+    <script type="text/javascript">
+      $("#open").click(function(){
+        document.querySelector("#menu").style.visibility="visible";
+        document.querySelector("#open").style.visibility="hidden";
+      });
+      $("#close").click(function(){
+        document.querySelector("#menu").style.visibility="hidden";
+        document.querySelector("#open").style.visibility="visible";
+      });
+    </script>
 
 </body>
 </html>
