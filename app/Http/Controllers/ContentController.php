@@ -257,12 +257,16 @@ class ContentController extends Controller
       $menu = Menu::where('content_id',$content->id)->first();
       $menu->bg_color = $request->bg_color;
       $menu->save();
-      dd($request->all());
+      // dd($request->all());
+      foreach ($request->all() as $key => $value) {
+      if($key != '_token' && $key != 'bg_color' && $key != 'action'){
       $link= Link::create([
         'menu_id' => $menu->id,
-        'url' => $request->link1,
+        'url' => $value,
         'name' => $request->link_name,
       ]);
+    }
+    }
       return redirect()->route('content.fill',$cnt);
     }
   }

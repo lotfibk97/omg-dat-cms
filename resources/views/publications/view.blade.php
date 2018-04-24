@@ -156,11 +156,9 @@
     </div>
 
     <div class="scroller">
-      <a href="/publications">Accueil</a>
-      <a href="/publications">Blog</a>
-      <a href="/publications">Contact</a>
-      <a href="/publications">Whatever</a>
-      <a href="/publications">Whatever2</a>
+    @foreach($links as $link)
+    <a href="{{$link->url}}">{{$link->name}}</a>
+    @endforeach
     </div>
   </div-->
 
@@ -181,13 +179,11 @@
   <!-- BEGIN IF MENU.TYPE == TopHeader -->
   <div id="header" class="">
     <img id="picture" src="/static/images/B1_1523526064.jpg" width="100%" height="100%"></img>
-
     <div id="gradient">
       <div id="toolbar">
-        <a href="#">Accueil</a>
-        <a href="#">Blog</a>
-        <a href="#">Contact</a>
-        <a href="#">Whatever</a>
+        @foreach($links as $link)
+        <a href="{{$link->url}}">{{$link->name}}</a>
+        @endforeach
       </div>
     </div>
   </div>

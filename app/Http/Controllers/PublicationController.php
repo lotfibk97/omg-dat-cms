@@ -214,6 +214,7 @@ class PublicationController extends Controller
 
       $publication=Publication::where('id',$pub)->first();
       $contents=DB::select("select * from contents where publication=".$pub);
+      $links=DB::select("select * from links where menu_id = (select id from menus where id in)".$contents);
       $rows=0;
       foreach($contents as $content) {
         $offset=$content->top+$content->height;
@@ -223,6 +224,7 @@ class PublicationController extends Controller
         'rows' => $rows,
         'publication' => $publication,
         'contents' => $contents,
+        'links' => $links,
       ];
 
       return view('publications/view',$data);
