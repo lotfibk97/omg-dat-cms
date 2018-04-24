@@ -18,6 +18,7 @@ class CreateLinksTable extends Migration
             $table->unsignedInteger('menu_id')->unique();
             $table->foreign('menu_id')->references('id')->on('menus')->onDelete('cascade');
             $table->string('url');
+            $table->string('name');
             $table->timestamps();
         });
     }

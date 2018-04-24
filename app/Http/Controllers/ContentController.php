@@ -7,6 +7,7 @@ use App\Models\Publication;
 use App\Models\Collaboration;
 use App\Models\Collaborator;
 use App\Models\Content;
+use App\Models\Link;
 use App\User;
 use App\Http\Requests\PublicationRequest;
 use Auth;
@@ -256,6 +257,12 @@ class ContentController extends Controller
       $menu = Menu::where('content_id',$content->id)->first();
       $menu->bg_color = $request->bg_color;
       $menu->save();
+      dd($request->all());
+      $link= Link::create([
+        'menu_id' => $menu->id,
+        'url' => $request->link1,
+        'name' => $request->link_name,
+      ]);
       return redirect()->route('content.fill',$cnt);
     }
   }

@@ -1,3 +1,26 @@
+@section('script')
+<script>
+
+var x = document.getElementById("clickme");
+x.addEventListener("click", function(){
+  var newLink = document.createElement('input');
+  var newLabel = document.createElement('label');
+
+  newLink.class="form-control";
+  newLink.type="text";
+  newLabel.class="center-align";
+  newLabel.text="link"
+  document.getElementById("links").appendChild(newLink);
+  document.getElementById("links").appendChild(newLabel);
+
+  console.log("done");
+});
+
+
+
+
+</script>
+@stop
 @extends('contents.cntForm')
 
 @section('media-input')
@@ -26,32 +49,9 @@
             <input class ="form-control" type="text" name="link1" >
             <label for="link1" class="center-align">Link</label>
             <input class ="form-control" type="text" name="link2" >
-            <label for="link1" class="center-align">Link</label>
+            <label for="link2" class="center-align">Link</label>
             <input class ="form-control" type="text" name="link3" >
-            <label for="link1" class="center-align">Link</label>
+            <label for="link3" class="center-align">Link</label>
 </div>
             <button id="clickme"> add </button>
-@section('script')
-            <script>
-
-var x = document.getElementById("clickme");
-x.addEventListener("click", function(){
- var newLink = document.createElement('input');
- var newLabel = document.createElement('label');
-
- newLink.class="form-control";
- newLink.type="text";
- newLabel.class="center-align";
-
- document.getElementById("links").appendChild(newLink);
-document.getElementById("links").appendChild(newLabel);
-
-console.log("done");
-});
-
-
-
-
-            </script>
-@stop
 @stop

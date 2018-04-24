@@ -4,7 +4,9 @@
 
 
 @stop
+@section('script')
 
+@stop
 @section('content')
 
 <div class="row blue-text">
