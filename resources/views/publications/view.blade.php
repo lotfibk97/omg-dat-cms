@@ -32,11 +32,13 @@
   <!-- jump to #style-->
   <style media="screen">
 
+    /* Contents Grid Display */
     #contents_grid {
       display: grid;
       grid-template-columns:repeat(12,1fr);
     }
 
+    /* Hamburger Menu Style */
     #menu {
       visibility: hidden;
       transition: opacity 0.7s;
@@ -71,6 +73,47 @@
       color: #ff4081;
     }
 
+    /* Header Menu Style */
+    body {
+      overflow-x: hidden;
+    }
+
+    #header {
+      position: relative;
+      width: 100%; height: 50vh;
+      box-shadow: 0px 0px 10px 0px black;
+    }
+
+    #gradient {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height:100%;
+
+      z-index: 100;
+      background: linear-gradient(to top,rgb(33, 150, 243) 15%, transparent 70%);
+    }
+
+    #toolbar {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 15%;
+
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    #toolbar a{
+      color: white;
+      font-size: 1.5em;
+      margin: auto;
+      transition: 0.5s;
+    }
+
+    #toolbar a:hover {
+      color: #ff4081;
+      transform: translateY(-5px);
+    }
+
   </style>
 
 </head>
@@ -100,13 +143,13 @@
 
   <!-- BEGIN IF MENU.TYPE == Hambuger -->
   <!-- Hamburger menu button -->
-  <div style="position:fixed; top:5vh; left:5vh;" id="open">
+  <!--div style="position:fixed; top:5vh; left:5vh;" id="open">
     <button class="btn-floating btn-large waves-effect waves-light blue">
       <i class="mdi-navigation-menu white-text"></i></button>
-  </div>
+  </div-->
 
   <!-- Hamburger menu  -->
-  <div id="menu">
+  <!--div id="menu">
     <div style="position:fixed; top:5vh; left:5vh; z-index:100; cursor:pointer;"
       id="close">
       <i class="mdi-navigation-close medium white-text"></i>
@@ -119,8 +162,37 @@
       <a href="/publications">Whatever</a>
       <a href="/publications">Whatever2</a>
     </div>
-  </div>
+  </div-->
+
+    <!-- Hamburger menu script -->
+    <!--script type="text/javascript">
+      $("#open").click(function(){
+        document.querySelector("#menu").style.visibility="visible";
+        document.querySelector("#open").style.visibility="hidden";
+      });
+      $("#close").click(function(){
+        document.querySelector("#menu").style.visibility="hidden";
+        document.querySelector("#open").style.visibility="visible";
+      });
+    </script-->
+
   <!-- END IF MENU.TYPE == Hambuger -->
+
+  <!-- BEGIN IF MENU.TYPE == TopHeader -->
+  <div id="header" class="">
+    <img id="picture" src="/static/images/B1_1523526064.jpg" width="100%" height="100%"></img>
+
+    <div id="gradient">
+      <div id="toolbar">
+        <a href="#">Accueil</a>
+        <a href="#">Blog</a>
+        <a href="#">Contact</a>
+        <a href="#">Whatever</a>
+      </div>
+    </div>
+  </div>
+  <!-- END IF MENU.TYPE == TopHeader -->
+
 
   <div id="contents_grid" style="grid-template-rows: repeat({{$rows}},50px);">
 
@@ -178,16 +250,7 @@
     <!--plugins.js - Some Specific JS codes for Plugin Settings-->
     <script type="text/javascript" src="{{ asset ('js/plugins.js') }}"></script>
     <!--customJs-->
-    <script type="text/javascript">
-      $("#open").click(function(){
-        document.querySelector("#menu").style.visibility="visible";
-        document.querySelector("#open").style.visibility="hidden";
-      });
-      $("#close").click(function(){
-        document.querySelector("#menu").style.visibility="hidden";
-        document.querySelector("#open").style.visibility="visible";
-      });
-    </script>
+
 
 </body>
 </html>
