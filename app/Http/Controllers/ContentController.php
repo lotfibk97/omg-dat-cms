@@ -258,15 +258,36 @@ class ContentController extends Controller
       $menu->bg_color = $request->bg_color;
       $menu->save();
       // dd($request->all());
+
+
       foreach ($request->all() as $key => $value) {
-      if($key != '_token' && $key != 'bg_color' && $key != 'action'){
+        // dd($key);
+      if(preg_match('#link[0-9]$#',$key)){
+// dd("a");
+
       $link= Link::create([
         'menu_id' => $menu->id,
-        'url' => $value,
-        'name' => $request->link_name,
+        'url' => $name,
+        'name' => $value,
       ]);
+      // dd($link);
+      if(preg_match('#url[0-9]$#',$key)){
+
+      $name=$value;
     }
     }
+
+  }
+}
+//     $links=Link::get();
+//     // dd($links[0]);
+//     foreach ($links as $key => $value) {
+//       dd($key."   ".$value);
+//     if(preg_match('#link[0-9]$#',$key)){
+//       $links->name=$value;
+//       $links->save();
+//     }
+// }
       return redirect()->route('content.fill',$cnt);
     }
   }

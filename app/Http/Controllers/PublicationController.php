@@ -10,6 +10,9 @@ use App\User;
 use App\Http\Requests\PublicationRequest;
 use Auth;
 use DB;
+use App\Models\Link;
+use App\Models\Menu;
+
 
 class PublicationController extends Controller
 {
@@ -214,7 +217,11 @@ class PublicationController extends Controller
 
       $publication=Publication::where('id',$pub)->first();
       $contents=DB::select("select * from contents where publication=".$pub);
-      $links=DB::select("select * from links where menu_id = (select id from menus where id in)".$contents);
+      // dd($contents[0]->id);
+      $menu=Menu::where('content_id',$contents[0]->id)->first();
+      // dd($menu);
+      $links=Link::where('menu_id',$menu->id)->first();
+      dd($links);
       $rows=0;
       foreach($contents as $content) {
         $offset=$content->top+$content->height;

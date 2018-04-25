@@ -16,9 +16,17 @@ x.addEventListener("click", function(){
   input.type="text";
   input.name="link";
 
+  var input = document.createElement('input');
+  input.type="text";
+  input.name="url";
+
   var label = document.createElement('label');
   label.textContent="Link";
   label.htmlFor="link";
+
+  var label = document.createElement('label');
+  label.textContent="URL";
+  label.htmlFor="url";
 
   var field = document.createElement('div');
   field.classList.add("input-field");
@@ -59,7 +67,7 @@ x.addEventListener("click", function(){
           <form class="col s12" action="{{route('content.fill.post',$content->id)}}" method="post" enctype="multipart/form-data">
           {!! csrf_field() !!}
 
-
+        <input type='color' name="bg_color"/>
           <p class="blue-text">Header picture</p>
           <div class="row">
 
@@ -92,6 +100,14 @@ x.addEventListener("click", function(){
                 <label for="link1">Link</label>
               </div>
             </div>
+            <div id="links">
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="url1" >
+                  <label for="link1">URL</label>
+                </div>
+              </div>
 
             <div class="row">
               <div class="input-field col s12">
@@ -99,6 +115,14 @@ x.addEventListener("click", function(){
                 <label for="link2">Link</label>
               </div>
             </div>
+            <div id="links">
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="url2" >
+                  <label for="link1">URL</label>
+                </div>
+              </div>
 
             <div class="row">
               <div class="input-field col s12">
@@ -106,6 +130,14 @@ x.addEventListener("click", function(){
                 <label for="link3">Link</label>
               </div>
             </div>
+            <div id="links">
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="url3" >
+                  <label for="link1">URL</label>
+                </div>
+              </div>
 
           </div>
 
