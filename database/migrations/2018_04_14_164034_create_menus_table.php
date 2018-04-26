@@ -17,6 +17,7 @@ class CreateMenusTable extends Migration
             $table->increments('id');
             $table->string('bg_color')->default('black');
             $table->unsignedInteger('content_id')->unique();
+            $table->enum('type',['Hambuger','Normal'])->default('normal');
             $table->foreign('content_id')->references('id')->on('contents')->onDelete('cascade');
             $table->timestamps();
         });

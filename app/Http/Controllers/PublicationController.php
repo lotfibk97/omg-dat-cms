@@ -12,6 +12,7 @@ use Auth;
 use DB;
 use App\Models\Link;
 use App\Models\Menu;
+use App\Models\Content;
 
 
 class PublicationController extends Controller
@@ -89,6 +90,16 @@ class PublicationController extends Controller
           'title' => $request->title,
           'description' => $request->description,
           'user' => Auth::id(),
+      ]);
+      $content=Content::create([
+        'title' => 'title',
+        'description' => 'description',
+        'type' => 'menu',
+        'publication' => $pub->id,
+        'creator' => $user->id,
+      ]);
+      $menu=Menu::create([
+      'content_id' => $content->id,
       ]);
       $pub->url = str_replace(' ', '', $user->name.'/'.$pub->id);
       $pub->save();
@@ -220,8 +231,8 @@ class PublicationController extends Controller
       // dd($contents[0]->id);
       $menu=Menu::where('content_id',$contents[0]->id)->first();
       // dd($menu);
-      $links=Link::where('menu_id',$menu->id)->first();
-      dd($links);
+      $links=Link::where('menu_id',$menu->id)->get();
+      // dd($links);
       $rows=0;
       foreach($contents as $content) {
         $offset=$content->top+$content->height;

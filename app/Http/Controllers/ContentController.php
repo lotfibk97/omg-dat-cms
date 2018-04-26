@@ -566,5 +566,21 @@ class ContentController extends Controller
     return view('contents/files',$data);
 
   }
-
+  // public static function createMenu(Request $request){
+  //   $content=Content::create([
+  //     'title' => 'title',
+  //     'description' => 'description',
+  //     'type' => 'menu',
+  //     'creator' => Auth::user()->id,
+  //   ]);
+  //   $menu=Menu::create([
+  //   'content_id' => $content->id,
+  //   ]);
+  // $data = [
+  //   'title' => $content->title,
+  //   'content' => $content,
+  // ];
+  //
+  // // return view('contents/menu',$data);
+  // }
 }

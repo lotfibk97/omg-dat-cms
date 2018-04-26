@@ -96,6 +96,11 @@ x.addEventListener("click", function(){
   links.appendChild(row);
   var links2 = document.getElementById("links");
   links2.appendChild(row2);
+
+
+  var submit = document.getElementById("submit");
+  form.removeChild(submit);
+  form.appendChild(submit);
 });
 
 </script>
@@ -120,7 +125,7 @@ x.addEventListener("click", function(){
           <form class="col s12" action="{{route('content.fill.post',$content->id)}}" method="post" enctype="multipart/form-data">
           {!! csrf_field() !!}
 
-        <input type='color' name="bg_color"/>
+      
           <p class="blue-text">Header picture</p>
           <div class="row">
 
@@ -198,7 +203,7 @@ x.addEventListener("click", function(){
 
           <div class="row">
             <div class="input-field col s12">
-              <button class="btn cyan waves-effect waves-light right" type="submit" name="action">Submit
+              <button class="btn cyan waves-effect waves-light right" type="submit" name="action" id="submit">Submit
                 <i class="mdi-content-send right"></i>
               </button>
             </div>

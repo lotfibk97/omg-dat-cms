@@ -153,12 +153,22 @@ Route::get('/contents/menu', [
   'uses' => 'ContentController@menuList'
 ]);
 
+// Route::post('/contents/menu', [
+//   'as' => 'content.menu',
+//   'uses' => 'ContentController@createMenu',
+// ]);
+
 ////////////////////////// GOTO Content fill page
 Route::get('/contents/{cnt}', [
   'as' => 'content.fill',
   'uses' => 'ContentController@filling'
 ]);
 
+
+// Route::get('/contents/menu/new', [
+//   'as' => 'menu.create',
+//   'uses' => 'ContentController@createMenu'
+// ]);
 ////////////////////////// GETFROM Content fill page
 Route::post('/contents/{cnt}',[
     'as' => 'content.fill.post',

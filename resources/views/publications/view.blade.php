@@ -143,13 +143,14 @@
 
   <!-- BEGIN IF MENU.TYPE == Hambuger -->
   <!-- Hamburger menu button -->
-  <!--div style="position:fixed; top:5vh; left:5vh;" id="open">
+  @if($menu->type === 'Hambuger')
+  <div style="position:fixed; top:5vh; left:5vh;" id="open">
     <button class="btn-floating btn-large waves-effect waves-light blue">
       <i class="mdi-navigation-menu white-text"></i></button>
-  </div-->
+  </div>
 
   <!-- Hamburger menu  -->
-  <!--div id="menu">
+  <div id="menu">
     <div style="position:fixed; top:5vh; left:5vh; z-index:100; cursor:pointer;"
       id="close">
       <i class="mdi-navigation-close medium white-text"></i>
@@ -163,7 +164,7 @@
   </div-->
 
     <!-- Hamburger menu script -->
-    <!--script type="text/javascript">
+    <script type="text/javascript">
       $("#open").click(function(){
         document.querySelector("#menu").style.visibility="visible";
         document.querySelector("#open").style.visibility="hidden";
@@ -172,10 +173,10 @@
         document.querySelector("#menu").style.visibility="hidden";
         document.querySelector("#open").style.visibility="visible";
       });
-    </script-->
+    </script>
 
   <!-- END IF MENU.TYPE == Hambuger -->
-
+@else
   <!-- BEGIN IF MENU.TYPE == TopHeader -->
   <div id="header" class="">
     <img id="picture" src="/static/images/B1_1523526064.jpg" width="100%" height="100%"></img>
@@ -231,7 +232,7 @@
     @endforeach
 
   </div>
-
+@endif
   <!-- //////////////////////////////////////////////////////////////////////////// -->
     <!-- ============================= Scripts ============================ -->
 
