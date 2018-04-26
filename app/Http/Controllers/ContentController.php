@@ -256,7 +256,8 @@ class ContentController extends Controller
     if($content->type === 'menu') {
       $menu = Menu::where('content_id',$content->id)->first();
       $menu->type = $request->types;
-      if(isset($image)){
+      if(isset($request->all()['image'])){
+          // dd($image);
           $image = $request->all()['image'];
           $input['imagename'] = 'M'.$menu->id.'_'.time().'.'.$image->getClientOriginalExtension();
           $destinationPath = public_path('/static/images');
