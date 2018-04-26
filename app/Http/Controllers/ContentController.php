@@ -265,20 +265,21 @@ class ContentController extends Controller
       if(preg_match('#link[0-9]$#',$key)){
 // dd("a");
 
-      $link= Link::create([
-        'menu_id' => $menu->id,
-        'url' => $name,
-        'name' => $value,
-      ]);
+      $name=$value;
       // dd($link);
+    }
       if(preg_match('#url[0-9]$#',$key)){
 
-      $name=$value;
-    }
+        $link= Link::create([
+          'menu_id' => $menu->id,
+          'url' => $value,
+          'name' => $name,
+        ]);
+      }
     }
 
   }
-}
+
 //     $links=Link::get();
 //     // dd($links[0]);
 //     foreach ($links as $key => $value) {
@@ -290,7 +291,7 @@ class ContentController extends Controller
 // }
       return redirect()->route('content.fill',$cnt);
     }
-  }
+
 
   //////////////////////////////////////////////////////////////////////////
   // Text Contents List

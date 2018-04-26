@@ -7,42 +7,95 @@
 
 @section('script')
 <script>
+function getCountLinks(){
+    var a = document.getElementsByTagName("input").length;
+    // var i=0;
+    b=document.getElementsByTagName("input");
+    var i=0;
+    var v=0;
+    while(i < b.length){
+      // alert(document.getElementsByTagName("input"));
+      if(b.item(i).name.startsWith("link")){
+        v++;
+      }
+      i++;
+    }
+    // alert(v);
+    return v;
+}
+
+function getCountUrls(){
+    var a = document.getElementsByTagName("input").length;
+    // var i=0;
+    b=document.getElementsByTagName("input");
+    var i=0;
+    var v=0;
+    while(i < b.length){
+      // alert(document.getElementsByTagName("input"));
+      if(b.item(i).name.startsWith("url")){
+        v++;
+      }
+      i++;
+    }
+    // alert(v);
+    return v;
+}
+
 
 var x = document.getElementById("clickme");
+// var y = getCountLinks(x);
+// var y = document.getElementById("links")
+
 
 x.addEventListener("click", function(){
 
+  // alert(getCountLinks());
+  var y=getCountLinks()+1;
+  var z=getCountUrls()+1;
   var input = document.createElement('input');
   input.type="text";
-  input.name="link";
+  input.name="link"+y;
+  // alert(input);
 
-  var input = document.createElement('input');
-  input.type="text";
-  input.name="url";
+  var input2 = document.createElement('input');
+  input2.type="text";
+  input2.name="url"+z;
 
   var label = document.createElement('label');
   label.textContent="Link";
-  label.htmlFor="link";
+  label.htmlFor="link"+y;
 
-  var label = document.createElement('label');
-  label.textContent="URL";
-  label.htmlFor="url";
+  var label2 = document.createElement('label');
+  label2.textContent="URL";
+  label2.htmlFor="url"+z;
 
   var field = document.createElement('div');
   field.classList.add("input-field");
   field.classList.add("col");
   field.classList.add("s12");
+// alert(input);
+  var field2 = document.createElement('div');
+  field2.classList.add("input-field");
+  field2.classList.add("col");
+  field2.classList.add("s12");
 
   field.appendChild(input);
+  field2.appendChild(input2);
   field.appendChild(label);
+  field2.appendChild(label2);
 
   var row = document.createElement('div');
   row.classList.add("row");
   row.appendChild(field);
+  var row2 = document.createElement('div');
+  row2.classList.add("row");
+  // row.appendChild(field);
+  row2.appendChild(field2);
 
   var links = document.getElementById("links");
   links.appendChild(row);
-
+  var links2 = document.getElementById("links");
+  links2.appendChild(row2);
 });
 
 </script>
