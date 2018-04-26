@@ -179,7 +179,7 @@
 @else
   <!-- BEGIN IF MENU.TYPE == TopHeader -->
   <div id="header" class="">
-    <img id="picture" src="/static/images/B1_1523526064.jpg" width="100%" height="100%"></img>
+    <img id="picture" src="{{$menu->image}}" width="100%" height="100%"></img>
     <div id="gradient">
       <div id="toolbar">
         @foreach($links as $link)
@@ -189,7 +189,7 @@
     </div>
   </div>
   <!-- END IF MENU.TYPE == TopHeader -->
-
+@endif
 
   <div id="contents_grid" style="grid-template-rows: repeat({{$rows}},50px);">
 
@@ -232,7 +232,7 @@
     @endforeach
 
   </div>
-@endif
+
   <!-- //////////////////////////////////////////////////////////////////////////// -->
     <!-- ============================= Scripts ============================ -->
 

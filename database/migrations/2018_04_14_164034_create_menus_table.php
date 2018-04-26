@@ -15,9 +15,9 @@ class CreateMenusTable extends Migration
     {
         Schema::create('menus', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('bg_color')->default('black');
+            $table->string('image')->nullable();
             $table->unsignedInteger('content_id')->unique();
-            $table->enum('type',['Hambuger','Normal'])->default('normal');
+            $table->enum('type',['Hamburger','Normal'])->default('normal');
             $table->foreign('content_id')->references('id')->on('contents')->onDelete('cascade');
             $table->timestamps();
         });

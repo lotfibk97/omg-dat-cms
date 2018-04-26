@@ -243,6 +243,7 @@ class PublicationController extends Controller
         'publication' => $publication,
         'contents' => $contents,
         'links' => $links,
+        'menu' => $menu,
       ];
 
       return view('publications/view',$data);

@@ -255,7 +255,17 @@ class ContentController extends Controller
 
     if($content->type === 'menu') {
       $menu = Menu::where('content_id',$content->id)->first();
-      $menu->bg_color = $request->bg_color;
+      $menu->type = $request->types;
+      if(isset($image)){
+          $image = $request->all()['image'];
+          $input['imagename'] = 'M'.$menu->id.'_'.time().'.'.$image->getClientOriginalExtension();
+          $destinationPath = public_path('/static/images');
+          $image->move($destinationPath, $input['imagename']);
+          $pos = strpos($destinationPath, "static");
+          $endpoint = $pos + strlen("static");
+          $destinationPath = "/static".substr($destinationPath,$endpoint).'/'.$input['imagename'];
+          $menu->image = $destinationPath;
+        }
       $menu->save();
       // dd($request->all());
 

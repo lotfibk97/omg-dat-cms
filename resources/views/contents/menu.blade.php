@@ -125,7 +125,7 @@ x.addEventListener("click", function(){
           <form class="col s12" action="{{route('content.fill.post',$content->id)}}" method="post" enctype="multipart/form-data">
           {!! csrf_field() !!}
 
-      
+
           <p class="blue-text">Header picture</p>
           <div class="row">
 
@@ -141,6 +141,7 @@ x.addEventListener("click", function(){
               </div>
             </div>
 
+
             <div class="col s5 ">
               <!-- replace this src with current menu picture -->
               <img src="{{$content->html}}" alt="default picture" width="100%" height="180px">
@@ -148,7 +149,11 @@ x.addEventListener("click", function(){
 
           </div>
 
-
+          <select name="types">
+            <option value="Normal">Normal</option>
+            <option value="Hamburger">Hamburger</option>
+          </select>
+          <label for="types">Type of the menu</label>
           <p class="blue-text">Menu Options</p>
           <div id="links">
 
