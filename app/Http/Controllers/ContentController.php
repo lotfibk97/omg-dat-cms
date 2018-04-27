@@ -48,7 +48,7 @@ class ContentController extends Controller
     ]);
 
     if($content->type=="image") {
-      $content->html="/static/images/default-pic.jpg";
+      $content->html="/static/images/default-pic.png";
       $content->save();
     }
     if($content->type==="menu"){

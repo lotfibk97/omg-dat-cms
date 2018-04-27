@@ -72,12 +72,12 @@ x.addEventListener("click", function(){
   var field = document.createElement('div');
   field.classList.add("input-field");
   field.classList.add("col");
-  field.classList.add("s12");
+  field.classList.add("s4");
 // alert(input);
   var field2 = document.createElement('div');
   field2.classList.add("input-field");
   field2.classList.add("col");
-  field2.classList.add("s12");
+  field2.classList.add("s8");
 
   field.appendChild(input);
   field2.appendChild(input2);
@@ -87,16 +87,10 @@ x.addEventListener("click", function(){
   var row = document.createElement('div');
   row.classList.add("row");
   row.appendChild(field);
-  var row2 = document.createElement('div');
-  row2.classList.add("row");
-  // row.appendChild(field);
-  row2.appendChild(field2);
+  row.appendChild(field2);
 
   var links = document.getElementById("links");
   links.appendChild(row);
-  var links2 = document.getElementById("links");
-  links2.appendChild(row2);
-
 
   var submit = document.getElementById("submit");
   form.removeChild(submit);
@@ -126,6 +120,7 @@ x.addEventListener("click", function(){
           {!! csrf_field() !!}
 
 
+          <!-- Header Image Input -->
           <p class="blue-text">Header picture</p>
           <div class="row">
 
@@ -149,58 +144,54 @@ x.addEventListener("click", function(){
 
           </div>
 
+          <!-- Menu Type Select -->
           <select name="types">
             <option value="Normal">Normal</option>
             <option value="Hamburger">Hamburger</option>
           </select>
           <label for="types">Type of the menu</label>
           <p class="blue-text">Menu Options</p>
+
+
+
+          <!-- Menu Option -->
           <div id="links">
 
-            <div class="row">
-              <div class="input-field col s12">
+            <!--div class="row">
+              <div class="input-field col s4">
                 <input type="text" name="link1" >
                 <label for="link1">Link</label>
               </div>
-            </div>
-            <div id="links">
 
-              <div class="row">
-                <div class="input-field col s12">
-                  <input type="text" name="url1" >
-                  <label for="link1">URL</label>
-                </div>
+              <div class="input-field col s8">
+                <input type="text" name="url1" >
+                <label for="link1">URL</label>
               </div>
+            </div>
 
             <div class="row">
-              <div class="input-field col s12">
+              <div class="input-field col s4">
                 <input type="text" name="link2" >
                 <label for="link2">Link</label>
               </div>
-            </div>
-            <div id="links">
 
-              <div class="row">
-                <div class="input-field col s12">
-                  <input type="text" name="url2" >
-                  <label for="link1">URL</label>
-                </div>
+              <div class="input-field col s8">
+                <input type="text" name="url2" >
+                <label for="link1">URL</label>
               </div>
+            </div>
 
             <div class="row">
-              <div class="input-field col s12">
+              <div class="input-field col s4">
                 <input class ="form-control" type="text" name="link3" >
                 <label for="link3">Link</label>
               </div>
-            </div>
-            <div id="links">
 
-              <div class="row">
-                <div class="input-field col s12">
-                  <input type="text" name="url3" >
-                  <label for="link1">URL</label>
-                </div>
+              <div class="input-field col s8">
+                <input type="text" name="url3" >
+                <label for="link1">URL</label>
               </div>
+            </div-->
 
           </div>
 
