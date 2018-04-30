@@ -148,10 +148,9 @@ Route::get('/contents/video', [
 ]);
 
 
-Route::get('/contents/menu', [
-  'as' => 'content.menu',
-  'uses' => 'ContentController@menuList'
-]);
+Route::get('/contents/menu', function(){
+  return view('contents/menu');
+})->name('content.menu');
 
 // Route::post('/contents/menu', [
 //   'as' => 'content.menu',
@@ -175,6 +174,10 @@ Route::post('/contents/{cnt}',[
     'uses' => 'ContentController@fill'
 ]);
 
+Route::post('/contents/menu/edit',[
+    'as' => 'content.fillMenu.post',
+    'uses' => 'ContentController@fillMenu'
+]);
 
 ////////////////////////// GOTO Static files management
 Route::get('/files', [

@@ -15,6 +15,7 @@ use Illuminate\Mail\Markdown;
 use Log;
 use App\Models\Collaborator;
 use Auth;
+use App\Models\Menu;
 
 class RegistrationController extends Controller
 {
@@ -50,6 +51,11 @@ class RegistrationController extends Controller
       $user->confirmed = 1;
       $user->token ='';
       $user->save();
+      // dd($user->id);
+      $menu = Menu::create([
+        'admin_id' => $user->id,
+      ]);
+      // dd('a');
       return redirect(route('login_admin'))->with('status','Your activation is completed.');
     }
 

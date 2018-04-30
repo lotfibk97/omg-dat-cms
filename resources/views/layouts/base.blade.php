@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="msapplication-tap-highlight" content="no">
-  <title> {{ $title }}</title>
+  <title> if(isset($title){$title})</title>
 
   <!-- Favicons -->
   <link rel="icon" href="images/favicon/puzzle.png" sizes="32x32">
