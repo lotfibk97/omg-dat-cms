@@ -54,9 +54,7 @@ class PublicationController extends Controller
 
       $user = User::where('id',Auth::id())->first();
 
-      if($user->type != 'admin'){
-        dd('you can\'t');
-      }
+      if($user->type != 'admin') return redirect()->route('access_denied');
 
       $query = DB::select("
         select * from users u
@@ -83,7 +81,7 @@ class PublicationController extends Controller
 
       // check for admin account
       $user = User::where('id',Auth::id())->first();
-      if($user->type != 'admin') dd('u kent');
+      if($user->type != 'admin') redirect()->route('access_denied');
 
       // create publication from request data
       $pub=Publication::create([
@@ -117,8 +115,8 @@ class PublicationController extends Controller
 
       $user = User::where('id',Auth::id())->first();
       $publication = Publication::where('id',$pub)->first();
-      if(is_null($publication)) dd('what is dat');
-      if ($publication->user != $user->id) dd('not yours');
+      if(is_null($publication)) redirect()->route('access_denied');
+      if ($publication->user != $user->id) redirect()->route('access_denied');
 
       $query = DB::select(DB::raw("
         select * from users u
@@ -159,8 +157,8 @@ class PublicationController extends Controller
       $user = User::where('id',Auth::id())->first();
       $publication = Publication::where('id',$pub)->first();
       if(is_null($publication->id)) redirect()->route('error1');
-      if($publication->user != $user->id) dd('not owner');
-      if($user->type != 'admin') dd('u kent');
+      if($publication->user != $user->id) redirect()->route('access_denied');
+      if($user->type != 'admin') redirect()->route('access_denied');
 
       // update title & desc
       $publication->title=$request->title;
@@ -219,11 +217,8 @@ class PublicationController extends Controller
 
       $publication=Publication::where('id',$pub)->first();
       $contents=DB::select("select * from contents where publication=".$pub);
-      // dd($contents[0]->id);
       $menu=Menu::where('admin_id',$publication->user)->first();
-      // dd($menu);
       $links=Link::where('menu_id',$menu->id)->get();
-      // dd($links);
 
       $rows=0;
       foreach($contents as $content) {
@@ -250,8 +245,8 @@ class PublicationController extends Controller
       $user = User::where('id',Auth::id())->first();
       $publication = Publication::where('id',$pub)->first();
       if(is_null($publication->id)) redirect()->route('error1');
-      if($publication->user != $user->id) dd('not owner');
-      if($user->type != 'admin') dd('u kent');
+      if($publication->user != $user->id) redirect()->route('access_denied');
+      if($user->type != 'admin') redirect()->route('access_denied');
 
       // delete the publication
       $publication->delete();

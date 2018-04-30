@@ -15,7 +15,7 @@ class CollaboratorController extends Controller
   public function list(Request $request) {
 
     $user = User::where('id',Auth::id())->first();
-    if ($user->type =="profile") dd("wech dekhlek fihom");
+    if ($user->type =="profile") return redirect()->route('access_denied');
 
     $collabs=DB::select("
         select * from users u
@@ -42,7 +42,7 @@ class CollaboratorController extends Controller
   public function delete(Request $request, $collab) {
 
     $user=User::where('id',Auth::id())->first();
-    if($user->type == "profile") dd("u kent");
+    if($user->type == "profile") return redirect()->route('access_denied');
 
     $collaborator=Collaborator::where('profile',$collab)->first();
     if(is_null($collaborator)) return redirect()->route('error3');

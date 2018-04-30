@@ -19,7 +19,7 @@ class MenuController extends Controller
 
       $menu = Menu::where('admin_id',$user->id)->first();
       $links = DB::select("select * from links where menu_id=".$menu->id);
-// dd($menu);
+      
       $data = [
         'title' => "Menu Config",
         'menu' => $menu,

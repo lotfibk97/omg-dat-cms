@@ -35,7 +35,7 @@ class ProfileUpdaterController extends Controller
 
     $collaborator= User::where('email',$user->email)->first();
 
-    if(is_null($collaborator)) dd("aaa");
+    if(is_null($collaborator)) dd("Not found");
 
     if( Hash::check($request->password,$collaborator->password)) {
 
