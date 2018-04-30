@@ -7,55 +7,44 @@
 
 @section('script')
 <script>
+
 function getCountLinks(){
     var a = document.getElementsByTagName("input").length;
-    // var i=0;
     b=document.getElementsByTagName("input");
     var i=0;
     var v=0;
     while(i < b.length){
-      // alert(document.getElementsByTagName("input"));
       if(b.item(i).name.startsWith("link")){
         v++;
       }
       i++;
     }
-    // alert(v);
     return v;
 }
 
 function getCountUrls(){
     var a = document.getElementsByTagName("input").length;
-    // var i=0;
     b=document.getElementsByTagName("input");
     var i=0;
     var v=0;
     while(i < b.length){
-      // alert(document.getElementsByTagName("input"));
       if(b.item(i).name.startsWith("url")){
         v++;
       }
       i++;
     }
-    // alert(v);
     return v;
 }
 
-
 var x = document.getElementById("clickme");
-// var y = getCountLinks(x);
-// var y = document.getElementById("links")
-
 
 x.addEventListener("click", function(){
 
-  // alert(getCountLinks());
   var y=getCountLinks()+1;
   var z=getCountUrls()+1;
   var input = document.createElement('input');
   input.type="text";
   input.name="link"+y;
-  // alert(input);
 
   var input2 = document.createElement('input');
   input2.type="text";
@@ -73,7 +62,7 @@ x.addEventListener("click", function(){
   field.classList.add("input-field");
   field.classList.add("col");
   field.classList.add("s4");
-// alert(input);
+
   var field2 = document.createElement('div');
   field2.classList.add("input-field");
   field2.classList.add("col");
@@ -139,15 +128,20 @@ x.addEventListener("click", function(){
 
             <div class="col s5 ">
               <!-- replace this src with current menu picture -->
-              <img src="#" alt="default picture" width="100%" height="180px">
+              <img src="{{$menu->image}}" alt="default picture" width="100%" height="180px">
             </div>
 
           </div>
 
           <!-- Menu Type Select -->
           <select name="types">
-            <option value="Normal">Normal</option>
+            @if($menu->type == "Normal")
+            <option value="Normal" selected>Normal</option>
             <option value="Hamburger">Hamburger</option>
+            @else
+            <option value="Normal">Normal</option>
+            <option value="Hamburger" selected>Hamburger</option>
+            @endif
           </select>
           <label for="types">Type of the menu</label>
           <p class="blue-text">Menu Options</p>
@@ -157,41 +151,21 @@ x.addEventListener("click", function(){
           <!-- Menu Option -->
           <div id="links">
 
-            <!--div class="row">
-              <div class="input-field col s4">
-                <input type="text" name="link1" >
-                <label for="link1">Link</label>
-              </div>
-
-              <div class="input-field col s8">
-                <input type="text" name="url1" >
-                <label for="link1">URL</label>
-              </div>
-            </div>
-
+            <?php $i=1; ?>
+            @foreach( $links as $link)
             <div class="row">
               <div class="input-field col s4">
-                <input type="text" name="link2" >
-                <label for="link2">Link</label>
+                <input type="text" name="link{{$i}}" value="{{$link->name}}" >
+                <label for="link{{$i}}">Link</label>
               </div>
 
               <div class="input-field col s8">
-                <input type="text" name="url2" >
-                <label for="link1">URL</label>
+                <input type="text" name="url{{$i}}" value="{{$link->url}}">
+                <label for="url{{$i}}">URL</label>
               </div>
             </div>
-
-            <div class="row">
-              <div class="input-field col s4">
-                <input class ="form-control" type="text" name="link3" >
-                <label for="link3">Link</label>
-              </div>
-
-              <div class="input-field col s8">
-                <input type="text" name="url3" >
-                <label for="link1">URL</label>
-              </div>
-            </div-->
+            <?php $i=$i+1; ?>
+            @endforeach
 
           </div>
 

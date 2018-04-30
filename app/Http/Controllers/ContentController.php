@@ -183,45 +183,7 @@ class ContentController extends Controller
 
   //////////////////////////////////////////////////////////////////////////
   // Fill Content POST
-  public function fillMenu(Request $request) {
-    $menu = Menu::where('admin_id',Auth::user()->id)->first();
-    // dd($menu);
-    $menu->type = $request->types;
-    if(isset($request->all()['image'])){
-        // dd($image);
-        $image = $request->all()['image'];
-        $input['imagename'] = 'M'.$menu->id.'_'.time().'.'.$image->getClientOriginalExtension();
-        $destinationPath = public_path('/static/images');
-        $image->move($destinationPath, $input['imagename']);
-        $pos = strpos($destinationPath, "static");
-        $endpoint = $pos + strlen("static");
-        $destinationPath = "/static".substr($destinationPath,$endpoint).'/'.$input['imagename'];
-        $menu->image = $destinationPath;
-      }
-    $menu->save();
-    // dd($request->all());
-
-
-    foreach ($request->all() as $key => $value) {
-      // dd($key);
-    if(preg_match('#link[0-9]$#',$key)){
-  // dd("a");
-
-    $name=$value;
-    // dd($link);
-  }
-    if(preg_match('#url[0-9]$#',$key)){
-
-      $link= Link::create([
-        'menu_id' => $menu->id,
-        'url' => $value,
-        'name' => $name,
-      ]);
-
-  }
-}
-return view('/contents/menu');
-}
+  
   public function fill(Request $request, $cnt) {
 
     $content = Content::where('id',$cnt)->first();

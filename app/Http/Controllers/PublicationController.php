@@ -91,16 +91,7 @@ class PublicationController extends Controller
           'description' => $request->description,
           'user' => Auth::id(),
       ]);
-      $content=Content::create([
-        'title' => 'title',
-        'description' => 'description',
-        'type' => 'menu',
-        'publication' => $pub->id,
-        'creator' => $user->id,
-      ]);
-      $menu=Menu::create([
-      'content_id' => $content->id,
-      ]);
+
       $pub->url = str_replace(' ', '', $user->name.'/'.$pub->id);
       $pub->save();
 
@@ -223,16 +214,17 @@ class PublicationController extends Controller
     }
 
     ///////////////////////////////////////////////////////////////////////////
-    // delete publication controller
+    // view publication controller
     public function view(Request $request, $pub){
 
       $publication=Publication::where('id',$pub)->first();
       $contents=DB::select("select * from contents where publication=".$pub);
       // dd($contents[0]->id);
-      $menu=Menu::where('content_id',$contents[0]->id)->first();
+      $menu=Menu::where('admin_id',$publication->user)->first();
       // dd($menu);
       $links=Link::where('menu_id',$menu->id)->get();
       // dd($links);
+
       $rows=0;
       foreach($contents as $content) {
         $offset=$content->top+$content->height;

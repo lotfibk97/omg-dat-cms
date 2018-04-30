@@ -148,14 +148,17 @@ Route::get('/contents/video', [
 ]);
 
 
-Route::get('/contents/menu', function(){
-  return view('contents/menu');
-})->name('content.menu');
+////////////////////////// Goto Edit menu page
+Route::get('/contents/menu', [
+  'as' => 'content.menu',
+  'uses' => 'MenuController@edit'
+]);
 
-// Route::post('/contents/menu', [
-//   'as' => 'content.menu',
-//   'uses' => 'ContentController@createMenu',
-// ]);
+////////////////////////// GETFROM Edit menu page
+Route::post('/contents/menu/edit',[
+    'as' => 'content.fillMenu.post',
+    'uses' => 'MenuController@fill'
+]);
 
 ////////////////////////// GOTO Content fill page
 Route::get('/contents/{cnt}', [
@@ -163,20 +166,10 @@ Route::get('/contents/{cnt}', [
   'uses' => 'ContentController@filling'
 ]);
 
-
-// Route::get('/contents/menu/new', [
-//   'as' => 'menu.create',
-//   'uses' => 'ContentController@createMenu'
-// ]);
 ////////////////////////// GETFROM Content fill page
 Route::post('/contents/{cnt}',[
     'as' => 'content.fill.post',
     'uses' => 'ContentController@fill'
-]);
-
-Route::post('/contents/menu/edit',[
-    'as' => 'content.fillMenu.post',
-    'uses' => 'ContentController@fillMenu'
 ]);
 
 ////////////////////////// GOTO Static files management
@@ -306,3 +299,11 @@ Route::get('/error3',function(){
   ];
   return view('alerts/msg',$data);
 })->name('not_exists_error');
+
+Route::get('/access/denied',function(){
+  $data=[
+    'error_name' => 'Sorry :(',
+    'error_msg' => 'You are not allowed to pass'
+  ];
+  return view('alerts/msg',$data);
+})->name('access_denied');

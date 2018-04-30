@@ -100,7 +100,8 @@
               <img class="activator" src="/images/user-bg.jpg" alt="user background">
           </div>
           <div class="card-content">
-              <img src="{{$blog->picture}}" alt="" class="circle responsive-img activator card-profile-image">
+              <img src="{{$blog->picture}}" alt="" class="circle responsive-img activator card-profile-image"
+              style="height:70px !important;">
 
               <span class="card-title activator grey-text text-darken-4">{{$blog->name}}</span>
               <p><i class="mdi-action-perm-identity cyan-text text-darken-2"></i> Publications: {{count($publications)}}</p>

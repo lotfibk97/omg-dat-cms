@@ -90,7 +90,7 @@
       width: 100%; height:100%;
 
       z-index: 100;
-      background: linear-gradient(to top,rgb(33, 150, 243) 15%, transparent 70%);
+      background: linear-gradient(to top,rgba(33, 150, 243,0.9) 15%, transparent 50%);
     }
 
     #toolbar {
@@ -104,7 +104,7 @@
 
     #toolbar a{
       color: white;
-      font-size: 1.5em;
+      font-size: 1.7em;
       margin: auto;
       transition: 0.5s;
     }
@@ -143,7 +143,7 @@
 
   <!-- BEGIN IF MENU.TYPE == Hambuger -->
   <!-- Hamburger menu button -->
-  @if($menu->type === 'Hambuger')
+  @if($menu->type == 'Hamburger')
   <div style="position:fixed; top:5vh; left:5vh;" id="open">
     <button class="btn-floating btn-large waves-effect waves-light blue">
       <i class="mdi-navigation-menu white-text"></i></button>
@@ -162,18 +162,6 @@
     @endforeach
     </div>
   </div-->
-
-    <!-- Hamburger menu script -->
-    <script type="text/javascript">
-      $("#open").click(function(){
-        document.querySelector("#menu").style.visibility="visible";
-        document.querySelector("#open").style.visibility="hidden";
-      });
-      $("#close").click(function(){
-        document.querySelector("#menu").style.visibility="hidden";
-        document.querySelector("#open").style.visibility="visible";
-      });
-    </script>
 
   <!-- END IF MENU.TYPE == Hambuger -->
 @else
@@ -248,6 +236,19 @@
     <script type="text/javascript" src="{{ asset ('js/plugins.js') }}"></script>
     <!--customJs-->
 
+    @if($menu->type=="Hamburger")
+    <!-- Hamburger menu script -->
+    <script type="text/javascript">
+      $("#open").click(function(){
+        document.querySelector("#menu").style.visibility="visible";
+        document.querySelector("#open").style.visibility="hidden";
+      });
+      $("#close").click(function(){
+        document.querySelector("#menu").style.visibility="hidden";
+        document.querySelector("#open").style.visibility="visible";
+      });
+    </script>
+    @endif
 
 </body>
 </html>
