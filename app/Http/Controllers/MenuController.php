@@ -52,6 +52,13 @@ class MenuController extends Controller
       }
       $menu->save();
 
+      // delete all links
+      $link=Link::where("menu_id",$menu->id)->first();
+      while ($link) {
+        $link->delete();
+        $link=Link::where("menu_id",$menu->id)->first();
+      }
+
       foreach ($request->all() as $key => $value) {
         if(preg_match('#link[0-9]$#',$key)) $name=$value;
 
