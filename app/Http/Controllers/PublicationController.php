@@ -81,7 +81,7 @@ class PublicationController extends Controller
 
       // check for admin account
       $user = User::where('id',Auth::id())->first();
-      if($user->type != 'admin') redirect()->route('access_denied');
+      if($user->type != 'admin') return redirect()->route('access_denied');
 
       // create publication from request data
       $pub=Publication::create([
@@ -115,8 +115,8 @@ class PublicationController extends Controller
 
       $user = User::where('id',Auth::id())->first();
       $publication = Publication::where('id',$pub)->first();
-      if(is_null($publication)) redirect()->route('access_denied');
-      if ($publication->user != $user->id) redirect()->route('access_denied');
+      if(is_null($publication)) return redirect()->route('access_denied');
+      if ($publication->user != $user->id) return redirect()->route('access_denied');
 
       $query = DB::select(DB::raw("
         select * from users u
@@ -156,9 +156,9 @@ class PublicationController extends Controller
       // check for user admin and its possession of publication
       $user = User::where('id',Auth::id())->first();
       $publication = Publication::where('id',$pub)->first();
-      if(is_null($publication->id)) redirect()->route('error1');
-      if($publication->user != $user->id) redirect()->route('access_denied');
-      if($user->type != 'admin') redirect()->route('access_denied');
+      if(is_null($publication->id)) return redirect()->route('error1');
+      if($publication->user != $user->id) return redirect()->route('access_denied');
+      if($user->type != 'admin') return redirect()->route('access_denied');
 
       // update title & desc
       $publication->title=$request->title;
@@ -244,9 +244,9 @@ class PublicationController extends Controller
       // check for user admin and its possession of publication
       $user = User::where('id',Auth::id())->first();
       $publication = Publication::where('id',$pub)->first();
-      if(is_null($publication->id)) redirect()->route('error1');
-      if($publication->user != $user->id) redirect()->route('access_denied');
-      if($user->type != 'admin') redirect()->route('access_denied');
+      if(is_null($publication->id)) return redirect()->route('error1');
+      if($publication->user != $user->id) return redirect()->route('access_denied');
+      if($user->type != 'admin') return redirect()->route('access_denied');
 
       // delete the publication
       $publication->delete();

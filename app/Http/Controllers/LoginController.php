@@ -72,7 +72,11 @@ class LoginController extends Controller
         )
     ");
 
-    $collaborator = User::where('id',$query['0']->id)->first();
+    if (empty($query)) {
+      return redirect()->route('not_exists_error');
+    }
+
+    $collaborator = User::where('id',$query['0']->id)->first(); 
 
     if( is_null ($collaborator) ) {
       return redirect()->route('not_exists_error');
