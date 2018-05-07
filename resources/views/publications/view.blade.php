@@ -161,7 +161,7 @@
     <a href="{{$link->url}}">{{$link->name}}</a>
     @endforeach
     </div>
-  </div-->
+  </div>
 
   <!-- END IF MENU.TYPE == Hambuger -->
 @else
